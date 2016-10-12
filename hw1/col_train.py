@@ -4,10 +4,7 @@ import random
 data = np.load('training_data.npy')
 
 def loss_unit(loss):
-    #ans: 471*1
-    #data: 471*162
-    #w: 1*162
-    #b: 471*1
+    #loss = 
     ans = np.square(loss)
     return np.sum(ans)
 
@@ -20,10 +17,8 @@ def diff_Bunit(loss):
     ans = (-2)*loss
     return np.sum(ans)
 
-#weight = np.random.rand(1,162)/1000000000
 #weight = np.zeros((1,162))
 weight = np.load('weight.npy')
-#bias = random.randint(0,5)/100000000
 #bias = 0
 bias = np.load('bias.npy')
 learning_rate = 0.0000000001

@@ -3,22 +3,16 @@ import random
 
 data = np.load('training_data.npy')
 
-def loss_unit(ans, data, w, b):
-    #ans: 1*471
-    #data: 162*471
-    #w: 1*162
-    #b: 1*471
-    loss = ans - b - np.dot(w,data)
-    loss = np.square(loss)
-    return np.sum(loss)
+def loss_unit(loss):
+    ans = np.square(loss)
+    return np.sum(ans)
 
-def diff_Wunit(ans, data, w, b):
-    ans = (-2)*(ans-b-np.dot(w,data))
+def diff_Wunit(loss, data):
     xT = np.transpose(data)
-    return np.dot(ans,xT)
+    return (-2)*(np.dot(loss,xT))
 
-def diff_Bunit(ans, data, w, b):
-    ans = (-2)*(ans-b-np.dot(w,data))
+def diff_Bunit(loss):
+    ans = (-2)*loss
     return np.sum(ans)
 
 #weight = np.random.rand(1,162)/1000000000
@@ -28,7 +22,16 @@ weight = np.load('weight.npy')
 #bias = 0
 bias = np.load('bias.npy')
 learning_rate = 0.0000000001
-iteration = 1000
+iteration = 100000
+
+#arrange input data
+inputdata = []
+for m in range (12):
+    drawer = np.empty((162,0))
+    for d in range(471):
+        temp = data[m][0:18,d:d+9].reshape(162,1)
+        drawer = np.append(drawer,temp,1)
+    inputdata.append(drawer)
 
 for i in range(iteration):
     print "iteration  " + str(i)
@@ -36,17 +39,14 @@ for i in range(iteration):
     diff_w = 0
     diff_b = 0
     for m in range(12):
-        inputdata = np.empty((162,0))
         bi = np.zeros((1,471))
         bi.fill(bias)
-        for d in range(471):
-            temp = data[m][0:18,d:d+9].reshape(162,1)
-            inputdata = np.append(inputdata,temp,1)
-        loss = loss+loss_unit(data[m][9,9:480],inputdata,weight,bi)
-        diff_w = diff_w+diff_Wunit(data[m][9,9:480],inputdata,weight,bi)
-        diff_b = diff_b+diff_Bunit(data[m][9,9:480],inputdata,weight,bi)
+        lo = data[m][9,9:480].reshape(1,471) - bi - np.dot(weight,inputdata[m])
+        loss = loss+loss_unit(lo)
+        diff_w = diff_w+diff_Wunit(lo,inputdata[m])
+        diff_b = diff_b+diff_Bunit(lo)
     weight = weight - learning_rate*diff_w
-    bias = bias -learning_rate*diff_b
+    bias = bias - learning_rate*diff_b
     print loss
 
 np.save("weight",weight)
