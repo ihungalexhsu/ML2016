@@ -27,7 +27,7 @@ def diff_Bunit(loss):
     return np.sum(ans)
 
 
-learning_r = 0.000000000055
+learning_r = 0.000000000058
 #adagrad
 rate = 0.01
 learn_rate = np.zeros((1,162))
@@ -39,7 +39,7 @@ learning_rate = np.zeros((1,162))
 learning_rate_b = 0.0
 
 
-iteration = 450000
+iteration = 500000
 test_num = 240
 lamda = 0
 #validation
@@ -85,13 +85,12 @@ for i in range(iteration):
     #regularization
     loss =loss+lamda*(np.sum(np.square(weight)))
     diff_w =diff_w + 2*lamda*(weight)
-    if (i==250000):
-        learning_r = learning_r / 5.0
     if (i==350000):
-        learning_r = learning_r / 5.0
-    if (i < 73000):
+        learning_r = learning_r / 4.0
+    if (i==450000):
+        learning_r = learning_r / 4.0
+    if (i < 72000):
         #adagrad
-        print "ada"
         denominator = np.sqrt(np.square(denominator)+np.square(diff_w))
         learning_rate = np.divide(learn_rate,denominator)
         denominator_b = math.sqrt((denominator_b**2)+(diff_b**2))
@@ -100,7 +99,6 @@ for i in range(iteration):
         weight = weight - learning_rate*diff_w
         bias = bias - learning_rate_b*diff_b
     else:
-        print "learning_r : "+str(learning_r)
         weight = weight - learning_r*diff_w
         bias = bias - learning_r*diff_b
     

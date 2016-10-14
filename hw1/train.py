@@ -5,10 +5,10 @@ import math
 data = np.load('training_data.npy')
 
 #weight = np.zeros((1,162))
-weight = (np.random.rand(1,162))/100.0 
+weight = np.random.uniform(-0.001,0.001,(1,162)) 
 
 #bias = 0 
-bias = random.uniform(0,0.5)
+bias = random.uniform(-0.1,0.1)
 
 #utility function for calcuating
 def loss_unit(loss):
@@ -23,7 +23,7 @@ def diff_Bunit(loss):
     ans = (-2)*loss
     return np.sum(ans)
 
-learning_r = 0.000000000057
+learning_r = 0.000000000058
 #adagrad
 rate = 0.01
 learn_rate = np.zeros((1,162))
@@ -35,7 +35,7 @@ learning_rate = np.zeros((1,162))
 learning_rate_b = 0.0
 
 
-iteration = 450000
+iteration = 500000
 test_num = 240
 lamda = 0
 
@@ -66,11 +66,11 @@ for i in range(iteration):
     loss =loss+lamda*(np.sum(np.square(weight)))
     diff_w =diff_w + 2*lamda*(weight)
     '''
-    if (i==280000):
+    if (i==350000):
         learning_r = learning_r / 4.0
-    if (i==380000):
+    if (i==450000):
         learning_r = learning_r / 4.0
-    if (i<73000):
+    if (i<72000):
         #adagrad
         denominator = np.sqrt(np.square(denominator)+np.square(diff_w))
         learning_rate = np.divide(learn_rate,denominator)
