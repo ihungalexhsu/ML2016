@@ -23,7 +23,7 @@ def diff_Bunit(loss):
     ans = (-2)*loss
     return np.sum(ans)
 
-learning_r = 0.000000000055
+learning_r = 0.000000000057
 #adagrad
 rate = 0.01
 learn_rate = np.zeros((1,162))
@@ -66,10 +66,10 @@ for i in range(iteration):
     loss =loss+lamda*(np.sum(np.square(weight)))
     diff_w =diff_w + 2*lamda*(weight)
     '''
-    if (i==250000):
-        learning_r = learning_r / 5.0
-    if (i==350000):
-        learning_r = learning_r / 5.0
+    if (i==280000):
+        learning_r = learning_r / 4.0
+    if (i==380000):
+        learning_r = learning_r / 4.0
     if (i<73000):
         #adagrad
         denominator = np.sqrt(np.square(denominator)+np.square(diff_w))
