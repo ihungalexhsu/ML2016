@@ -23,7 +23,7 @@ def diff_Bunit(loss):
     ans = (-2)*loss
     return np.sum(ans)
 
-learning_r = 0.000000000055
+learning_r = 0.00000000005
 #adagrad
 rate = 0.01
 learn_rate = np.zeros((1,162))
@@ -70,7 +70,7 @@ for i in range(iteration):
         learning_r = learning_r / 5.0
     if (i==350000):
         learning_r = learning_r / 5.0
-    if (i<73000):
+    if (i<72000):
         #adagrad
         denominator = np.sqrt(np.square(denominator)+np.square(diff_w))
         learning_rate = np.divide(learn_rate,denominator)
@@ -83,6 +83,7 @@ for i in range(iteration):
         weight = weight - learning_r*diff_w
         bias = bias - learning_r*diff_b
     print "training loss : " + str(math.sqrt(loss/5652) )
+
 
 np.save("weight_kaggle",weight)
 np.save("bias_kaggle",bias)
