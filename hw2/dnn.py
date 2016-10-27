@@ -1,11 +1,12 @@
 import numpy as np
 import random
+import sys
 import math
 
-dataset = np.loadtxt('./spam_data/spam_train.csv',delimiter=',',usecols=range(1,59))
+dataset = np.loadtxt(sys.argv[1],delimiter=',',usecols=range(1,59))
 
 np.random.seed(1)
-#np.random.shuffle(dataset)
+np.random.shuffle(dataset)
 
 #slice to validation set 
 valid_data = dataset[0:400,:]
@@ -76,10 +77,10 @@ bias1 = np.random.uniform(-1,1,num_hidden).reshape(num_hidden,1)
 weight2 = np.random.uniform(-1,1,num_hidden).reshape(1,num_hidden)
 bias2 = np.random.uniform(-1,1,1).reshape(1,1)
 
-iteration = 20000
+iteration = 25000
 learning_rate = 0.000001
-#adagrad
 
+#adagrad
 rate = 0.01
 learn_rate_w1 = np.zeros((num_hidden,57))
 learn_rate_w1.fill(rate)
@@ -105,7 +106,7 @@ for i in range(iteration):
     #layer1 = estimate_relu(weight1, bias1, inputdata)
     layer1 = estimate_sigmoid(weight1, bias1, inputdata)
     prediction = estimate_sigmoid(weight2, bias2, layer1)
-    loss = cross_entropy(prediction, dataAns)
+    #loss = cross_entropy(prediction, dataAns)
     #updating
     #output layer
     #diff_unit2 = dataAns - prediction
@@ -142,17 +143,11 @@ for i in range(iteration):
     bias1 = bias1 + learning_rate_b1*diff_b1
     weight2 = weight2 + learning_rate_w2*diff_w2
     bias2 = bias2 + learning_rate_b2*diff_b2
-    '''
-    weight1 = weight1 - learning_rate*diff_w1
-    bias1 = bias1 - learning_rate*diff_b1
-    weight2 = weight2 - learning_rate*diff_w2
-    bias2 = bias2 - learning_rate*diff_b2
-    '''
     #validation
     #layer1_val = estimate_relu(weight1, bias1, valid_data)
     layer1_val = estimate_sigmoid(weight1, bias1, valid_data)
     predict_val = estimate_sigmoid(weight2, bias2, layer1_val)
-    loss_val = cross_entropy(predict_val, validAns)
+    #loss_val = cross_entropy(predict_val, validAns)
     predict_val = predict_val - 0.5
     temp1 = np.zeros(predict_val.shape)
     temp2 = predict_val > temp1
@@ -168,11 +163,9 @@ for i in range(iteration):
         bias_max_2 = bias2
         print "update!"
 
-    print "training loss : " + str(loss)
-    print "valid loss : " + str(loss_val)
     print "acc : " +str(acc)
 
 model = np.array([weight_max_1,bias_max_1,weight_max_2,bias_max_2])
-np.save("model_dnn_seed1_15",model)
+np.save(sys.argv[2],model)
 
 
