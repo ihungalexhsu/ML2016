@@ -1,11 +1,12 @@
 import numpy as np
 import random
 import math
+import sys
 
+dataset = np.loadtxt(sys.argv[1],dtype='float',delimiter=',',usecols=range(1,59))
 
-dataset = np.loadtxt('./spam_data/spam_train.csv',dtype='float',delimiter=',',usecols=range(1,59))
-#np.random.seed(1)
-#np.random.shuffle(dataset)
+np.random.seed(1)
+np.random.shuffle(dataset)
 
 #slice to validation set
 valid_data = dataset[0:400,:]
@@ -111,7 +112,7 @@ for i in range(iteration):
     print "valid loss : " + str(loss_valid/400)
     print "accuracy : "+ str(acc)
 
-np.save("weight_reg_valid_test3",weight_great)
-np.save("bias_reg_valid_test3",bias_great)
+model = [weight_great, bias_great]
+np.save(sys.argv[2],model)
 #np.save("denominator_reg_valid",denominator)
 #np.save("denominator_b_reg_valid",denominator_b)
