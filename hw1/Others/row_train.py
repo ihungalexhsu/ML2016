@@ -8,9 +8,9 @@ test_data = np.load('test_data.npy')
 test_data_ans = np.load('test_data_answer.npy')
 
 #weight = np.zeros((1,162))
-weight = (np.random.rand(1,162))/100.0 
+weight = np.random.uniform(-0.001,0.001,(1,162)) 
 #weight = np.load("weight_reporthope.npy")
-bias = random.uniform(0,0.5)
+bias = random.uniform(-0.1,0.1)
 #bias = np.load("bias_reporthope.npy")
 
 #utility function for calcuating
