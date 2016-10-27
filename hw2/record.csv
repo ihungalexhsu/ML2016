@@ -1,3 +1,0 @@
-name,summit,score,initial point,iteration,lamda,learning rate
-ans_reg,3,0.93667,0,50000,10,Adagrad_0.01
-ans,1,0.93,0,50000,0,Adagrad_0.01
