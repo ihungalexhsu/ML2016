@@ -77,7 +77,7 @@ bias1 = np.random.uniform(-1,1,num_hidden).reshape(num_hidden,1)
 weight2 = np.random.uniform(-1,1,num_hidden).reshape(1,num_hidden)
 bias2 = np.random.uniform(-1,1,1).reshape(1,1)
 
-iteration = 30000
+iteration = 25000
 learning_rate = 0.000001
 
 #adagrad
