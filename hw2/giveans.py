@@ -1,6 +1,7 @@
 import numpy as np
 import csv
 import random
+import sys
 import math
 
 def sigmoid(x):
@@ -14,15 +15,16 @@ def estimate(wei, bi, feature):
         temp[0,ii] = sigmoid(temp[0,ii])
     return temp
 
-weight = np.load('weight_reg_valid_test3.npy')
-bias = np.load('bias_reg_valid_test3.npy')
-test_data = np.loadtxt('./spam_data/spam_test.csv',dtype='float',delimiter=',',usecols=(range(1,58)))
+model = np.load(sys.argv[1]+str(".npy"))
+weight = model[0]
+bias = model[1]
+test_data = np.loadtxt(sys.argv[2],dtype='float',delimiter=',',usecols=(range(1,58)))
 test_data = np.transpose(test_data)
 prediction =  estimate(weight,bias,test_data)
 
 test_num = 600
 answer=[]
-with open('ans_reg_valid_test2.csv','wb') as csvfile:
+with open(sys.argv[3],'wb') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=',',quotechar='"')
     spamwriter.writerow(['id']+['label'])
     for i in range(test_num):
