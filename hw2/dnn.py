@@ -108,27 +108,23 @@ for i in range(iteration):
     prediction = estimate_sigmoid(weight2, bias2, layer1)
     #loss = cross_entropy(prediction, dataAns)
     #updating
-    #output layer
-    #diff_unit2 = dataAns - prediction
-    #diff_w2 = (-1)*np.dot(diff_unit2, np.transpose(layer1))
-    #diff_b2 = (-1)*np.sum(diff_unit2)
     
+    #output layer
     #sigmoid_diff2 = prediction - np.square(prediction )#1*3601
     #pratial_C = (-1)*(dataAns/prediction)+((1-dataAns)/(1-prediction))#1*3601
     #pratial_C = diff_cross_entropy(prediction, dataAns)
-    #pratial_C = dataAns - prediction
-    delta2 = dataAns - prediction
     #delta2 = sigmoid_diff2*pratial_C # 1*3601
-    diff_w2 = np.dot( delta2 , np.transpose(layer1)) #1*10
-    diff_b2 = (np.sum( delta2 )).reshape(1,1)
+    delta2 = dataAns - prediction
+    diff_w2 = (-1)*np.dot( delta2 , np.transpose(layer1)) #1*10
+    diff_b2 = (-1)*(np.sum( delta2 )).reshape(1,1)
 
     #hidden layer
     #relu_diff1 = diff_relu(np.dot(weight1,inputdata)+bias1)
     sigmoid_diff1 = layer1 - np.square( layer1 )
     pratial_delta = np.dot(np.transpose(weight2), delta2)#10*3601
     delta1 = sigmoid_diff1*pratial_delta #num_hidden*3601
-    diff_w1 = np.dot( delta1, np.transpose(inputdata) )
-    diff_b1 = (np.sum( delta1,1)).reshape((num_hidden,1))
+    diff_w1 = (-1)*np.dot( delta1, np.transpose(inputdata) )
+    diff_b1 = (-1)*(np.sum( delta1,1)).reshape((num_hidden,1))
     
     denominator_w1 = np.sqrt(np.square(denominator_w1)+np.square(diff_w1))
     learning_rate_w1 =np.divide(learn_rate_w1,denominator_w1)
@@ -140,10 +136,10 @@ for i in range(iteration):
     denominator_b2 = np.sqrt(np.square(denominator_b2)+np.square(diff_b2))
     learning_rate_b2 =np.divide(learn_rate_b2,denominator_b2)
     
-    weight1 = weight1 + learning_rate_w1*diff_w1
-    bias1 = bias1 + learning_rate_b1*diff_b1
-    weight2 = weight2 + learning_rate_w2*diff_w2
-    bias2 = bias2 + learning_rate_b2*diff_b2
+    weight1 = weight1 - learning_rate_w1*diff_w1
+    bias1 = bias1 - learning_rate_b1*diff_b1
+    weight2 = weight2 - learning_rate_w2*diff_w2
+    bias2 = bias2 - learning_rate_b2*diff_b2
     #validation
     #layer1_val = estimate_relu(weight1, bias1, valid_data)
     layer1_val = estimate_sigmoid(weight1, bias1, valid_data)
