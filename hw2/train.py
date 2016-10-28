@@ -41,13 +41,13 @@ def cross_entropy(x,y):
     return (-1)*loss
 
 
-iteration = 40000
-lamda = 10
+iteration = 20000
+lamda = 3
 
 #learning_r = 0.000000000058
 
 #adagrad
-rate = 0.01 #adagrad rate
+rate = 0.02 #adagrad rate
 learn_rate = np.zeros((1,57)) #learn_rate is the matrix full with constant learning rate
 learn_rate.fill(rate) #learn_rate init
 learn_rate_b = rate #learn_rate_b is the constant learning rate for bias
