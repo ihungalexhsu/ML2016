@@ -5,7 +5,7 @@ import math
 
 dataset = np.loadtxt(sys.argv[1],delimiter=',',usecols=range(1,59))
 
-np.random.seed(5)
+np.random.seed(3)
 np.random.shuffle(dataset)
 
 #slice to validation set 
@@ -71,13 +71,13 @@ def cross_entropy(x,y):
             loss = loss + math.log(x[0,ii]+little_num)
     return (-1)*loss
 
-num_hidden = 15
+num_hidden = 20
 weight1 = np.random.uniform(-1,1,57*num_hidden).reshape(num_hidden,57)
 bias1 = np.random.uniform(-1,1,num_hidden).reshape(num_hidden,1)
 weight2 = np.random.uniform(-1,1,num_hidden).reshape(1,num_hidden)
 bias2 = np.random.uniform(-1,1,1).reshape(1,1)
 
-iteration = 25000
+iteration = 18000
 learning_rate = 0.000001
 
 #adagrad
@@ -113,11 +113,12 @@ for i in range(iteration):
     #diff_w2 = (-1)*np.dot(diff_unit2, np.transpose(layer1))
     #diff_b2 = (-1)*np.sum(diff_unit2)
     
-    sigmoid_diff2 = prediction - np.square(prediction )#1*3601
+    #sigmoid_diff2 = prediction - np.square(prediction )#1*3601
     #pratial_C = (-1)*(dataAns/prediction)+((1-dataAns)/(1-prediction))#1*3601
     #pratial_C = diff_cross_entropy(prediction, dataAns)
-    pratial_C = dataAns - prediction
-    delta2 = sigmoid_diff2*pratial_C # 1*3601
+    #pratial_C = dataAns - prediction
+    delta2 = dataAns - prediction
+    #delta2 = sigmoid_diff2*pratial_C # 1*3601
     diff_w2 = np.dot( delta2 , np.transpose(layer1)) #1*10
     diff_b2 = (np.sum( delta2 )).reshape(1,1)
 
