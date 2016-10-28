@@ -5,7 +5,7 @@ import math
 
 dataset = np.loadtxt(sys.argv[1],delimiter=',',usecols=range(1,59))
 
-np.random.seed(1)
+np.random.seed(5)
 np.random.shuffle(dataset)
 
 #slice to validation set 
@@ -77,7 +77,7 @@ bias1 = np.random.uniform(-1,1,num_hidden).reshape(num_hidden,1)
 weight2 = np.random.uniform(-1,1,num_hidden).reshape(1,num_hidden)
 bias2 = np.random.uniform(-1,1,1).reshape(1,1)
 
-iteration = 25000
+iteration = 30000
 learning_rate = 0.000001
 
 #adagrad
@@ -161,8 +161,6 @@ for i in range(iteration):
         weight_max_2 = weight2
         bias_max_1 = bias1
         bias_max_2 = bias2
-        print "update!"
-
     print "acc : " +str(acc)
 
 model = np.array([weight_max_1,bias_max_1,weight_max_2,bias_max_2])

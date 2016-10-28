@@ -15,7 +15,7 @@ def estimate_sigmoid(wei,bi,feature):
     return temp
 
 
-model = np.load(sys.argv[1])
+model = np.load(sys.argv[1]+str(".npy"))
 weight1 = model[0]
 bias1 = model[1]
 weight2 = model[2]
