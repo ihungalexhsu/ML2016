@@ -42,7 +42,7 @@ def cross_entropy(x,y):
     return (-1)*loss
 
 
-iteration = 50000
+iteration = 40000
 lamda = 10
 
 #learning_r = 0.000000000058
