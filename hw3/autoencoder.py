@@ -80,7 +80,7 @@ autoencoder = Activation('relu')(autoencoder)
 autoencoder = MaxPooling2D(pool_size=(2,2))(autoencoder)
 autoencoder = Convolution2D(128, 3, 3, border_mode='same',activity_regularizer=regularizers.activity_l2(10e-5))(autoencoder)
 autoencoder = Activation('relu')(autoencoder)
-autoencoder = Convolution2D(128, 3, 3, border_mode='same')(autoencoder)
+autoencoder = Convolution2D(64, 3, 3, border_mode='same')(autoencoder)
 autoencoder = Activation('relu')(autoencoder)
 autoencoder = MaxPooling2D(pool_size=(2,2))(autoencoder)
 autoencoder = Flatten()(autoencoder)
@@ -91,9 +91,9 @@ encoder = Activation('relu')(autoencoder)
 
 autoencoder = Dense(1024)(encoder)
 autoencoder = Activation('relu')(autoencoder)
-autoencoder = Dense(128*8*8)(autoencoder)
+autoencoder = Dense(64*8*8)(autoencoder)
 autoencoder = Activation('relu')(autoencoder)
-autoencoder = Reshape((128,8,8),input_shape=(128*8*8,))(autoencoder)
+autoencoder = Reshape((64,8,8),input_shape=(64*8*8,))(autoencoder)
 autoencoder = UpSampling2D(size=(2,2))(autoencoder)
 autoencoder = Convolution2D(128,3,3,border_mode= 'same')(autoencoder)
 autoencoder = Activation('relu')(autoencoder)
@@ -121,12 +121,21 @@ auto.fit(unlabel, unlabel,
          validation_data=(X_test,X_test),
          verbose = 1,
          callbacks = callbacks)
+'''
+decoded_imgs = auto.predict(X_test[52].reshape((1,32,32,3)))
+plt.imshow(255.0*X_test[52])
+plt.savefig('original_52.jpg')
+plt.imshow(255.0*decoded_imgs[0])
+plt.savefig('decoded_52.jpg')
+decoded_imgs = auto.predict(X_test[75].reshape((1,32,32,3)))
+plt.imshow(255.0*X_test[75])
+plt.savefig('original_75.jpg')
+plt.imshow(255.0*decoded_imgs[0])
+plt.savefig('decoded_75.jpg')
+'''
 
 # using encoder as pretrain
-x = Dense(2048)(encoder)
-x = BatchNormalization()(x)
-x = Activation('relu')(x)
-x = Dense(1024)(encoder)
+x = Dense(512)(encoder)
 x = BatchNormalization()(x)
 x = Activation('relu')(x)
 x = Dense(512)(encoder)
@@ -137,7 +146,7 @@ x = Dense(num_class)(x)
 x = Activation('softmax')(x)
 
 model = Model(input_img, x) 
-model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy',optimizer='adam', metrics = ['accuracy'])
 model.summary()
 
 data_gener = ImageDataGenerator(
@@ -151,7 +160,7 @@ data_gener = ImageDataGenerator(
     horizontal_flip = True,
     vertical_flip = False)
 
-callbacks = [
+callbacks2 = [
     EarlyStopping(monitor='val_loss', patience = 30, verbose = 0),
     ModelCheckpoint(filepath=sys.argv[2], monitor = 'val_acc', save_best_only=True,
                     verbose=0, mode = 'max')
@@ -162,7 +171,7 @@ model.fit_generator(data_gener.flow(X_train ,Y_train ,batch_size=batch_size),
                     nb_epoch = nb_epoch,
                     verbose = 1,
                     validation_data = (X_test,Y_test),
-                    callbacks = callbacks
+                    callbacks = callbacks2
                     )
 
 if keras.backend.tensorflow_backend._SESSION:

@@ -2,6 +2,7 @@ from keras.models import Sequential
 from keras.utils import np_utils
 from keras.models import model_from_json
 from keras.models import load_model
+import keras.backend.tensorflow_backend
 import numpy as np
 import pickle
 import json
@@ -20,11 +21,16 @@ X_te = test_label.reshape((10000,3,32,32)).transpose(0,2,3,1)
 X_te.astype('float32')
 X_te = X_te/255.0
 
-predict = model.predict_classes(X_te,verbose = 0)
+predict = model.predict(X_te,verbose = 0)
 
 with open(sys.argv[3],'w') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter = ',', quotechar='"')
     spamwriter.writerow(['ID']+['class'])
     for i in range(10000):
-        ans = predict[i]
+        ans = np.argmax(predict[i])
         spamwriter.writerow([i]+[ans])
+if keras.backend.tensorflow_backend._SESSION:
+    tf.reset_default_graph()
+    keras.backend.tensorflow_backend._SESSION.close()
+    keras.backend.tensorflow_backend._SESSION = None
+

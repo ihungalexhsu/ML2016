@@ -1,2 +1,2 @@
 #!/bin/bash
-python antoencoder.py $1 $2
+python autoencoder.py $1 $2
