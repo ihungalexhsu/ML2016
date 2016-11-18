@@ -107,7 +107,7 @@ decoder = Activation('sigmoid')(autoencoder)
 
 auto = Model(input_img,decoder)
 enc = Model(input_img,encoder)
-auto.compile(optimizer = 'adam', loss = 'mse', metrics =['accuracy']) 
+auto.compile(optimizer = 'adam', loss = 'mse') 
 unlabel = np.append(unlabel,X_train,axis=0)
 callbacks = [
     EarlyStopping(monitor='val_loss', patience = 20, verbose = 0),
@@ -137,7 +137,7 @@ x = Dense(num_class)(x)
 x = Activation('softmax')(x)
 
 model = Model(input_img, x) 
-model.compile(loss='categorical_crossentropy',optimizer='adam')
+model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
 model.summary()
 
 data_gener = ImageDataGenerator(
