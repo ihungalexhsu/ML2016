@@ -1,14 +1,18 @@
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential, Model
 from keras.layers import Dense, Dropout, Activation, Flatten, Reshape
-from keras.layers import Convolution2D, MaxPooling2D, UpSampling2D
+from keras.layers import Convolution2D, MaxPooling2D, UpSampling2D, Input
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras.utils import np_utils
 from keras import backend as K
+from keras import regularizers
 from keras.layers.normalization import BatchNormalization
 import keras.backend.tensorflow_backend
 import tensorflow as tf
-import matplotlib.pyplot as plt
+import sys
+#import matplotlib as mpl
+#mpl.use('Agg')
+#import matplotlib.pyplot as plt
 
 tf.python.control_flow_ops=tf
 sess = tf.Session()
@@ -26,7 +30,7 @@ num_data=500
 val_split = 0.1
 
 #read label data
-all_label = pickle.load(open('datas/data/all_label.p','rb'))
+all_label = pickle.load(open(sys.argv[1]+'all_label.p','rb'))
 all_label = np.array(all_label)
 X_train = np.empty((0,img_channels*img_rows*img_cols))
 X_test = np.empty((0,img_channels*img_rows*img_cols))
@@ -43,9 +47,9 @@ for i in range(num_class):
     y_train = np.append(y_train,temp[50:],axis = 0)
 
 #read unlabeled data
-unlabel = pickle.load(open('datas/data/all_unlabel.p','rb'))
+unlabel = pickle.load(open(sys.argv[1]+'all_unlabel.p','rb'))
 unlabel = np.array(unlabel)
-testdata = pickle.load(open('datas/data/test.p','rb'))
+testdata = pickle.load(open(sys.argv[1]+'test.p','rb'))
 testdata = np.asarray(testdata['data'])
 testdata = testdata.reshape((10000,3,32,32)).transpose(0,2,3,1)
 unlabel = unlabel.reshape((45000,img_channels,img_rows,img_cols)).transpose(0,2,3,1)
@@ -65,16 +69,16 @@ unlabel = unlabel / 255.
 
 batch_size = 32
 nb_classes = 10
-nb_epoch = 50
+nb_epoch = 100
 
 # autoencoder
 input_img = Input(shape=(32,32,3))
-autoencoder = Convolution2D(64, 3, 3, dim_ordering='tf', border_mode = 'same')(input_img)
+autoencoder = Convolution2D(64, 3, 3, dim_ordering='tf', border_mode = 'same', activity_regularizer=regularizers.activity_l2(10e-5))(input_img)
 autoencoder = Activation('relu')(autoencoder)
-autoencoder = Convolution2D(64, 3, 3, border_mode = 'same')(autoencoder)
+autoencoder = Convolution2D(64, 3, 3, border_mode = 'same', activity_regularizer=regularizers.activity_l2(10e-5))(autoencoder)
 autoencoder = Activation('relu')(autoencoder)
 autoencoder = MaxPooling2D(pool_size=(2,2))(autoencoder)
-autoencoder = Convolution2D(128, 3, 3, border_mode='same')(autoencoder)
+autoencoder = Convolution2D(128, 3, 3, border_mode='same',activity_regularizer=regularizers.activity_l2(10e-5))(autoencoder)
 autoencoder = Activation('relu')(autoencoder)
 autoencoder = Convolution2D(128, 3, 3, border_mode='same')(autoencoder)
 autoencoder = Activation('relu')(autoencoder)
@@ -83,159 +87,84 @@ autoencoder = Flatten()(autoencoder)
 autoencoder = Dense(1024)(autoencoder)
 autoencoder = Activation('relu')(autoencoder)
 autoencoder = Dense(512)(autoencoder)
-encoded = Activation('relu')(autoencoder)
+encoder = Activation('relu')(autoencoder)
 
-autoencoder = Dense(1024)(autoencoder)
+autoencoder = Dense(1024)(encoder)
 autoencoder = Activation('relu')(autoencoder)
 autoencoder = Dense(128*8*8)(autoencoder)
 autoencoder = Activation('relu')(autoencoder)
-autoencoder = Reshape(dims=(128,8,8))(autoencoder)
+autoencoder = Reshape((128,8,8),input_shape=(128*8*8,))(autoencoder)
 autoencoder = UpSampling2D(size=(2,2))(autoencoder)
 autoencoder = Convolution2D(128,3,3,border_mode= 'same')(autoencoder)
 autoencoder = Activation('relu')(autoencoder)
-autoencoder = Convolution2D(128,3,3,border_mode= 'same')(autoencoder)
+autoencoder = Convolution2D(128,3,3,border_mode= 'same',activity_regularizer=regularizers.activity_l2(10e-5))(autoencoder)
 autoencoder = Activation('relu')(autoencoder)
 autoencoder = UpSampling2D(size=(2,2))(autoencoder)
-autoencoder = Convolution2D(64, 3, 3, dim_ordering='tf', border_mode = 'same')(input_img)
+autoencoder = Convolution2D(64, 3, 3, dim_ordering='tf', border_mode = 'same',activity_regularizer=regularizers.activity_l2(10e-5))(input_img)
 autoencoder = Activation('relu')(autoencoder)
-autoencoder = Convolution2D(3, 3, 3, border_mode = 'same')(autoencoder)
-decoded = Activation('sigmoid')(autoencoder)
+autoencoder = Convolution2D(3, 3, 3, border_mode = 'same',activity_regularizer=regularizers.activity_l2(10e-5))(autoencoder)
+decoder = Activation('sigmoid')(autoencoder)
 
-auto = Model(input_img,decoded)
-auto.compile(optimizer = 'adam', loss = 'binary_crossentropy') 
+auto = Model(input_img,decoder)
+enc = Model(input_img,encoder)
+auto.compile(optimizer = 'adam', loss = 'mse', metrics =['accuracy']) 
 unlabel = np.append(unlabel,X_train,axis=0)
 callbacks = [
-    EarlyStopping(monitor='val_loss', patience = 7, verbose = 0),
-    ModelCheckpoint(filepath='auto_model', monitor = 'val_acc', save_best_only=True,
-                    verbose=0, mode = 'max')
+    EarlyStopping(monitor='val_loss', patience = 20, verbose = 0),
+    ModelCheckpoint(filepath='autoencoder_model', monitor = 'val_loss', save_best_only=True,
+                    verbose=0, mode = 'auto')
 ]
 auto.fit(unlabel, unlabel,
-         nb_epoch = 2,
+         nb_epoch = 40,
          batch_size = 32,
          shuffle=True,
          validation_data=(X_test,X_test),
          verbose = 1,
          callbacks = callbacks)
 
-encoded_imgs = encoder.predict(X_test[0])
-decoded_imgs = decoder.predice(encoded_imgs)
-plt.imshow(255.0*X_test[0])
-plt.save('original.fig')
-plt.imshow(255.0*decoded_imgs[0])
-plt.save('decoded.fig')
+# using encoder as pretrain
+x = Dense(2048)(encoder)
+x = BatchNormalization()(x)
+x = Activation('relu')(x)
+x = Dense(1024)(encoder)
+x = BatchNormalization()(x)
+x = Activation('relu')(x)
+x = Dense(512)(encoder)
+x = BatchNormalization()(x)
+x = Activation('relu')(x)
+x = Dropout(0.5)(x)
+x = Dense(num_class)(x)
+x = Activation('softmax')(x)
 
-#define model
-'''
-model = Sequential()
-#zero-padding convolution2D
-model.add(Convolution2D(64, 3, 3,dim_ordering='tf', border_mode = 'same', 
-                        input_shape=X_train.shape[1:], W_regularizer = (l1=0.0001, l2=0.0001)))
-model.add(BatchNormalization())
-model.add(Activation('relu'))
-model.add(Convolution2D(64, 3, 3, border_mode = 'valid', W_regularizer = (l1=0.0001, l2=0.0001)))
-model.add(BatchNormalization())
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Dropout(0.25))
-
-model.add(Convolution2D(128,3,3,border_mode='same', W_regularizer=(l1=0.0001, l2=0.0001)))
-model.add(BatchNormalization())
-model.add(Activation('relu'))
-model.add(Convolution2D(128,3,3, W_regularizer=(l1=0.0001, l2=0.0001)))
-model.add(BatchNormalization())
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Dropout(0.25))
-
-model.add(Convolution2D(256,3,3,border_mode='same', W_regularizer=(l1=0.0001, l2=0.0001)))
-model.add(BatchNormalization())
-model.add(Activation('relu'))
-model.add(Convolution2D(256,3,3, W_regularizer=(l1=0.0001,l2=0.0001)))
-model.add(BatchNormalization())
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Dropout(0.25))
-
-model.add(Flatten())
-model.add(Dense(512))
-model.add(BatchNormalization())
-model.add(Activation('relu'))
-model.add(Dropout(0.5))
-model.add(Dense(num_class))
-model.add(Activation('softmax'))
-open('./model_self_1619.json','w').write(model.to_json())
-
-model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
+model = Model(input_img, x) 
+model.compile(loss='categorical_crossentropy',optimizer='adam')
 model.summary()
-weights = 'weights_self_1619.h5'
 
-Fit_X_train = X_train
-Fit_Y_train = Y_train
+data_gener = ImageDataGenerator(
+    featurewise_center = False,
+    samplewise_center = False,
+    featurewise_std_normalization = False,
+    zca_whitening = False,
+    rotation_range = 0,
+    width_shift_range = 0.1,
+    height_shift_range = 0.1,
+    horizontal_flip = True,
+    vertical_flip = False)
 
-for count in range(iteration):
-#training model
-    data_gener = ImageDataGenerator(
-        featurewise_center = False,
-        samplewise_center = False,
-        featurewise_std_normalization = False,
-        zca_whitening = False,
-        rotation_range = 0,
-        width_shift_range = 0.1,
-        height_shift_range = 0.1,
-        horizontal_flip = True,
-        vertical_flip = False)
-
-    callbacks = [
-        EarlyStopping(monitor='val_loss', patience = 6, verbose = 0),
-        ModelCheckpoint(filepath=weights, monitor = 'val_acc', save_best_only=True,
-                        verbose=0, save_weights_only=True, mode = 'max')
-    ]
-    print ("iteration : " + str(count))
-    if count > 7:
-        threshold = 0.98
-    if count > 9 :
-        threshold = 0.95
-    if count > 11 :
-        threshold = 0.9
-    if count > 13 :
-        threshold = 0.85
-    print ("threshold : " + str(threshold))
-    
-    #train labeled data at first
-    print ("training labeled data")
-    data_gener.fit(Fit_X_train)
-    model.fit_generator(data_gener.flow(Fit_X_train, Fit_Y_train,batch_size=batch_size),
-                    samples_per_epoch=Fit_X_train.shape[0]*5,
-                    nb_epoch=nb_epoch,
+callbacks = [
+    EarlyStopping(monitor='val_loss', patience = 30, verbose = 0),
+    ModelCheckpoint(filepath=sys.argv[2], monitor = 'val_acc', save_best_only=True,
+                    verbose=0, mode = 'max')
+]
+data_gener.fit(X_train)
+model.fit_generator(data_gener.flow(X_train ,Y_train ,batch_size=batch_size),
+                    samples_per_epoch = X_train.shape[0]*5,
+                    nb_epoch = nb_epoch,
                     verbose = 1,
                     validation_data = (X_test,Y_test),
                     callbacks = callbacks
                     )
 
-    #predict unlabeled data
-    prediction = model.predict(unlabel,verbose = 0)
-    index = np.amax(prediction, axis = 1) > threshold
-    X_train = np.append(X_train, unlabel[index,:,:,:] ,axis = 0)
-    temp = np.argmax(prediction, axis = 1)
-    temp = np_utils.to_categorical(temp, num_class) 
-    Y_train = np.append(Y_train ,temp[index,:] ,axis = 0)
-    inv_index = np.invert(index)
-    unlabel = unlabel[inv_index,:,:,:]
-    print("labeled number"+str(len(X_train)))
-    print("unlabel number"+str(len(unlabel)))
-    
-    print ("self learning")
-    #train self-learning data
-    data_gener.fit(X_train)
-    model.fit_generator(data_gener.flow(X_train ,Y_train ,batch_size=batch_size),
-                samples_per_epoch = X_train.shape[0]*5,
-                nb_epoch = nb_epoch,
-                verbose = 1,
-                validation_data = (X_test,Y_test),
-                callbacks = callbacks
-                )
-
-'''
 if keras.backend.tensorflow_backend._SESSION:
     tf.reset_default_graph()
     keras.backend.tensorflow_backend._SESSION.close()
