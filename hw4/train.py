@@ -5,6 +5,7 @@ from sklearn.cluster import KMeans
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import Normalizer
 from nltk.corpus import stopwords
+
 import nltk.stem
 import numpy as np
 import csv
@@ -41,6 +42,7 @@ if __name__ == "__main__":
     normalizer = Normalizer(copy=False)
     lsa = make_pipeline(svd, normalizer)
     eigentext = lsa.fit_transform(X)
+    #kmeans
     kmeans = KMeans(n_clusters=100, init='k-means++', max_iter=300, n_init=15).fit(eigentext) 
     
     #read check index
