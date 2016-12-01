@@ -11,7 +11,7 @@ import csv
 import string
 import sys
 
-class TextProcessor:
+class Trainer:
     def __init__(self, filename):
         self.filename = filename
         self.checkIndex = []
@@ -40,7 +40,7 @@ class TextProcessor:
             s = string.maketrans(string.punctuation, ' '*len(string.punctuation))
             t = ' '.join([line.translate(s) for line in t.split()])
             t = t.decode('utf-8')
-            y = ' '.join([word for word in t.lower().split() if word not in cacheStopwords])
+            y = ' '.join([word for word in t.split() if word not in cacheStopwords])
             #print(y)
             temp.append(y)
         return temp
@@ -58,29 +58,26 @@ if __name__ == "__main__":
     datapath = sys.argv[1]
     output = sys.argv[2]
     #  Read in the file 
-    #filename = 'title_StackOverflow.txt'
-    tp = TextProcessor(datapath+'/title_StackOverflow.txt')
+    tp = Trainer(datapath+'title_StackOverflow.txt')
     corpus = tp.readTitle()
     corpus = tp.rmStopwords(corpus)
     corpus = tp.Stem(corpus)
     vectorizer = TfidfVectorizer(max_df=0.5,min_df=2,stop_words='english')
 
     X = vectorizer.fit_transform(corpus)
-    print("X shape = ",X.shape)
     print("Processing svd...")
     svd = TruncatedSVD(n_components=20, n_iter=20, random_state=None )
     normalizer = Normalizer(copy=False)
     lsa = make_pipeline(svd, normalizer)
     eigentext = lsa.fit_transform(X)
-    #(len(eigentext))
+   
     # Do K-mean
-    #
-    print("Computing k-mean...")
+    #print("Computing k-mean...")
     kmeans = KMeans(n_clusters=100, init='k-means++', max_iter=300, n_init=10).fit(eigentext)
-    print("the distance=", kmeans.inertia_)
+    #print("the distance=", kmeans.inertia_)
     #exit(-1)
     # Read in the test data
-    titles = np.asarray(tp.readCheckIndex(datapath+'/check_index.csv'))
+    titles = np.asarray(tp.readCheckIndex(datapath+'check_index.csv'))
     ans = []
     print("evaluate the test data...")
     for t in titles:
@@ -89,7 +86,7 @@ if __name__ == "__main__":
         else:
             ans.append(1)
     ans = np.asarray(ans)
-    print(ans.shape)
+    print("write file...")
     # Write to the csv 
     f = open(output,'w')
     for row in range(ans.shape[0]+1):
@@ -99,4 +96,3 @@ if __name__ == "__main__":
             temp = int(ans[row-1])
             f.write(str(row-1)+','+str(temp)+'\n')
 
-    #print(X.shape)
