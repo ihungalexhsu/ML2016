@@ -61,7 +61,7 @@ if __name__ == "__main__":
             ans.append(0)
         else:
             ans.append(1)
-
+    #write file
     ans = np.asarray(ans)
     f = open(output,'w')
     for row in range(ans.shape[0]+1):
