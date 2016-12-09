@@ -1,2 +1,2 @@
 #!/bin/bash
-python2 train.py $1 $2 $3
+python2 train.py $1 $2

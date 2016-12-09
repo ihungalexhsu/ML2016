@@ -79,7 +79,7 @@ if __name__ == "__main__":
     eigentext = lsa.fit_transform(X)
     # Do K-mean
     #print("Computing k-mean...")
-    kmeans = KMeans(n_clusters=int(sys.argv[3]), init='k-means++', max_iter=300, n_init=10).fit(eigentext) 
+    kmeans = KMeans(n_clusters=50, init='k-means++', max_iter=300, n_init=10).fit(eigentext) 
     #print("the distance=", kmeans.inertia_)
     # Read in the test data
     titles = np.asarray(tp.readCheckIndex(datapath+'check_index.csv'))
@@ -88,7 +88,6 @@ if __name__ == "__main__":
     with open(datapath+'label_StackOverflow.txt','r') as f:
         label_ans = f.read().splitlines()
     label_ans = np.asarray(map(int,label_ans))
-    '''
     #analyze the cluster tfidf vector
     a = Trainer(datapath+'title_StackOverflow.txt')
     cor = a.readTitle()
@@ -105,7 +104,7 @@ if __name__ == "__main__":
         top_n = 3
         top_features = [feature_names[k] for k in indices[:top_n]]
         print "group "+str(i)+"  "+str(top_features)
-    '''
+
     #Data Visualization
     PCA    
     pca = PCA(n_components=2)
