@@ -5,6 +5,7 @@ from sklearn.cluster import KMeans
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import Normalizer
 from nltk.corpus import stopwords
+
 import nltk.stem
 import numpy as np
 import csv
