@@ -1,1 +1,18 @@
 python3 get_ans_truth.py data/biology.csv
+
+run  tag_prediction.py ../../data/ test.csv
+run  tag_prediction.py ../../data/test.csv test_test.csv
+run  tag_prediction.py ../../data/biology.csv biology_test.csv
+run  tag_prediction.py ../../data/test.csv test_test.csv
+
+run get_ans_truth.py ../../data/biology.csv
+run get_ans_truth.py ../../data/cooking.csv
+run get_ans_truth.py ../../data/crypto.csv
+run get_ans_truth.py ../../data/diy.csv
+run get_ans_truth.py ../../data/robotics.csv
+run get_ans_truth.py ../../data/travel.csv
+
+
+
+
+run f1_score.py biology_o.csv biology_test.csv
