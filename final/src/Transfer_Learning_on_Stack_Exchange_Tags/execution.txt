@@ -13,6 +13,6 @@ run get_ans_truth.py ../../data/robotics.csv
 run get_ans_truth.py ../../data/travel.csv
 
 
-
-
+run script.py 
+ 
 run f1_score.py biology_o.csv biology_test.csv
