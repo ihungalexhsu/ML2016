@@ -8,6 +8,8 @@ run  tag_prediction.py ../../data/test.csv test_test.csv
 ===========
 
 run  tag_prediction_tfidf.py ../../data/biology.csv biology_test.csv
+run  tag_prediction_tfidf.py ../../data/test.csv test_test.csv
+python3  tag_prediction_tfidf.py ../../data/test.csv test_test.csv
 
 
 ===========

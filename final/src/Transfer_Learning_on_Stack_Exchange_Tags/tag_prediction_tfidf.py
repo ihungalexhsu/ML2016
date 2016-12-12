@@ -52,11 +52,19 @@ features_content = vect.transform(content).toarray()
 print("Finish feature extraction!")
 print("Size title = ", features_title.shape, "size content = ", features_content.shape)
 # print out the entries with highest weight
+features_weighted = 2*features_title + features_content
+
+del features_title
+del features_content
+print("Finish feature weighted!")
+
+
+
 feature_arr = []
-n_top = int(5)
+n_top = int(6)
 weights = np.array( vect.idf_ )
 featureName = np.array( vect.get_feature_names() )
-features_weighted = 2*features_title + features_content
+
 
 # generate output
 print("Start to generate output!")
