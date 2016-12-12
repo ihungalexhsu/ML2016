@@ -3,7 +3,6 @@
 12/10 Eric
 add files: 
 train.sh 
-
 test.sh 
 
 tag_prediction.py (use tf/idf to find tags)
