@@ -1,1 +1,0 @@
-python3 get_ans_truth.py data/biology.csv
