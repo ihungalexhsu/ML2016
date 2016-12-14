@@ -8,6 +8,8 @@ run  tag_prediction.py ../../data/test.csv test_test.csv
 ===========
 
 run  tag_prediction_tfidf.py ../../data/biology.csv biology_test.csv
+run  tag_prediction_tfidf.py ../../data/cooking.csv cooking_test.csv
+
 run  tag_prediction_tfidf.py ../../data/test.csv test_test.csv
 python3  tag_prediction_tfidf.py ../../data/test.csv test_test.csv
 
@@ -25,13 +27,26 @@ run get_ans_truth.py ../../data/travel.csv
 run script.py 
  
 run f1_score.py ../../ans/biology_o.csv biology_test.csv
+run f1_score.py ../../ans/cooking_o.csv cooking_test.csv
+vim -d ../../ans/biology_o.csv biology_test.csv
+
 
 ============
 
 exp:
 
 weight (title, content), number of words(n)
-- weight (4, 1), (5) = 0.61
-- weight (2, 1), (5) = 0.71
-- weight (2, 1), (6) = 0.73
-- weight (2, 1), (7) = 0.72
+
+Biology:
+- weight (4, 1), (5) = 0.061
+- weight (2, 1), (5) = 0.071
+- weight (2, 1), (6) = 0.073
+- weight (2, 1), (7) = 0.072
+
+Cooking:
+- weight (2, 1), (6) = 0.21
+add threshold
+- weight (2, 1), (6) = 0.11
+
+
+

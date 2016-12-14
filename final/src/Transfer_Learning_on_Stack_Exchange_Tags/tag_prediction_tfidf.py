@@ -3,6 +3,9 @@ import sys
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import TruncatedSVD
+from sklearn.preprocessing import Normalizer
+from sklearn.pipeline import make_pipeline
 from sklearn.feature_extraction import text
 import bottleneck as bn # sorting
 import re
@@ -17,6 +20,49 @@ def saveResults(outfileName, id_, result):
 
 def read_words(words_file):
     return [word for line in open(words_file, 'r') for word in line.split()]
+
+def lsa(X, n_components=80):
+    print("Performing dimensionality reduction using LSA")
+    svd = TruncatedSVD(n_components)
+    normalizer = Normalizer(copy=False)
+    lsa = make_pipeline(svd, normalizer)
+    X = lsa.fit_transform(X)
+
+    return X, svd
+
+def tagsThreshold(threshold, selectedFeature, n_top):
+	num = 1
+	print(selectedFeature)
+	while selectedFeature[num-1]*threshold > selectedFeature[num]:
+		num = num + 1
+		if num == n_top: break
+	return num
+
+def getfeaturesWeighted(vect, title, content, start, end):
+	features_title = vect.transform(title[start:end]).toarray()
+	# features_title, svd = lsa(features_title, 80)
+	features_content = vect.transform(content[start:end]).toarray()
+	# features_content, svd = lsa(features_content, 80)
+	features_weighted = 2*features_title + features_content
+	return features_weighted
+
+def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):
+	for i in range(len(features_weighted)):
+		# selectedFeature = svd.inverse_transform(features_weighted[i].reshape(1,-1))
+		# print(selectedFeature.shape)
+		selectedFeature = features_weighted[i]
+		
+		# arg = selectedFeature.argsort()[-1*n_top:][::-1]
+		arg = selectedFeature.argsort()[-1*n_top:][::-1]
+		if addThres == True:
+			tops = tagsThreshold(threshold, selectedFeature[arg], n_top)
+		else:
+			tops = n_top
+		# arg = arg[-1*n_top:]
+
+		# arg = bottleneck.argpartsort(-a, 10)[:10]
+		feature_arr.append( featureName[arg[:tops]] )
+	return feature_arr
 
 path = sys.argv[1]
 outfileName = sys.argv[2]
@@ -46,38 +92,30 @@ vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word',
    		use_idf=True, stop_words=my_stop_words)
 
 # fit vector
+# generate output
 features = vect.fit(corpus)
-features_title = vect.transform(title).toarray()
-features_content = vect.transform(content).toarray()
-print("Finish feature extraction!")
-print("Size title = ", features_title.shape, "size content = ", features_content.shape)
-# print out the entries with highest weight
-features_weighted = 2*features_title + features_content
-
-del features_title
-del features_content
-print("Finish feature weighted!")
-
-
-
 feature_arr = []
 n_top = int(6)
 weights = np.array( vect.idf_ )
 featureName = np.array( vect.get_feature_names() )
+addThres = False
 
-
-# generate output
 print("Start to generate output!")
-partion = int(len(corpus)/10)
+nb_partition = 10
+partion = int(len(corpus)/nb_partition)
+# threshold = 0.8
+threshold = sys.argv[3]
 count = 0
-for i in range(len(corpus)):
-	selectedFeature = features_weighted[i]
-	arg = selectedFeature.argsort()[-1*n_top:][::-1]
-	# arg = bottleneck.argpartsort(-a, 10)[:10]
-	feature_arr.append( featureName[arg] )
-	if i%partion == 0:
-		print("Yep: ", count, "/10")
-		count = count + 1
+for i in range(nb_partition):
+	features_weighted = getfeaturesWeighted(vect, title, content, partion*i, partion*(i+1))
+	feature_arr = getFeaturearr(feature_arr, corpus[partion*i: partion*(i+1)], features_weighted, 
+		featureName, addThres, threshold, n_top)
+	if i == nb_partition-1:
+		features_weighted = getfeaturesWeighted(vect, title, content, partion*i, len(corpus))
+		feature_arr = getFeaturearr(feature_arr, corpus[partion*i: len(corpus)], features_weighted, 
+			featureName, addThres, threshold, n_top)
+	print("Part: ", i+1, "/", nb_partition)
+	# print("features: ", len(feature_arr))
 print("Finish generating output!")
 # save to files
 saveResults(outfileName, id_, feature_arr)
