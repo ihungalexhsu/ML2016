@@ -41,18 +41,18 @@ class SnowCastleStemmer(nltk.stem.SnowballStemmer):
 
 
 def process_data_stem(corpus, stemmer):
-    corpus = [re.sub(r'(<[^<]+?>)|(\n)|(\d+)', '', sentence) for sentence in corpus]
+    corpus = [re.sub(r'(<[^<]+?>)|(\d+)', '', sentence) for sentence in corpus]
+    corpus = [re.sub(r'(\n)',' ',sentence) for sentence in corpus]
     corpus = [sentence.translate(sentence.maketrans({key: None for key in (string.punctuation).replace("-","") }))
               for sentence in corpus]
     corpus = [" ".join([stemmer.stem(word) for word in sentence.split(" ")]) for sentence in corpus]
-    # print(corpus)
-    # tags   = origin_data[:, 3]
     return corpus, stemmer
 
 def process_data(corpus):
     # process data
     lm = WordNetLemmatizer()
-    corpus = [re.sub(r'(<[^<]+?>)|(\n)|(\d+)', '', sentence) for sentence in corpus]
+    corpus = [re.sub(r'(<[^<]+?>)|(\d+)', '', sentence) for sentence in corpus]
+    corpus = [re.sub(r'(\n)',' ',sentence) for sentence in corpus]
     corpus = [sentence.translate(sentence.maketrans({key: None for key in (string.punctuation).replace("-","") }))
               for sentence in corpus]
     corpus = [" ".join([lm.lemmatize(word) for word in sentence.split(" ")]) for sentence in corpus]
@@ -60,17 +60,31 @@ def process_data(corpus):
     # tags   = origin_data[:, 3]
     return corpus
 
-def saveResults(outfileName, id_, result, n_tags=3):
-	ofile = open(outfileName + '.csv', "w")
-	ofile.write('\"id\",\"tags\"\n')
-	for i in range(len(id_)):
-		if len(result[i]) > n_tags:
-			arr = result[i][:n_tags]
-		else:
-			arr = result[i]
-		ofile.write( '"' + str(id_[i]) + '"' + "," + '"' + str(" ".join(arr)) + '"' + '\n' )
-	ofile.close()
-	return True
+def saveResults(outfileName, id_, result, stemmer, n_tags=3):
+    ofile = open(outfileName + '.csv', "w")
+    unstemfile = open('unstemfile'+'.csv','w')
+    ofile.write('\"id\",\"tags\"\n')
+    for i in range(len(id_)):
+        if len(result[i]) > n_tags:
+            arr = result[i][:n_tags]
+        else:
+            arr = result[i]
+        ofile.write( '"' + str(id_[i]) + '"' + "," + '"' + str(" ".join(arr)) + '"' + '\n' )
+    for j in range(len(id_)):
+        unstemfile.write('"'+str(id_[j])+'"'+","+'"')
+        if len(result[j]) > n_tags:
+            for k in range(n_tags):
+                unstemfile.write(str(" ".join(stemmer.unstem(result[j][k]))))
+                unstemfile.write(" ")
+        else:
+            for k in range(len(result[j])):
+                unstemfile.write(str(" ".join(stemmer.unstem(result[j][k]))))
+                unstemfile.write(" ")
+        unstemfile.write('"'+'\n')
+    
+    unstemfile.close()
+    ofile.close()
+    return True
 
 def read_words(words_file):
     return [word for line in open(words_file, 'r') for word in line.split()]
@@ -85,176 +99,170 @@ def lsa(X, n_components=80):
     return X, svd
 
 def tagsThreshold(threshold, selectedFeature, n_top):
-	num = 1
-	# print(selectedFeature)
-	while selectedFeature[num-1]*threshold < selectedFeature[num]:
-		num = num + 1
-		if num == n_top: break
-	return num
+    num = 1
+    # print(selectedFeature)
+    while selectedFeature[num-1]*threshold < selectedFeature[num]:
+        num = num + 1
+        if num == n_top: break
+    return num
 
 def getfeaturesWeighted(vect, corpus, title, content, start, end, num):
-	if num == 0:
-		features_title = vect.transform(title[start:end]).toarray()
-		# features_title, svd = lsa(features_title, 80)
-		features_content = vect.transform(content[start:end]).toarray()
-		# features_content, svd = lsa(features_content, 80)
-		features_weighted = 8*features_title + features_content
-	elif num == 1:
+    if num == 0:
+        features_content = vect.transform(content[start:end]).toarray()
+        features_title = vect.transform(title[start:end]).toarray()
+        # features_title, svd = lsa(features_title, 80)
+        # features_content, svd = lsa(features_content, 80)
+        features_weighted = 8*features_title + features_content
+    elif num == 1:
 
-		features_title = vect.transform(title[start:end]).toarray()
-		features_content = vect.transform(content[start:end]).toarray()
-		features_weighted = 8*features_title + features_content
-	return features_weighted
-
-
+        features_title = vect.transform(title[start:end]).toarray()
+        features_content = vect.transform(content[start:end]).toarray()
+        features_weighted = 8*features_title + features_content
+    return features_weighted
 
 def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):
-	for i in range(len(features_weighted)):
-		# selectedFeature = svd.inverse_transform(features_weighted[i].reshape(1,-1))
-		# print(selectedFeature.shape)
-		selectedFeature = features_weighted[i]
-		
-		# arg = selectedFeature.argsort()[-1*n_top:][::-1]
-		arg = selectedFeature.argsort()[-1*n_top:][::-1]
-		if addThres == True:
-			tops = tagsThreshold(threshold, selectedFeature[arg], n_top)
-		else:
-			tops = n_top
-		# arg = arg[-1*n_top:]
+    for i in range(len(features_weighted)):
+        # selectedFeature = svd.inverse_transform(features_weighted[i].reshape(1,-1))
+        # print(selectedFeature.shape)
+        selectedFeature = features_weighted[i]
+        
+        # arg = selectedFeature.argsort()[-1*n_top:][::-1]
+        arg = selectedFeature.argsort()[-1*n_top:][::-1]
+        if addThres == True:
+            tops = tagsThreshold(threshold, selectedFeature[arg], n_top)
+        else:
+            tops = n_top
+        # arg = arg[-1*n_top:]
 
-		# arg = bottleneck.argpartsort(-a, 10)[:10]
-		feature_arr.append( featureName[arg[:tops]] )
-	return feature_arr
+        # arg = bottleneck.argpartsort(-a, 10)[:10]
+        feature_arr.append( featureName[arg[:tops]] )
+    return feature_arr
 
 def filterFromList(results, stop_words):
-	for i in range(len(results)):
-		results[i] = [ x for x in results[i] if x not in stop_words ]
-	return results
+    for i in range(len(results)):
+        results[i] = [ x for x in results[i] if x not in stop_words ]
+    return results
 
 def getVect(num):
-	my_words = read_words( "stop_words.txt")
-	# my_data = pd.read_csv( 'stop_word_list_5000.csv', delimiter=',', skipinitialspace=True).as_matrix()
-	# my_data = my_data[:,1].tolist()
-	# nb_stopwords = int(len(my_data)*0.5)
-	# my_data = my_data[:nb_stopwords]
-	# my_stop_words = text.ENGLISH_STOP_WORDS.union(my_words)
-	my_stop_words = text.ENGLISH_STOP_WORDS.union(stop_words_2)
-	if num == 1:
-		vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
-		   		use_idf=True, stop_words=my_stop_words)
-	elif num == 2:
-		vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
-		   		use_idf=False, stop_words=my_stop_words)
-	elif num == 3:
-		vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
-			   	use_idf=True, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
-	return vect
+    my_words = read_words( "stop_words.txt")
+    # my_data = pd.read_csv( 'stop_word_list_5000.csv', delimiter=',', skipinitialspace=True).as_matrix()
+    # my_data = my_data[:,1].tolist()
+    # nb_stopwords = int(len(my_data)*0.5)
+    # my_data = my_data[:nb_stopwords]
+    # my_stop_words = text.ENGLISH_STOP_WORDS.union(my_words)
+    my_stop_words = text.ENGLISH_STOP_WORDS.union(stop_words_2)
+    if num == 1:
+        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
+                use_idf=True, stop_words=my_stop_words)
+    elif num == 2:
+        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
+                use_idf=False, stop_words=my_stop_words)
+    elif num == 3:
+        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
+                use_idf=True, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
+    return vect
 
 def filterBeforeOutput():
-	saveResults('biology_test_0.05.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.05)]) )
-	saveResults('biology_test_0.1.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.1)]) )
-	saveResults('biology_test_0.2.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.2)]) )
-	saveResults('biology_test_0.3.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.3)]) )
-	saveResults(outfileName + str(3), id_, feature_arr, 3)
-	saveResults(outfileName + str(4), id_, feature_arr, 4)
-	saveResults(outfileName + str(5), id_, feature_arr, 5)
+    saveResults('biology_test_0.05.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.05)]) )
+    saveResults('biology_test_0.1.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.1)]) )
+    saveResults('biology_test_0.2.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.2)]) )
+    saveResults('biology_test_0.3.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.3)]) )
+    saveResults(outfileName + str(3), id_, feature_arr, 3)
+    saveResults(outfileName + str(4), id_, feature_arr, 4)
+    saveResults(outfileName + str(5), id_, feature_arr, 5)
 
 def readFromData(filename):
-	origin_data = pd.read_csv( filename, quotechar='"', skipinitialspace=True).as_matrix()
-	id_ = origin_data[:, 0]
-	title  = origin_data[:, 1]
-	content= origin_data[:, 2]
-	corpus = origin_data[:, 1:3]
-	corpus = corpus.astype(object)
-	corpus = corpus[:, 0] + " " + corpus[:, 1]
-	# corpus = [re.sub(r'\d+', '', word) for word in corpus]
-	return id_, title, content, corpus	
+    origin_data = pd.read_csv( filename, quotechar='"', skipinitialspace=True).as_matrix()
+    id_ = origin_data[:, 0]
+    title  = origin_data[:, 1]
+    content= origin_data[:, 2]
+    corpus = origin_data[:, 1:3]
+    corpus = corpus.astype(object)
+    corpus = corpus[:, 0] + " " + corpus[:, 1]
+    # corpus = [re.sub(r'\d+', '', word) for word in corpus]
+    return id_, title, content, corpus  
 
 
 def generateOutput(nb_partition, corpus, vect, title, content, featureName):
-	feature_arr = []
-	partion = int(len(corpus)/nb_partition)
-	# threshold = 0.8
-	num = 0
-	count = 0
-	for i in range(nb_partition):
-		features_weighted = getfeaturesWeighted(vect, corpus, title, content, partion*i, partion*(i+1), num)
-		feature_arr = getFeaturearr(feature_arr, corpus[partion*i: partion*(i+1)], features_weighted, 
-			featureName, addThres, threshold, n_top)
-		if i == nb_partition-1:
-			features_weighted = getfeaturesWeighted(vect, corpus, title, content, partion*i, len(corpus), num)
-			feature_arr = getFeaturearr(feature_arr, corpus[partion*i: len(corpus)], features_weighted, 
-				featureName, addThres, threshold, n_top)
-		print("Part: ", i+1, "/", nb_partition)
-	return feature_arr
+    feature_arr = []
+    partion = int(len(corpus)/nb_partition)
+    # threshold = 0.8
+    num = 0
+    count = 0
+    for i in range(nb_partition):
+        features_weighted = getfeaturesWeighted(vect, corpus, title, content, partion*i, partion*(i+1), num)
+        feature_arr = getFeaturearr(feature_arr, corpus[partion*i: partion*(i+1)], features_weighted, 
+            featureName, addThres, threshold, n_top)
+        if i == nb_partition-1:
+            features_weighted = getfeaturesWeighted(vect, corpus, title, content, partion*i, len(corpus), num)
+            feature_arr = getFeaturearr(feature_arr, corpus[partion*i: len(corpus)], features_weighted, 
+                featureName, addThres, threshold, n_top)
+        print("Part: ", i+1, "/", nb_partition)
+    return feature_arr
 
 def printTfidfWeight(features_weighted, n_top, featureName, weights):
-	for i in range(5):
-		selectedFeature = features_weighted[i]
-		arg = selectedFeature.argsort()[-1*n_top:][::-1]
-		selected = np.concatenate( (featureName[arg], weights[arg]), axis=0)
-		selected = selected.reshape((2,n_top)).T
-		print(selected)
-		feature_arr.append(selected)
-	return True
+    for i in range(5):
+        selectedFeature = features_weighted[i]
+        arg = selectedFeature.argsort()[-1*n_top:][::-1]
+        selected = np.concatenate( (featureName[arg], weights[arg]), axis=0)
+        selected = selected.reshape((2,n_top)).T
+        print(selected)
+        feature_arr.append(selected)
+    return True
 
 def preprocessing(corpus, title, content, stem):
-	stemmer = []
-	if stem == True:
-		stemmer= SnowCastleStemmer('english')
-		corpus, stemmer = process_data_stem(corpus, stemmer)
-		title  = process_data_stem(title, stemmer)
-		content  = process_data_stem(content, stemmer)
-	else:
-		corpus = process_data(corpus)
-		title  = process_data(title)
-		content  = process_data(content)
-	return corpus, title, content, stemmer
+    stemmer = []
+    if stem == True:
+        stemmer= SnowCastleStemmer('english')
+        content,_  = process_data_stem(content, stemmer)
+        stemmer= SnowCastleStemmer('english')
+        title,_  = process_data_stem(title, stemmer)
+        stemmer= SnowCastleStemmer('english')
+        corpus, stemmer = process_data_stem(corpus, stemmer)
+    else:
+        corpus = process_data(corpus)
+        title  = process_data(title)
+        content  = process_data(content)
+    return corpus, title, content, stemmer
 
 def getOutputVar(addTop, addThres):
-	n_top = int(6)
-	if addTop:
-		n_top = int(sys.argv[3])
+    n_top = int(6)
+    if addTop:
+        n_top = int(sys.argv[3])
 
-	if addThres:
-		threshold = float(sys.argv[3])
-	else:
-		threshold = 1
-	return n_top, threshold
+    if addThres:
+        threshold = float(sys.argv[3])
+    else:
+        threshold = 1
+    return n_top, threshold
 
 if __name__ == '__main__':
-	# read from file
-	path = sys.argv[1]
-	outfileName = sys.argv[2]
-	addTop = True
-	addThres = False
-	n_top, threshold = getOutputVar(addTop, addThres)
+    # read from file
+    path = sys.argv[1]
+    outfileName = sys.argv[2]
+    addTop = True
+    addThres = False
+    n_top, threshold = getOutputVar(addTop, addThres)
+    # process data
+    id_, title, content, corpus = readFromData(path)
+    stem = False
+    corpus, title, content, stemmer = preprocessing(corpus, title, content, stem)
+    # define vector
+    vect = getVect(3)
+    # fit vector
+    # generate output
+    features = vect.fit(corpus)
+    weights = np.array( vect.idf_ )
+    featureName = np.array( vect.get_feature_names() )
 
-	# process data
-	id_, title, content, corpus	= readFromData(path)
-
-	stem = False
-	corpus, title, content, stemmer = preprocessing(corpus, title, content, stem)
-
-
-	# define vector
-	vect = getVect(3)
-
-	# fit vector
-	# generate output
-	features = vect.fit(corpus)
-	weights = np.array( vect.idf_ )
-	featureName = np.array( vect.get_feature_names() )
-
-	print("Start to generate output!")
-	nb_partition = 100
-	feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)
-		# print("features: ", len(feature_arr))
-	print("Finish generating output!")
-	
-	# save to files
-	print("Save to file.")
-	# feature_arr = filterFromList(feature_arr, my_data)
-	saveResults(outfileName + str(n_top), id_, feature_arr, n_top)
-	print("Finish saving to file!")
+    print("Start to generate output!")
+    nb_partition = 100
+    feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)
+        # print("features: ", len(feature_arr))
+    print("Finish generating output!")
+    # save to files
+    print("Save to file.")
+    # feature_arr = filterFromList(feature_arr, my_data)
+    saveResults(outfileName + str(n_top), id_, feature_arr, stemmer, n_top)   
+    print("Finish saving to file!")
 
