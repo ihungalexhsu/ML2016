@@ -16,8 +16,24 @@ import re
 
 stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', ''])
 
-import nltk
 import collections
+
+def clean_html(raw_html):
+  cleanr = re.compile('<.*?>')
+  cleantext = re.sub(cleanr, '', raw_html)
+  return cleantext
+
+def get_words(text):
+	word_split = re.compile('[^a-zA-Z0-9_\\+\\-/]')
+	return [word.strip().lower() for word in word_split.split(text)]
+	# return word_split
+
+def process_data_ref(corpus):
+	corpus = [ clean_html(line) for line in corpus ]
+	corpus = [ get_words(line) for line in corpus ]
+	corpus = [" ".join(word) for word in corpus]
+	return corpus
+
 
 class SnowCastleStemmer(nltk.stem.SnowballStemmer):
     """ A wrapper around snowball stemmer with a reverse lookip table """
@@ -62,7 +78,6 @@ def process_data(corpus):
 
 def saveResults(outfileName, id_, result, stemmer, n_tags=3):
     ofile = open(outfileName + '.csv', "w")
-    unstemfile = open('unstemfile'+'.csv','w')
     ofile.write('\"id\",\"tags\"\n')
     for i in range(len(id_)):
         if len(result[i]) > n_tags:
@@ -70,6 +85,8 @@ def saveResults(outfileName, id_, result, stemmer, n_tags=3):
         else:
             arr = result[i]
         ofile.write( '"' + str(id_[i]) + '"' + "," + '"' + str(" ".join(arr)) + '"' + '\n' )
+    '''
+    unstemfile = open('unstemfile'+'.csv','w')
     for j in range(len(id_)):
         unstemfile.write('"'+str(id_[j])+'"'+","+'"')
         if len(result[j]) > n_tags:
@@ -83,6 +100,7 @@ def saveResults(outfileName, id_, result, stemmer, n_tags=3):
         unstemfile.write('"'+'\n')
     
     unstemfile.close()
+    '''
     ofile.close()
     return True
 
@@ -210,20 +228,24 @@ def printTfidfWeight(features_weighted, n_top, featureName, weights):
         feature_arr.append(selected)
     return True
 
-def preprocessing(corpus, title, content, stem):
-    stemmer = []
-    if stem == True:
+def preprocessing(corpus, title, content, num):
+	stemmer = []
+	if num == 0:
         stemmer= SnowCastleStemmer('english')
         content,_  = process_data_stem(content, stemmer)
         stemmer= SnowCastleStemmer('english')
         title,_  = process_data_stem(title, stemmer)
         stemmer= SnowCastleStemmer('english')
         corpus, stemmer = process_data_stem(corpus, stemmer)
-    else:
-        corpus = process_data(corpus)
-        title  = process_data(title)
-        content  = process_data(content)
-    return corpus, title, content, stemmer
+	elif num == 1:
+		corpus = process_data(corpus)
+		title  = process_data(title)
+		content  = process_data(content)
+	elif num == 2:
+		corpus = np.array(process_data_ref(corpus) )
+		title = np.array(process_data_ref(title) )
+		content = np.array(process_data_ref(content) )
+	return corpus, title, content, stemmer
 
 def getOutputVar(addTop, addThres):
     n_top = int(6)
@@ -237,6 +259,7 @@ def getOutputVar(addTop, addThres):
     return n_top, threshold
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     # read from file
     path = sys.argv[1]
     outfileName = sys.argv[2]
@@ -245,8 +268,8 @@ if __name__ == '__main__':
     n_top, threshold = getOutputVar(addTop, addThres)
     # process data
     id_, title, content, corpus = readFromData(path)
-    stem = False
-    corpus, title, content, stemmer = preprocessing(corpus, title, content, stem)
+	num = 2
+	corpus, title, content, stemmer = preprocessing(corpus, title, content, num)
     # define vector
     vect = getVect(3)
     # fit vector
@@ -259,6 +282,17 @@ if __name__ == '__main__':
     nb_partition = 100
     feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)
         # print("features: ", len(feature_arr))
+	'''
+	vect = getVect(2)
+	features = vect.fit(corpus)
+	feature_arr_2 = generateOutput(nb_partition, corpus, vect, title, content, featureName)
+	for i in range(len(feature_arr)):
+		line_1 = feature_arr[i]
+		line_2 = feature_arr_2[i]
+		for j in line_2:
+			if j not in line_1:
+				feature_arr[i] = np.concatenate((feature_arr[i], [j]), axis=0)
+	'''
     print("Finish generating output!")
     # save to files
     print("Save to file.")
