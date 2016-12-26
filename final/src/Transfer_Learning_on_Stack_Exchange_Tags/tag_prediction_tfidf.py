@@ -28,11 +28,15 @@ def process_data(corpus):
     # tags   = origin_data[:, 3]
     return corpus
 
-def saveResults(outfileName, id_, result):
-	ofile = open(outfileName, "w")
+def saveResults(outfileName, id_, result, n_tags=3):
+	ofile = open(outfileName + '.csv', "w")
 	ofile.write('\"id\",\"tags\"\n')
 	for i in range(len(id_)):
-		ofile.write( '"' + str(id_[i]) + '"' + "," + '"' + str(" ".join(result[i])) + '"' + '\n' )
+		if len(result[i]) > n_tags:
+			arr = result[i][:n_tags]
+		else:
+			arr = result[i]
+		ofile.write( '"' + str(id_[i]) + '"' + "," + '"' + str(" ".join(arr)) + '"' + '\n' )
 	ofile.close()
 	return True
 
@@ -61,7 +65,7 @@ def getfeaturesWeighted(vect, title, content, start, end):
 	# features_title, svd = lsa(features_title, 80)
 	features_content = vect.transform(content[start:end]).toarray()
 	# features_content, svd = lsa(features_content, 80)
-	features_weighted = 2*features_title + features_content
+	features_weighted = 8*features_title + features_content
 	return features_weighted
 
 def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):
@@ -93,107 +97,110 @@ def getVect(num):
 		   		use_idf=True, stop_words=my_stop_words)
 	elif num == 2:
 		vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
-		   		stop_words=my_stop_words)
+		   		use_idf=False, stop_words=my_stop_words)
 	return vect
 
-
-path = sys.argv[1]
-outfileName = sys.argv[2]
-
-# read from file
-# fileName = "biology.csv"
-# fileName = "test.csv"
-
-origin_data = pd.read_csv( path, quotechar='"', skipinitialspace=True).as_matrix()
-
-# process data
-id_ = origin_data[:, 0]
-
-title  = origin_data[:, 1]
-content= origin_data[:, 2]
-corpus = origin_data[:, 1:3]
-corpus = corpus.astype(object)
-corpus = corpus[:, 0] + " " + corpus[:, 1]
-# corpus = [re.sub(r'\d+', '', word) for word in corpus]
-
-# tags   = origin_data[:, 3]
-
-corpus = process_data(corpus)
-title  = process_data(title)
-content  = process_data(content)
-
-# define vector
-my_words = read_words( "stop_words.txt")
-my_data = pd.read_csv( 'stop_word_list_5000.csv', delimiter=',', skipinitialspace=True).as_matrix()
-my_data = my_data[:,1].tolist()
-nb_stopwords = int(len(my_data)*0.5)
-# my_data = my_data[:nb_stopwords]
-# my_stop_words = text.ENGLISH_STOP_WORDS.union(my_words)
-my_stop_words = text.ENGLISH_STOP_WORDS.union(stop_words_2)
-## bug
-# my_stop_words = my_stop_words.union(stop_words_2)
-# my_stop_words = my_stop_words.union(my_data)
-
-vect = getVect(2)
-
-# fit vector
-# generate output
-features = vect.fit(corpus)
-feature_arr = []
-
-n_top = int(6)
-addTop = True
-if addTop:
-	n_top = int(sys.argv[3])
-
-weights = np.array( vect.idf_ )
-featureName = np.array( vect.get_feature_names() )
-addThres = False
-
-if addThres:
-	threshold = float(sys.argv[3])
-else:
-	threshold = 1
+def filterBeforeOutput():
+	saveResults('biology_test_0.05.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.05)]) )
+	saveResults('biology_test_0.1.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.1)]) )
+	saveResults('biology_test_0.2.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.2)]) )
+	saveResults('biology_test_0.3.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.3)]) )
+	saveResults(outfileName + str(3), id_, feature_arr, 3)
+	saveResults(outfileName + str(4), id_, feature_arr, 4)
+	saveResults(outfileName + str(5), id_, feature_arr, 5)
 
 
-print("Start to generate output!")
-nb_partition = 10
-partion = int(len(corpus)/nb_partition)
-# threshold = 0.8
-count = 0
-for i in range(nb_partition):
-	features_weighted = getfeaturesWeighted(vect, title, content, partion*i, partion*(i+1))
-	feature_arr = getFeaturearr(feature_arr, corpus[partion*i: partion*(i+1)], features_weighted, 
-		featureName, addThres, threshold, n_top)
-	if i == nb_partition-1:
-		features_weighted = getfeaturesWeighted(vect, title, content, partion*i, len(corpus))
-		feature_arr = getFeaturearr(feature_arr, corpus[partion*i: len(corpus)], features_weighted, 
+
+if __name__ == '__main__':
+	# read from file
+	path = sys.argv[1]
+	outfileName = sys.argv[2]
+	origin_data = pd.read_csv( path, quotechar='"', skipinitialspace=True).as_matrix()
+
+	# process data
+	id_ = origin_data[:, 0]
+
+	title  = origin_data[:, 1]
+	content= origin_data[:, 2]
+	corpus = origin_data[:, 1:3]
+	corpus = corpus.astype(object)
+	corpus = corpus[:, 0] + " " + corpus[:, 1]
+	# corpus = [re.sub(r'\d+', '', word) for word in corpus]
+
+	# tags   = origin_data[:, 3]
+	corpus = process_data(corpus)
+	title  = process_data(title)
+	content  = process_data(content)
+
+	# define vector
+	my_words = read_words( "stop_words.txt")
+	# my_data = pd.read_csv( 'stop_word_list_5000.csv', delimiter=',', skipinitialspace=True).as_matrix()
+	# my_data = my_data[:,1].tolist()
+	# nb_stopwords = int(len(my_data)*0.5)
+	# my_data = my_data[:nb_stopwords]
+	# my_stop_words = text.ENGLISH_STOP_WORDS.union(my_words)
+	my_stop_words = text.ENGLISH_STOP_WORDS.union(stop_words_2)
+	## bug
+	# my_stop_words = my_stop_words.union(stop_words_2)
+	# my_stop_words = my_stop_words.union(my_data)
+
+	vect = getVect(2)
+
+	# fit vector
+	# generate output
+	features = vect.fit(corpus)
+	feature_arr = []
+
+	n_top = int(6)
+	addTop = True
+	if addTop:
+		n_top = int(sys.argv[3])
+
+	weights = np.array( vect.idf_ )
+	featureName = np.array( vect.get_feature_names() )
+	addThres = False
+
+	if addThres:
+		threshold = float(sys.argv[3])
+	else:
+		threshold = 1
+
+
+	print("Start to generate output!")
+	nb_partition = 100
+	partion = int(len(corpus)/nb_partition)
+	# threshold = 0.8
+	count = 0
+	for i in range(nb_partition):
+		features_weighted = getfeaturesWeighted(vect, title, content, partion*i, partion*(i+1))
+		feature_arr = getFeaturearr(feature_arr, corpus[partion*i: partion*(i+1)], features_weighted, 
 			featureName, addThres, threshold, n_top)
-	print("Part: ", i+1, "/", nb_partition)
-	# print("features: ", len(feature_arr))
-print("Finish generating output!")
-# save to files
+		if i == nb_partition-1:
+			features_weighted = getfeaturesWeighted(vect, title, content, partion*i, len(corpus))
+			feature_arr = getFeaturearr(feature_arr, corpus[partion*i: len(corpus)], features_weighted, 
+				featureName, addThres, threshold, n_top)
+		print("Part: ", i+1, "/", nb_partition)
+		# print("features: ", len(feature_arr))
+	print("Finish generating output!")
+	# save to files
 
-# feature_arr = filterFromList(feature_arr, my_data)
+	# feature_arr = filterFromList(feature_arr, my_data)
 
-saveResults(outfileName, id_, feature_arr)
+	saveResults(outfileName + str(n_top), id_, feature_arr, n_top)
 
-saveResults('biology_test_0.05.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.05)]) )
-saveResults('biology_test_0.1.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.1)]) )
-saveResults('biology_test_0.2.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.2)]) )
-saveResults('biology_test_0.3.csv', id_, filterFromList(feature_arr, my_data[:int(len(my_data)*0.3)]) )
-# saveResults(biology_test_0.3.csv, id_, filterFromList(feature_arr, my_data[:len(my_data)*0.4]) )
-# saveResults(outfileName, id_, filterFromList(feature_arr, my_data[:len(my_data)*0.5]) )
 
-print("Finish save to file!")
+	# saveResults(biology_test_0.3.csv, id_, filterFromList(feature_arr, my_data[:len(my_data)*0.4]) )
+	# saveResults(outfileName, id_, filterFromList(feature_arr, my_data[:len(my_data)*0.5]) )
 
-'''
-for i in range(5):
-	selectedFeature = features_weighted[i]
-	arg = selectedFeature.argsort()[-1*n_top:][::-1]
-	selected = np.concatenate( (featureName[arg], weights[arg]), axis=0)
-	selected = selected.reshape((2,n_top)).T
-	print(selected)
-	feature_arr.append(selected)
-'''
+	print("Finish save to file!")
+
+	'''
+	for i in range(5):
+		selectedFeature = features_weighted[i]
+		arg = selectedFeature.argsort()[-1*n_top:][::-1]
+		selected = np.concatenate( (featureName[arg], weights[arg]), axis=0)
+		selected = selected.reshape((2,n_top)).T
+		print(selected)
+		feature_arr.append(selected)
+	'''
 
