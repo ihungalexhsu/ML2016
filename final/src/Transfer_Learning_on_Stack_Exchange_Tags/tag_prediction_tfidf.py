@@ -19,6 +19,23 @@ stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about',
 import nltk
 import collections
 
+def clean_html(raw_html):
+  cleanr = re.compile('<.*?>')
+  cleantext = re.sub(cleanr, '', raw_html)
+  return cleantext
+
+def get_words(text):
+	word_split = re.compile('[^a-zA-Z0-9_\\+\\-/]')
+	return [word.strip().lower() for word in word_split.split(text)]
+	# return word_split
+
+def process_data_ref(corpus):
+	corpus = [ clean_html(line) for line in corpus ]
+	corpus = [ get_words(line) for line in corpus ]
+	corpus = [" ".join(word) for word in corpus]
+	return corpus
+
+
 class SnowCastleStemmer(nltk.stem.SnowballStemmer):
     """ A wrapper around snowball stemmer with a reverse lookip table """
     
@@ -198,17 +215,21 @@ def printTfidfWeight(features_weighted, n_top, featureName, weights):
 		feature_arr.append(selected)
 	return True
 
-def preprocessing(corpus, title, content, stem):
+def preprocessing(corpus, title, content, num):
 	stemmer = []
-	if stem == True:
+	if num == 0:
 		stemmer= SnowCastleStemmer('english')
+		title, stemmer  = process_data_stem(title, stemmer)
+		content, stemmer  = process_data_stem(content, stemmer)
 		corpus, stemmer = process_data_stem(corpus, stemmer)
-		title  = process_data_stem(title, stemmer)
-		content  = process_data_stem(content, stemmer)
-	else:
+	elif num == 1:
 		corpus = process_data(corpus)
 		title  = process_data(title)
 		content  = process_data(content)
+	elif num == 2:
+		corpus = np.array(process_data_ref(corpus) )
+		title = np.array(process_data_ref(title) )
+		content = np.array(process_data_ref(content) )
 	return corpus, title, content, stemmer
 
 def getOutputVar(addTop, addThres):
@@ -233,13 +254,13 @@ if __name__ == '__main__':
 	# process data
 	id_, title, content, corpus	= readFromData(path)
 
-	stem = False
-	corpus, title, content, stemmer = preprocessing(corpus, title, content, stem)
+	num = 2
+	corpus, title, content, stemmer = preprocessing(corpus, title, content, num)
 
 
 	# define vector
-	vect = getVect(3)
-
+	vect = getVect(2)
+	# n_top = 5
 	# fit vector
 	# generate output
 	features = vect.fit(corpus)
@@ -252,9 +273,21 @@ if __name__ == '__main__':
 		# print("features: ", len(feature_arr))
 	print("Finish generating output!")
 	
+	'''
+	vect = getVect(2)
+	features = vect.fit(corpus)
+	feature_arr_2 = generateOutput(nb_partition, corpus, vect, title, content, featureName)
+	for i in range(len(feature_arr)):
+		line_1 = feature_arr[i]
+		line_2 = feature_arr_2[i]
+		for j in line_2:
+			if j not in line_1:
+				feature_arr[i] = np.concatenate((feature_arr[i], [j]), axis=0)
+	'''
 	# save to files
 	print("Save to file.")
 	# feature_arr = filterFromList(feature_arr, my_data)
-	saveResults(outfileName + str(n_top), id_, feature_arr, n_top)
+	# saveResults(outfileName + str(n_top), id_, feature_arr, n_top)
+	saveResults(outfileName + str(n_top), id_, feature_arr, n_top*2)
 	print("Finish saving to file!")
 
