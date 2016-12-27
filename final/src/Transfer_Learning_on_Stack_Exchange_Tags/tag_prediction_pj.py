@@ -14,6 +14,7 @@ from sklearn.cluster import KMeans
 #import bottleneck as bn # sorting
 import re
 import os.path
+from gensim.models import Phrases
 
 def saveResults(outfileName, id_, result):
 	ofile = open(outfileName, "w")
@@ -61,9 +62,14 @@ def generate_corpus_pos(corpus, name):
     return corpus_tags
 
 def clean_corpus(corpus):
-    corpus = [re.sub(r'(<[^<]+?>)|(\n)|(\d+)', '', sentence) for sentence in corpus]
-    corpus = [sentence.translate(sentence.maketrans({key: None for key in string.punctuation}))
-              for sentence in corpus]
+    # '\n', '/', ',', '.', '?', '(', ')', ''' replaced by ' '
+    clean_space = re.compile('[\n\/,\.\?()\']')
+    # <xxx>, $xxx$, not alphabets and space, \begin xxx \end replaced by ''
+    clean_empty = re.compile('<.*?>|\$+[^$]+\$+|[^a-zA-Z_ ]|\\+begin[^$]+\\+end')
+    corpus = [clean_space.sub(' ', sentence) for sentence in corpus]
+    corpus = [clean_empty.sub('', sentence) for sentence in corpus]
+    #corpus = [sentence.translate(sentence.maketrans({key: None for key in string.punctuation}))
+    #          for sentence in corpus]
 
     return corpus
 
@@ -76,6 +82,13 @@ def process_data():
 
     corpus_title = clean_corpus(corpus[:, 0])
     corpus_content = clean_corpus(corpus[:, 1])
+
+    title_stream = [sentence.split(" ") for sentence in corpus_title]
+    content_stream = [sentence.split(" ") for sentence in corpus_content]
+
+    bigram = Phrases(title_stream + content_stream)
+    corpus_title = bigram[corpus_title]
+    corpus_content = bigram[corpus_content]
 
     corpus_pos_title = generate_corpus_pos(corpus_title, 'title')
     corpus_pos_content = generate_corpus_pos(corpus_content, 'content')
@@ -126,14 +139,14 @@ def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres,
         else:
             tops = n_top
         tags = nltk.pos_tag(nltk.word_tokenize(" ".join(featureName[arg[:tops]])))
-        filtered_featureName = [tag[0] for tag in tags if tag[1].startswith('N') or tag[1]=='JJ' or tag[1]=='VBG']
+        filtered_featureName = [tag[0] for tag in tags if tag[1].startswith('N') or tag[1]=='VBG']
         feature_arr.append( filtered_featureName )
 
     return feature_arr
 
 def get_tags(corpus, title, content, vectorizer):
     feature_arr = []
-    n_top = 6
+    n_top = 3
     #weights = np.array( vect.idf_ )
     featureName = np.array( vect.get_feature_names() )
     addThres = False
