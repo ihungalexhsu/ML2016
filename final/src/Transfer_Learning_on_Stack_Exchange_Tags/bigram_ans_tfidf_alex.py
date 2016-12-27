@@ -85,7 +85,7 @@ def getResults(result, id_, n_tags=3):
             arr = result[i][:n_tags]
         else:
             arr = result[i]
-        ans.append(ans)
+        ans.append(arr)
     return ans
 
 def writeResults(outfileName, id_, ans):
@@ -279,10 +279,13 @@ def getOutputVar(addTop, addThres):
 
 def bigramProcess(corpus):
     #tokenize corpus first
+    print ("tokenize data")
     corpus = [nltk.word_tokenize(sentences.lower()) for sentences in corpus]
-    bigram = Phrases(corpus,min_count=10,threshold=20.0,delimiter=b'-')
+    print ("create bigram")
+    bigram = Phrases(corpus,min_count=5,threshold=10.0,delimiter=b'-')
     #bigram = Phrases(corpus)
-    corpus = bigram[corpus]
+    print ("bigram corpus")
+    #corpus = bigram[corpus]
     #print corpus
     return bigram,corpus
 
@@ -306,7 +309,7 @@ if __name__ == '__main__':
     featureName = np.array( vect.get_feature_names() )
 
     print ("Start to generate output!")
-    nb_partition = 100
+    nb_partition = 1000
     feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)
     # print("features: ", len(feature_arr))
     '''
@@ -329,15 +332,23 @@ if __name__ == '__main__':
     ans = getResults(feature_arr, id_, n_top)
     bigram,_ = bigramProcess(corpus)
     for i in range(len(id_)):
+        print("create permutation")
+        print(ans[i])
         total_permu = list(itertools.permutations(ans[i],2))
         for j in range(len(total_permu)):
             total_permu[j] = list(total_permu[j])
+        print("bigram word")
         after_bigram = [bigram[words] for words in total_permu]
+        print("choose valid")
         valid_bigram = [valid for valid in after_bigram if len(valid)==1 ]
-        ans[i].append(valid_bigram)
-        print (valid_bigram)
+        #ans[i].append(valid_bigram)
         for k in range(len(valid_bigram)):
-            ans[i].remove((valid_bigram[k].split('-'))[0])
-            ans[i].remove((valid_bigram[k].split('-'))[1])
+            ans[i] = np.append(ans[i],valid_bigram[k][0])
+            #ans[i].remove((valid_bigram[k].split('-'))[0])
+            index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[0])
+            ans[i] = np.delete(ans[i], index)
+            #ans[i].remove((valid_bigram[k].split('-'))[1])
+            index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[1])
+            ans[i] =np.delete(ans[i], index)
 
     writeResults(outfileName+"_bigram", id_, ans)
