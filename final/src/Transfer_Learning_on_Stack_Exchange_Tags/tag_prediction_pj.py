@@ -64,8 +64,8 @@ def generate_corpus_pos(corpus, name):
 def clean_corpus(corpus):
     # '\n', '/', ',', '.', '?', '(', ')', ''' replaced by ' '
     clean_space = re.compile('[\n\/,\.\?()\']')
-    # <xxx>, $xxx$, not alphabets and space, \begin xxx \end replaced by ''
-    clean_empty = re.compile('<.*?>|\$+[^$]+\$+|[^a-zA-Z_ ]|\\+begin[^$]+\\+end')
+    # <xxx>, $xxx$, not alphabets and space and '_-', \begin xxx \end replaced by ''
+    clean_empty = re.compile('<.*?>|\$+[^$]+\$+|[^a-zA-Z_\- ]|\\+begin[^$]+\\+end')
     corpus = [clean_space.sub(' ', sentence) for sentence in corpus]
     corpus = [clean_empty.sub('', sentence) for sentence in corpus]
     #corpus = [sentence.translate(sentence.maketrans({key: None for key in string.punctuation}))
