@@ -77,6 +77,22 @@ def process_data(corpus):
     # tags   = origin_data[:, 3]
     return corpus
 
+def getResults(result, id_, n_tags=3):
+    ans = []
+    for i in range(len(id_)):
+        if len(result[i]) > n_tags:
+            arr = result[i][:n_tags]
+        else:
+            arr = result[i]
+        ans.append(ans)
+    return ans
+
+def writeResults(outfileName, id_, ans):
+    ofile = open(outfileName + '.csv', "w",encoding='utf-8')
+    ofile.write('\"id\",\"tags\"\n')
+    for i in range(len(id_)):
+        ofile.write( '"' + str(id_[i]) + '"' + "," + '"' + str(" ".join(ans[i])) + '"' + '\n' )
+
 def saveResults(outfileName, id_, result, stemmer, n_tags=3):
     ofile = open(outfileName + '.csv', "w",encoding='utf-8')
     ofile.write('\"id\",\"tags\"\n')
@@ -109,7 +125,7 @@ def read_words(words_file):
     return [word for line in open(words_file, 'r') for word in line.split()]
 
 def lsa(X, n_components=80):
-    print("Performing dimensionality reduction using LSA")
+    print "Performing dimensionality reduction using LSA"
     svd = TruncatedSVD(n_components)
     normalizer = Normalizer(copy=False)
     lsa = make_pipeline(svd, normalizer)
@@ -216,7 +232,7 @@ def generateOutput(nb_partition, corpus, vect, title, content, featureName):
             features_weighted = getfeaturesWeighted(vect, corpus, title, content, partion*i, len(corpus), num)
             feature_arr = getFeaturearr(feature_arr, corpus[partion*i: len(corpus)], features_weighted, 
                 featureName, addThres, threshold, n_top)
-        print("Part: ", i+1, "/", nb_partition)
+        print "Part: ", i+1, "/", nb_partition
     return feature_arr
 
 def printTfidfWeight(features_weighted, n_top, featureName, weights):
@@ -225,7 +241,7 @@ def printTfidfWeight(features_weighted, n_top, featureName, weights):
         arg = selectedFeature.argsort()[-1*n_top:][::-1]
         selected = np.concatenate( (featureName[arg], weights[arg]), axis=0)
         selected = selected.reshape((2,n_top)).T
-        print(selected)
+        print selected
         feature_arr.append(selected)
     return True
 
@@ -259,14 +275,14 @@ def getOutputVar(addTop, addThres):
         threshold = 1
     return n_top, threshold
 
-def bigram(corpus):
+def bigramProcess(corpus):
     #tokenize corpus first
-    corpus = [nltk.word_tokenize(sentences) for sentences in corpus]
-    #bigram = Phrases(corpus,10,20.0,40000000,'-',10000)
-    bigram = Phrases(corpus)
+    corpus = [nltk.word_tokenize(sentences.lower()) for sentences in corpus]
+    bigram = Phrases(corpus,10,20.0,40000000,'-',10000)
+    #bigram = Phrases(corpus)
     corpus = bigram[corpus]
-    print (corpus)
-    return corpus
+    #print corpus
+    return bigram,corpus
 
 if __name__ == '__main__':
     # read from file
@@ -287,7 +303,7 @@ if __name__ == '__main__':
     weights = np.array( vect.idf_ )
     featureName = np.array( vect.get_feature_names() )
 
-    print("Start to generate output!")
+    print "Start to generate output!"
     nb_partition = 100
     feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)
         # print("features: ", len(feature_arr))
@@ -302,10 +318,16 @@ if __name__ == '__main__':
 			if j not in line_1:
 				feature_arr[i] = np.concatenate((feature_arr[i], [j]), axis=0)
 	'''
-    print("Finish generating output!")
+    print "Finish generating output!"
     # save to files
-    print("Save to file.")
+    print "Save to file."
     # feature_arr = filterFromList(feature_arr, my_data)
     saveResults(outfileName + str(n_top), id_, feature_arr, stemmer, n_top)   
-    print("Finish saving to file!")
+    print "Finish saving to file!" 
+    ans = getResults(feature_arr, id_, n_top)
+    bigram,_ = bigramProcess(corpus)
+    for i in range(len(id_)):
+        total_combination=[]
+        for j in range(len(ans[i])):
+
 
