@@ -1,4 +1,4 @@
-
+#coding=utf-8
 import sys
 import numpy as np
 import pandas as pd
@@ -59,7 +59,7 @@ class SnowCastleStemmer(nltk.stem.SnowballStemmer):
 def process_data_stem(corpus, stemmer):
     corpus = [re.sub(r'(<[^<]+?>)|(\d+)', '', sentence) for sentence in corpus]
     corpus = [re.sub(r'(\n)',' ',sentence) for sentence in corpus]
-    corpus = [sentence.translate(sentence.maketrans({key: None for key in (string.punctuation).replace("-","") }))
+    corpus = [sentence.translate(sentence.maketrans({key: None for key in (string.punctuation).replace("-"," ") }))
               for sentence in corpus]
     corpus = [" ".join([stemmer.stem(word) for word in sentence.split(" ")]) for sentence in corpus]
     return corpus, stemmer
@@ -69,7 +69,7 @@ def process_data(corpus):
     lm = WordNetLemmatizer()
     corpus = [re.sub(r'(<[^<]+?>)|(\d+)', '', sentence) for sentence in corpus]
     corpus = [re.sub(r'(\n)',' ',sentence) for sentence in corpus]
-    corpus = [sentence.translate(sentence.maketrans({key: None for key in (string.punctuation).replace("-","") }))
+    corpus = [sentence.translate(sentence.maketrans({key: None for key in (string.punctuation).replace("-"," ") }))
               for sentence in corpus]
     corpus = [" ".join([lm.lemmatize(word) for word in sentence.split(" ")]) for sentence in corpus]
     # print(corpus)
@@ -77,7 +77,7 @@ def process_data(corpus):
     return corpus
 
 def saveResults(outfileName, id_, result, stemmer, n_tags=3):
-    ofile = open(outfileName + '.csv', "w")
+    ofile = open(outfileName + '.csv', "w",encoding='utf-8')
     ofile.write('\"id\",\"tags\"\n')
     for i in range(len(id_)):
         if len(result[i]) > n_tags:
@@ -86,7 +86,7 @@ def saveResults(outfileName, id_, result, stemmer, n_tags=3):
             arr = result[i]
         ofile.write( '"' + str(id_[i]) + '"' + "," + '"' + str(" ".join(arr)) + '"' + '\n' )
     '''
-    unstemfile = open('unstemfile'+'.csv','w')
+    unstemfile = open('unstemfile'+'.csv','w',encoding='utf-8")
     for j in range(len(id_)):
         unstemfile.write('"'+str(id_[j])+'"'+","+'"')
         if len(result[j]) > n_tags:
@@ -259,7 +259,6 @@ def getOutputVar(addTop, addThres):
     return n_top, threshold
 
 if __name__ == '__main__':
-<<<<<<< HEAD
     # read from file
     path = sys.argv[1]
     outfileName = sys.argv[2]
