@@ -11,7 +11,8 @@ from sklearn.pipeline import make_pipeline
 from nltk.stem import WordNetLemmatizer
 from numpy import genfromtxt
 from sklearn.feature_extraction import text
-from gensim.models.phrases import Phraser
+from gensim.models.phrases import Phrases
+import itertools
 import bottleneck as bn # sorting
 import re
 
@@ -20,38 +21,38 @@ stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about',
 import collections
 
 def clean_html(raw_html):
-  cleanr = re.compile('<.*?>')
-  cleantext = re.sub(cleanr, '', raw_html)
-  return cleantext
+    cleanr = re.compile('<.*?>')
+    cleantext = re.sub(cleanr, '', raw_html)
+    return cleantext
 
 def get_words(text):
-	word_split = re.compile('[^a-zA-Z0-9_\\+\\-/]')
-	return [word.strip().lower() for word in word_split.split(text)]
-	# return word_split
+    word_split = re.compile('[^a-zA-Z0-9_\\+\\-/]')
+    return [word.strip().lower() for word in word_split.split(text)]
+# return word_split
 
 def process_data_ref(corpus):
-	corpus = [ clean_html(line) for line in corpus ]
-	corpus = [ get_words(line) for line in corpus ]
-	corpus = [" ".join(word) for word in corpus]
-	return corpus
+    corpus = [ clean_html(line) for line in corpus ]
+    corpus = [ get_words(line) for line in corpus ]
+    corpus = [" ".join(word) for word in corpus]
+    return corpus
 
 
 class SnowCastleStemmer(nltk.stem.SnowballStemmer):
     """ A wrapper around snowball stemmer with a reverse lookip table """
-    
+
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
         self._stem_memory = collections.defaultdict(set)
         # switch stem and memstem
         self._stem=self.stem
         self.stem=self.memstem
-        
+
     def memstem(self, word):
         """ Wrapper around stem that remembers """
         stemmed_word = self._stem(word)
         self._stem_memory[stemmed_word].add(word)
         return stemmed_word
-        
+
     def unstem(self, stemmed_word):
         """ Reverse lookup """
         return sorted(self._stem_memory[stemmed_word], key=len)
@@ -105,17 +106,17 @@ def saveResults(outfileName, id_, result, stemmer, n_tags=3):
     '''
     unstemfile = open('unstemfile'+'.csv','w',encoding='utf-8")
     for j in range(len(id_)):
-        unstemfile.write('"'+str(id_[j])+'"'+","+'"')
-        if len(result[j]) > n_tags:
-            for k in range(n_tags):
-                unstemfile.write(str(" ".join(stemmer.unstem(result[j][k]))))
-                unstemfile.write(" ")
-        else:
-            for k in range(len(result[j])):
-                unstemfile.write(str(" ".join(stemmer.unstem(result[j][k]))))
-                unstemfile.write(" ")
-        unstemfile.write('"'+'\n')
-    
+    unstemfile.write('"'+str(id_[j])+'"'+","+'"')
+    if len(result[j]) > n_tags:
+    for k in range(n_tags):
+    unstemfile.write(str(" ".join(stemmer.unstem(result[j][k]))))
+    unstemfile.write(" ")
+    else:
+    for k in range(len(result[j])):
+    unstemfile.write(str(" ".join(stemmer.unstem(result[j][k]))))
+    unstemfile.write(" ")
+    unstemfile.write('"'+'\n')
+
     unstemfile.close()
     '''
     ofile.close()
@@ -125,7 +126,7 @@ def read_words(words_file):
     return [word for line in open(words_file, 'r') for word in line.split()]
 
 def lsa(X, n_components=80):
-    print "Performing dimensionality reduction using LSA"
+    print ("Performing dimensionality reduction using LSA")
     svd = TruncatedSVD(n_components)
     normalizer = Normalizer(copy=False)
     lsa = make_pipeline(svd, normalizer)
@@ -160,7 +161,7 @@ def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres,
         # selectedFeature = svd.inverse_transform(features_weighted[i].reshape(1,-1))
         # print(selectedFeature.shape)
         selectedFeature = features_weighted[i]
-        
+
         # arg = selectedFeature.argsort()[-1*n_top:][::-1]
         arg = selectedFeature.argsort()[-1*n_top:][::-1]
         if addThres == True:
@@ -188,13 +189,13 @@ def getVect(num):
     my_stop_words = text.ENGLISH_STOP_WORDS.union(stop_words_2)
     if num == 1:
         vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
-                use_idf=True, stop_words=my_stop_words)
+                               use_idf=True, stop_words=my_stop_words)
     elif num == 2:
         vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
-                use_idf=False, stop_words=my_stop_words)
+                               use_idf=False, stop_words=my_stop_words)
     elif num == 3:
         vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
-                use_idf=True, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
+                               use_idf=True, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
     return vect
 
 def filterBeforeOutput():
@@ -224,15 +225,16 @@ def generateOutput(nb_partition, corpus, vect, title, content, featureName):
     # threshold = 0.8
     num = 0
     count = 0
+    print('heloloha')
     for i in range(nb_partition):
         features_weighted = getfeaturesWeighted(vect, corpus, title, content, partion*i, partion*(i+1), num)
         feature_arr = getFeaturearr(feature_arr, corpus[partion*i: partion*(i+1)], features_weighted, 
-            featureName, addThres, threshold, n_top)
+                                    featureName, addThres, threshold, n_top)
         if i == nb_partition-1:
             features_weighted = getfeaturesWeighted(vect, corpus, title, content, partion*i, len(corpus), num)
             feature_arr = getFeaturearr(feature_arr, corpus[partion*i: len(corpus)], features_weighted, 
-                featureName, addThres, threshold, n_top)
-        print "Part: ", i+1, "/", nb_partition
+                                        featureName, addThres, threshold, n_top)
+        print ("Part: ", i+1, "/", nb_partition)
     return feature_arr
 
 def printTfidfWeight(features_weighted, n_top, featureName, weights):
@@ -241,28 +243,28 @@ def printTfidfWeight(features_weighted, n_top, featureName, weights):
         arg = selectedFeature.argsort()[-1*n_top:][::-1]
         selected = np.concatenate( (featureName[arg], weights[arg]), axis=0)
         selected = selected.reshape((2,n_top)).T
-        print selected
+        print (selected)
         feature_arr.append(selected)
     return True
 
 def preprocessing(corpus, title, content, num):
-	stemmer = []
-	if num == 0:
+    stemmer = []
+    if num == 0:
         stemmer= SnowCastleStemmer('english')
         content,_  = process_data_stem(content, stemmer)
         stemmer= SnowCastleStemmer('english')
         title,_  = process_data_stem(title, stemmer)
         stemmer= SnowCastleStemmer('english')
         corpus, stemmer = process_data_stem(corpus, stemmer)
-	elif num == 1:
-		corpus = process_data(corpus)
-		title  = process_data(title)
-		content  = process_data(content)
-	elif num == 2:
-		corpus = np.array(process_data_ref(corpus) )
-		title = np.array(process_data_ref(title) )
-		content = np.array(process_data_ref(content) )
-	return corpus, title, content, stemmer
+    elif num == 1:
+        corpus = process_data(corpus)
+        title  = process_data(title)
+        content  = process_data(content)
+    elif num == 2:
+        corpus = np.array(process_data_ref(corpus) )
+        title = np.array(process_data_ref(title) )
+        content = np.array(process_data_ref(content) )
+    return corpus, title, content, stemmer
 
 def getOutputVar(addTop, addThres):
     n_top = int(6)
@@ -278,7 +280,7 @@ def getOutputVar(addTop, addThres):
 def bigramProcess(corpus):
     #tokenize corpus first
     corpus = [nltk.word_tokenize(sentences.lower()) for sentences in corpus]
-    bigram = Phrases(corpus,10,20.0,40000000,'-',10000)
+    bigram = Phrases(corpus,min_count=10,threshold=20.0,delimiter=b'-')
     #bigram = Phrases(corpus)
     corpus = bigram[corpus]
     #print corpus
@@ -293,8 +295,8 @@ if __name__ == '__main__':
     n_top, threshold = getOutputVar(addTop, addThres)
     # process data
     id_, title, content, corpus = readFromData(path)
-	num = 2
-	corpus, title, content, stemmer = preprocessing(corpus, title, content, num)
+    num = 2
+    corpus, title, content, stemmer = preprocessing(corpus, title, content, num)
     # define vector
     vect = getVect(3)
     # fit vector
@@ -303,31 +305,39 @@ if __name__ == '__main__':
     weights = np.array( vect.idf_ )
     featureName = np.array( vect.get_feature_names() )
 
-    print "Start to generate output!"
+    print ("Start to generate output!")
     nb_partition = 100
     feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)
-        # print("features: ", len(feature_arr))
-	'''
-	vect = getVect(2)
-	features = vect.fit(corpus)
-	feature_arr_2 = generateOutput(nb_partition, corpus, vect, title, content, featureName)
-	for i in range(len(feature_arr)):
-		line_1 = feature_arr[i]
-		line_2 = feature_arr_2[i]
-		for j in line_2:
-			if j not in line_1:
-				feature_arr[i] = np.concatenate((feature_arr[i], [j]), axis=0)
-	'''
-    print "Finish generating output!"
+    # print("features: ", len(feature_arr))
+    '''
+    vect = getVect(2)
+    features = vect.fit(corpus)
+    feature_arr_2 = generateOutput(nb_partition, corpus, vect, title, content, featureName)
+    for i in range(len(feature_arr)):
+    line_1 = feature_arr[i]
+    line_2 = feature_arr_2[i]
+    for j in line_2:
+    if j not in line_1:
+    feature_arr[i] = np.concatenate((feature_arr[i], [j]), axis=0)
+    '''
+    print ("Finish generating output!")
     # save to files
-    print "Save to file."
+    print ("Save to file.")
     # feature_arr = filterFromList(feature_arr, my_data)
     saveResults(outfileName + str(n_top), id_, feature_arr, stemmer, n_top)   
-    print "Finish saving to file!" 
+    print ("Finish saving to file!") 
     ans = getResults(feature_arr, id_, n_top)
     bigram,_ = bigramProcess(corpus)
     for i in range(len(id_)):
-        total_combination=[]
-        for j in range(len(ans[i])):
+        total_permu = list(itertools.permutations(ans[i],2))
+        for j in range(len(total_permu)):
+            total_permu[j] = list(total_permu[j])
+        after_bigram = [bigram[words] for words in total_permu]
+        valid_bigram = [valid for valid in after_bigram if len(valid)==1 ]
+        ans[i].append(valid_bigram)
+        print (valid_bigram)
+        for k in range(len(valid_bigram)):
+            ans[i].remove((valid_bigram[k].split('-'))[0])
+            ans[i].remove((valid_bigram[k].split('-'))[1])
 
-
+    writeResults(outfileName+"_bigram", id_, ans)
