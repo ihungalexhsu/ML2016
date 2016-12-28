@@ -11,6 +11,7 @@ from sklearn.pipeline import make_pipeline
 from nltk.stem import WordNetLemmatizer
 from numpy import genfromtxt
 from sklearn.feature_extraction import text
+from gensim.models.phrases import Phraser
 import bottleneck as bn # sorting
 import re
 
@@ -257,6 +258,15 @@ def getOutputVar(addTop, addThres):
     else:
         threshold = 1
     return n_top, threshold
+
+def bigram(corpus):
+    #tokenize corpus first
+    corpus = [nltk.word_tokenize(sentences) for sentences in corpus]
+    #bigram = Phrases(corpus,10,20.0,40000000,'-',10000)
+    bigram = Phrases(corpus)
+    corpus = bigram[corpus]
+    print (corpus)
+    return corpus
 
 if __name__ == '__main__':
     # read from file

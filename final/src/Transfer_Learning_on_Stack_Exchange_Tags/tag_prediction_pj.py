@@ -111,7 +111,6 @@ def tf_idf(corpus, title, content):
 
     # fit vector
     vect.fit(corpus)
-
     return vect
 
 def tagsThreshold(threshold, selectedFeature, n_top):
@@ -120,7 +119,6 @@ def tagsThreshold(threshold, selectedFeature, n_top):
 	while selectedFeature[num-1]*threshold > selectedFeature[num]:
 		num = num + 1
 		if num == n_top: break
-
 	return num
 
 def getfeaturesWeighted(vect, title, content, start, end):
@@ -141,7 +139,6 @@ def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres,
         tags = nltk.pos_tag(nltk.word_tokenize(" ".join(featureName[arg[:tops]])))
         filtered_featureName = [tag[0] for tag in tags if tag[1].startswith('N') or tag[1]=='VBG']
         feature_arr.append( filtered_featureName )
-
     return feature_arr
 
 def get_tags(corpus, title, content, vectorizer):
@@ -158,12 +155,12 @@ def get_tags(corpus, title, content, vectorizer):
     for i in range(nb_partition):
         if i != nb_partition-1:
             features_weighted = getfeaturesWeighted(vect, title, content, partition*i, partition*(i+1))
-            feature_arr = getFeaturearr(feature_arr, corpus[partition*i: partition*(i+1)], features_weighted,
-                                        featureName, addThres, threshold, n_top)
+            feature_arr = getFeaturearr(feature_arr, corpus[partition*i: partition*(i+1)],
+                                        features_weighted,featureName, addThres, threshold, n_top)
         else:
             features_weighted = getfeaturesWeighted(vect, title, content, partition*i, len(corpus))
-            feature_arr = getFeaturearr(feature_arr, corpus[partition*i: len(corpus)], features_weighted,
-                                        featureName, addThres, threshold, n_top)
+            feature_arr = getFeaturearr(feature_arr, corpus[partition*i: len(corpus)],
+                                        features_weighted,featureName, addThres, threshold, n_top)
         print("Part: ", i+1, "/", nb_partition)
     print("Finish generating output!")
 
