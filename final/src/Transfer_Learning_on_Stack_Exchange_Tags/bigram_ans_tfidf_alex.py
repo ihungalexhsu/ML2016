@@ -9,11 +9,13 @@ from sklearn.decomposition import TruncatedSVD
 from sklearn.preprocessing import Normalizer
 from sklearn.pipeline import make_pipeline
 from nltk.stem import WordNetLemmatizer
+from nltk.corpus import wordnet
 from numpy import genfromtxt
 from sklearn.feature_extraction import text
 from gensim.models.phrases import Phrases
 import itertools
 import bottleneck as bn # sorting
+import os.path
 import collections
 import re
 
@@ -41,19 +43,24 @@ class SnowCastleStemmer(nltk.stem.SnowballStemmer):
 
 ################ clean word #######################
 def clean_html(raw_html):
-    cleanr = re.compile('<.*?>')
-    cleantext = re.sub(cleanr, '', raw_html)
-    return cleantext
+  cleanr = re.compile('<.*?>')
+  cleantext = re.sub(cleanr, '', raw_html)
+  return cleantext
 
 def get_words(text):
-    word_split = re.compile('[^a-zA-Z0-9_\\+\\-/]')
+    word_split = re.compile('[^a-zA-Z\\+\\-/]')
     return [word.strip().lower() for word in word_split.split(text)]
-# return word_split
+    # return word_split
+
+def removeWordFromStr(sentence, length):
+    string = [ word for word in sentence.split(" ") if len(word) > length ]
+    return " ".join(string)
 
 def process_data_ref(corpus):
     corpus = [ clean_html(line) for line in corpus ]
     corpus = [ get_words(line) for line in corpus ]
     corpus = [" ".join(word) for word in corpus]
+    corpus = [ removeWordFromStr(sentence, 3) for sentence in corpus ]
     return corpus
 
 def process_data_stem(corpus, stemmer):
@@ -75,13 +82,43 @@ def clean_corpus(corpus):
     #          for sentence in corpus]
     return corpus
 
-def process_data(corpus):
+def get_wordnet_pos(treebank_tag):
+    if treebank_tag.startswith('J'):
+        return wordnet.ADJ
+    elif treebank_tag.startswith('V'):
+        return wordnet.VERB
+    elif treebank_tag.startswith('N'):
+        return wordnet.NOUN
+    elif treebank_tag.startswith('R'):
+        return wordnet.ADV
+    else:
+        return wordnet.NOUN
+
+def generate_corpus_pos(corpus, name):
+    if os.path.isfile('test_corpus_pos_' + name + '.txt'):
+        corpus_tags = []
+        with open('test_corpus_pos_' + name + '.txt', 'r') as f:
+            for sentence in f:
+                word = sentence.split(' ')
+                corpus_tags.append([tuple(word.strip('\n').split(',')) for word in sentence.split(' ')])
+    else:
+        corpus_tags = [nltk.pos_tag(nltk.word_tokenize(sentence)) for sentence in corpus]
+        with open('test_corpus_pos_' + name + '.txt', 'w') as f:
+            for sentence in corpus_tags:
+                f.write(' '.join('%s,%s' % word for word in sentence))
+                f.write('\n')
+    return corpus_tags
+
+def process_data(corpus,name):
     # process data
     corpus = clean_corpus(corpus)
+    corpus = [ removeWordFromStr(sentence, 3) for sentence in corpus ]
     lm = WordNetLemmatizer()
-    corpus = [" ".join([lm.lemmatize(word) for word in sentence.split(" ")]) for sentence in corpus]
-    # print(corpus)
-    # tags   = origin_data[:, 3]
+    #using pos tag
+    corpus_pos= generate_corpus_pos(corpus_title, name)
+    corpus = [" ".join([lm.lemmatize(word[0], get_wordnet_pos(word[1])) for word in sentence])
+              for sentence in corpus_pos]
+    #corpus = [" ".join([lm.lemmatize(word) for word in sentence.split(" ")]) for sentence in corpus]
     return corpus
 
 #########################get answer###########################
@@ -247,21 +284,22 @@ def preprocessing(corpus, title, content, num):
         stemmer= SnowCastleStemmer('english')
         corpus, stemmer = process_data_stem(corpus, stemmer)
     elif num == 1:
-        corpus = process_data(corpus)
-        title  = process_data(title)
-        content  = process_data(content)
+        corpus = process_data(corpus,'corpus')
+        title  = process_data(title,'title')
+        content  = process_data(content,'content')
     elif num == 2:
         corpus = np.array(process_data_ref(corpus) )
         title = np.array(process_data_ref(title) )
         content = np.array(process_data_ref(content) )
     return corpus, title, content, stemmer
 
+sys_input3 = sys.argv[3]
 def getOutputVar(addTop, addThres):
     n_top = int(6)
     if addTop:
-        n_top = int(sys.argv[3])
+        n_top = int(sys_input3)
     if addThres:
-        threshold = float(sys.argv[3])
+        threshold = float(sys_input3)
     else:
         threshold = 1
     return n_top, threshold
@@ -288,8 +326,8 @@ if __name__ == '__main__':
     n_top, threshold = getOutputVar(addTop, addThres)
     # process data
     id_, title, content, corpus = readFromData(path)
-    num = 2
-    corpus, title, content, stemmer = preprocessing(corpus, title, content, num)
+    process_type = 1
+    corpus, title, content, stemmer = preprocessing(corpus, title, content, process_type)
     # define vector
     vect = getVect(2)
     # fit vector

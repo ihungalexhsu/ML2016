@@ -244,9 +244,9 @@ def preprocessing(corpus, title, content, num):
         stemmer= SnowCastleStemmer('english')
         corpus, stemmer = process_data_stem(corpus, stemmer)
     elif num == 1:
-        corpus = process_data(corpus)
-        title  = process_data(title)
-        content  = process_data(content)
+        corpus = process_data(corpus,'corpus')
+        title  = process_data(title,'title')
+        content  = process_data(content,'content')
     elif num == 2:
         corpus = np.array(process_data_ref(corpus) )
         title = np.array(process_data_ref(title) )
