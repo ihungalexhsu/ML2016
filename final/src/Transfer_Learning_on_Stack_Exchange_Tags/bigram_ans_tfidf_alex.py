@@ -192,7 +192,7 @@ def getVect(num):
                                use_idf=True, stop_words=my_stop_words)
     elif num == 2:
         vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
-                               use_idf=False, stop_words=my_stop_words)
+                               use_idf=False, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
     elif num == 3:
         vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
                                use_idf=True, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
@@ -225,7 +225,6 @@ def generateOutput(nb_partition, corpus, vect, title, content, featureName):
     # threshold = 0.8
     num = 0
     count = 0
-    print('heloloha')
     for i in range(nb_partition):
         features_weighted = getfeaturesWeighted(vect, corpus, title, content, partion*i, partion*(i+1), num)
         feature_arr = getFeaturearr(feature_arr, corpus[partion*i: partion*(i+1)], features_weighted, 
@@ -282,7 +281,10 @@ def bigramProcess(corpus):
     print ("tokenize data")
     corpus = [nltk.word_tokenize(sentences.lower()) for sentences in corpus]
     print ("create bigram")
-    bigram = Phrases(corpus,min_count=5,threshold=10.0,delimiter=b'-')
+    sentence=['quantum','mechanics', 'newtonian','mechanics','general','relativity', 'special','relativity', 'classical','mechanics', 'fluid','dynamics', 'particle','physics','visible','light', 'statistical','mechanics','black','holes','newtonian','gravity', 'electromagnetic','radiation', 'condensed','matter', 'experimental','physics','magnetic','fields', 'string','theory', 'lagrangian','formalism','electric','circuits', 'mathematical','physics', 'mass', 'angular','momentum', 'differential','geometry','energy','conservation','nuclear','physics','rotational','dynamics', 'quantum','information','soft','question','resource','recommendations','electrical','resistance', 'quantum','electrodynamics','group','theory','quantum','gravity']    
+    for aa in range(11):
+        corpus.append(sentence)
+    bigram = Phrases(corpus,min_count=3,threshold=10.0,delimiter=b'-')
     #bigram = Phrases(corpus)
     print ("bigram corpus")
     #corpus = bigram[corpus]
@@ -301,7 +303,7 @@ if __name__ == '__main__':
     num = 2
     corpus, title, content, stemmer = preprocessing(corpus, title, content, num)
     # define vector
-    vect = getVect(3)
+    vect = getVect(2)
     # fit vector
     # generate output
     features = vect.fit(corpus)
@@ -309,7 +311,7 @@ if __name__ == '__main__':
     featureName = np.array( vect.get_feature_names() )
 
     print ("Start to generate output!")
-    nb_partition = 1000
+    nb_partition = 5000
     feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)
     # print("features: ", len(feature_arr))
     '''
