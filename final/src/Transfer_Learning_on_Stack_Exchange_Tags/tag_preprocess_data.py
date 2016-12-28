@@ -56,17 +56,14 @@ def removeWordFromStr(sentence, length):
     string = [ word for word in sentence.split(" ") if len(word) > length ]
     return " ".join(string)
 
-def process_data_ref(corpus, name):
+def process_data_ref(corpus,name):
     corpus = [ clean_html(line) for line in corpus ]
     corpus = [ get_words(line) for line in corpus ]
     corpus = [" ".join(word) for word in corpus]
-    corpus = [ removeWordFromStr(sentence, 3) for sentence in corpus ]
     lm = WordNetLemmatizer()
     #using pos tag
-    corpus_pos= generate_corpus_pos(corpus, name)
-    corpus = [" ".join([lm.lemmatize(word[0], get_wordnet_pos(word[1])) for word in sentence])
-              for sentence in corpus_pos]
-    
+    # corpus_pos= generate_corpus_pos(corpus, name)
+    # corpus = [" ".join([lm.lemmatize(word[0], get_wordnet_pos(word[1])) for word in sentence for sentence in corpus_pos]
     return corpus
 
 def process_data_stem(corpus, stemmer):
@@ -118,10 +115,9 @@ def generate_corpus_pos(corpus, name):
 def process_data(corpus,name):
     # process data
     corpus = clean_corpus(corpus)
-    corpus = [ removeWordFromStr(sentence, 3) for sentence in corpus ]
     lm = WordNetLemmatizer()
     #using pos tag
-    corpus_pos= generate_corpus_pos(corpus, name)
+    # corpus_pos= generate_corpus_pos(corpus, name)
     corpus = [" ".join([lm.lemmatize(word[0], get_wordnet_pos(word[1])) for word in sentence])
               for sentence in corpus_pos]
     #corpus = [" ".join([lm.lemmatize(word) for word in sentence.split(" ")]) for sentence in corpus]
@@ -256,6 +252,9 @@ def readFromData(filename):
 def generateOutput(nb_partition, corpus, vect, title, content, featureName):
     feature_arr = []
     partion = int(len(corpus)/nb_partition)
+    while(partion ==0 ):
+        nb_partition = int(nb_partition/2+1)
+        partion = int(len(corpus)/nb_partition)
     # threshold = 0.8
     num = 0
     count = 0
@@ -301,7 +300,7 @@ def preprocessing(corpus, title, content, num):
         content = np.array(process_data_ref(content,'content') )
     return corpus, title, content, stemmer
 
-sys_input3 = sys.argv[3]
+# sys_input3 = sys.argv[3]
 def getOutputVar(addTop, addThres):
     n_top = int(6)
     if addTop:
@@ -312,60 +311,94 @@ def getOutputVar(addTop, addThres):
         threshold = 1
     return n_top, threshold
 
-def bigramProcess(corpus):
+def bigramProcess(corpus,title,content):
     #tokenize corpus first
     print ("tokenize data")
     corpus = [nltk.word_tokenize(sentences.lower()) for sentences in corpus]
+    title = [nltk.word_tokenize(sentences.lower()) for sentences in title]
+    content = [nltk.word_tokenize(sentences.lower()) for sentences in content]
     print ("create bigram")
-    sentence=['quantum','mechanics', 'newtonian','mechanics','general','relativity', 'special','relativity', 'classical','mechanics', 'fluid','dynamics', 'particle','physics','visible','light', 'statistical','mechanics','black','holes','newtonian','gravity', 'electromagnetic','radiation', 'condensed','matter', 'experimental','physics','magnetic','fields', 'string','theory', 'lagrangian','formalism','electric','circuits', 'mathematical','physics', 'mass', 'angular','momentum', 'differential','geometry','energy','conservation','nuclear','physics','rotational','dynamics', 'quantum','information','soft','question','resource','recommendations','electrical','resistance', 'quantum','electrodynamics','group','theory','quantum','gravity']    
-    for aa in range(11):
-        corpus.append(sentence)
-    bigram = Phrases(corpus,min_count=3,threshold=10.0,delimiter=b'-')
+    '''
+    sentence=[['quantum','mechanics'],['newtonian','mechanics'],['general','relativity'],
+              ['special','relativity'],['classical','mechanics'],['fluid','dynamics'],
+              ['particle','physics'],['visible','light'],['statistical','mechanics'],
+              ['black','holes'],['newtonian','gravity'],['newtonian','mechanics'],
+              ['electromagnetic','radiation'],['condensed','matter'],['experimental','physics'],
+              ['magnetic','fields'],['string','theory'],['lagrangian','formalism'],
+              ['electric','circuits'],['mathematical','physics'],['angular','momentum'],
+              ['differential','geometry'],['energy','conservation'],['nuclear','physics'],
+              ['rotational','dynamics'],['quantum','information'],['soft','question'],
+              ['resource','recommendations'],['electrical','resistance'],['quantum','electrodynamics'],
+              ['group','theory'],['quantum','gravity']]    
+    for aa in range(20):
+        for bb in range(len(sentence)):
+            corpus.append(sentence[bb])
+    '''
+    for weighted in range(10):
+        corpus.append(title)
+    bigram = Phrases(corpus,min_count=3,threshold=9.0,delimiter=b'-')
     print ("bigram corpus")
-    #corpus = bigram[corpus]
-    return bigram,corpus
+    title = bigram[title]
+    title = [ " ".join(wordlist) for wordlist in title ]
+    content = bigram[content]
+    content = [ " ".join(wordlist) for wordlist in content ]
+
+    corp = []
+    for i in range(len(title)):
+        corp.append(  title[i] + " " + content[i] )
+    corpus = np.array(corp)
+    # corpus = [ title[i] + " " + content[i] for i in range(len(title))] 
+    return bigram,corpus,title,content
 
 if __name__ == '__main__':
     # read from file
     path = sys.argv[1]
     outfileName = sys.argv[2]
-    addTop = True
-    addThres = False
-    n_top, threshold = getOutputVar(addTop, addThres)
+    process_type = 1
+    for i in range(len(sys.argv)):
+        li = sys.argv[i].split("=")
+        if li[0] == "pre_type":
+            process_type = int(li[1])
     # process data
     id_, title, content, corpus = readFromData(path)
-    process_type = int(sys.argv[4])
+    print("Successfully load data!")
+    # process_type = int(sys.argv[4])
     corpus, title, content, stemmer = preprocessing(corpus, title, content, process_type)
-    # define vector
-    type_tfidf = int(sys.argv[5])
-    vect = getVect(type_tfidf)
-    # fit vector
-    # generate output
-    features = vect.fit(corpus)
-    weights = np.array( vect.idf_ )
-    featureName = np.array( vect.get_feature_names() )
+    print("Successfully preprocess data!")
+    #bigram corpus
+    bigram,corpus,title,content = bigramProcess(corpus,title,content)
+    print("Successfully do bi-gram to data!")
+    # print("content = ")
+    # print(content)
 
-    print ("Start to generate output!")
-    nb_partition = 5000
-    feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)
-    print ("Finish generating output!")
-    print ("Save original answer file.")
-    saveResults(outfileName + str(n_top), id_, feature_arr, stemmer, n_top)   
-    print ("Finish saving to file!") 
-    
-    #bigram answer
-    ans = getResults(feature_arr, id_, n_top)
-    bigram,_ = bigramProcess(corpus)
-    for i in range(len(id_)):
-        total_permu = list(itertools.permutations(ans[i],2))
-        for j in range(len(total_permu)):
-            total_permu[j] = list(total_permu[j])
-        after_bigram = [bigram[words] for words in total_permu]
-        valid_bigram = [valid for valid in after_bigram if len(valid)==1 ]
-        for k in range(len(valid_bigram)):
-            ans[i] = np.append(ans[i],valid_bigram[k][0])
-            index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[0])
-            ans[i] = np.delete(ans[i], index)
-            index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[1])
-            ans[i] =np.delete(ans[i], index)
-    writeResults(outfileName+"_bigram", id_, ans)
+
+    corpus = [ removeWordFromStr(sentence, 3) for sentence in corpus ] 
+    title = [ removeWordFromStr(sentence, 3) for sentence in title ] 
+    content = [ removeWordFromStr(sentence, 3) for sentence in content ] 
+
+    data = { 'corpus': corpus,
+    'title': title,
+    'content': content,
+    '_id' : _id }
+
+    with open(outfileName, 'wb') as f:
+        # Pickle the 'data' dictionary using the highest protocol available.
+        pickle.dump(data, f, pickle.HIGHEST_PROTOCOL)
+
+    '''
+    filename = [outfileName+"_corpus", outfileName+"_title",
+           outfileName+"_content", outfileName+"_id" ]
+    np.savez(filename[0], corpus=corpus )
+    np.savez(filename[1], title=title )
+    np.savez(filename[2], content=content )
+    np.savez(filename[3], _id=_id )
+    print("Successfully save to files!")
+    print("File name: ", filename)
+    '''
+
+    '''
+    np.savez("./data/corpus_bigram_corpus", corpus=corpus )
+    np.savez("./data/corpus_bigram_title", title=title )
+    np.savez("./data/corpus_bigram_content", content=content )
+    # np.savez("./data/corpus_bigram", corpus=corpus,title=title, content=content)    
+    '''

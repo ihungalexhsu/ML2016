@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import string
 import nltk
+import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import TruncatedSVD
 from sklearn.preprocessing import Normalizer
@@ -243,15 +244,13 @@ def getVect(num):
                                use_idf=True, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
     return vect
 
-def readFromData(filename):
-    origin_data = pd.read_csv( filename, quotechar='"', skipinitialspace=True).as_matrix()
-    id_ = origin_data[:, 0]
-    title  = origin_data[:, 1]
-    content= origin_data[:, 2]
-    corpus = origin_data[:, 1:3]
-    corpus = corpus.astype(object)
-    corpus = corpus[:, 0] + " " + corpus[:, 1]
-    return id_, title, content, corpus  
+def readFromPickle(filename):
+    with open(filename, 'rb') as f:
+        data = pickle.load(f)
+    id_ = data['id_']
+    feature_arr  = data['feature_arr']
+    corpus = data['corpus']
+    return id_, feature_arr, corpus
 
 def generateOutput(nb_partition, corpus, vect, title, content, featureName):
     feature_arr = []
@@ -301,7 +300,6 @@ def preprocessing(corpus, title, content, num):
         content = np.array(process_data_ref(content,'content') )
     return corpus, title, content, stemmer
 
-sys_input3 = sys.argv[3]
 def getOutputVar(addTop, addThres):
     n_top = int(6)
     if addTop:
@@ -329,32 +327,10 @@ if __name__ == '__main__':
     # read from file
     path = sys.argv[1]
     outfileName = sys.argv[2]
-    addTop = True
-    addThres = False
-    n_top, threshold = getOutputVar(addTop, addThres)
-    # process data
-    id_, title, content, corpus = readFromData(path)
-    process_type = int(sys.argv[4])
-    corpus, title, content, stemmer = preprocessing(corpus, title, content, process_type)
-    # define vector
-    type_tfidf = int(sys.argv[5])
-    vect = getVect(type_tfidf)
-    # fit vector
-    # generate output
-    features = vect.fit(corpus)
-    weights = np.array( vect.idf_ )
-    featureName = np.array( vect.get_feature_names() )
-
-    print ("Start to generate output!")
-    nb_partition = 5000
-    feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)
-    print ("Finish generating output!")
-    print ("Save original answer file.")
-    saveResults(outfileName + str(n_top), id_, feature_arr, stemmer, n_top)   
-    print ("Finish saving to file!") 
-    
+    id_, feature_arr, corpus = readFromPickle(path)
     #bigram answer
-    ans = getResults(feature_arr, id_, n_top)
+    # ans = getResults(feature_arr, id_, n_top)
+    ans = feature_arr
     bigram,_ = bigramProcess(corpus)
     for i in range(len(id_)):
         total_permu = list(itertools.permutations(ans[i],2))
@@ -369,3 +345,4 @@ if __name__ == '__main__':
             index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[1])
             ans[i] =np.delete(ans[i], index)
     writeResults(outfileName+"_bigram", id_, ans)
+    print("Output file: ", outfileName+"_bigram")

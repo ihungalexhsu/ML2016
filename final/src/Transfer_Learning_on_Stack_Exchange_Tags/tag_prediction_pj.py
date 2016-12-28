@@ -124,7 +124,8 @@ def tagsThreshold(threshold, selectedFeature, n_top):
 def getfeaturesWeighted(vect, title, content, start, end):
 	features_title = vect.transform(title[start:end]).toarray()
 	features_content = vect.transform(content[start:end]).toarray()
-	features_weighted = 2*features_title + features_content
+	features_weighted = 8*features_title + features_content
+
 	return features_weighted
 
 def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):
@@ -158,7 +159,7 @@ def get_tags(corpus, title, content, vectorizer):
                                         features_weighted,featureName, addThres, threshold, n_top)
         else:
             features_weighted = getfeaturesWeighted(vect, title, content, partition*i, len(corpus))
-            feature_arr = getFeaturearr(feature_arr, corpus[partition*i: len(corpus)], 
+            feature_arr = getFeaturearr(feature_arr, corpus[partition*i: len(corpus)],
                                         features_weighted,featureName, addThres, threshold, n_top)
         print("Part: ", i+1, "/", nb_partition)
     print("Finish generating output!")
