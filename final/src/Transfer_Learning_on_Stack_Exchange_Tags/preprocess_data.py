@@ -287,3 +287,6 @@ if __name__ == '__main__':
     corpus, title, content, stemmer = preprocessing(corpus, title, content, num)
     # define vector
     np.savez(outfileName, corpus=corpus, title=title, content=content)
+    ofile = open(outfileName + '.txt', "w",encoding='utf-8')
+    for i in len(title):
+        ofile.write(title, ",")
