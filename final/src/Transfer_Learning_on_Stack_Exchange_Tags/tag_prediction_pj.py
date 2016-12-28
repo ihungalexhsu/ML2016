@@ -126,7 +126,7 @@ def tagsThreshold(threshold, selectedFeature, n_top):
 def getfeaturesWeighted(vect, title, content, start, end):
 	features_title = vect.transform(title[start:end]).toarray()
 	features_content = vect.transform(content[start:end]).toarray()
-	features_weighted = 2*features_title + features_content
+	features_weighted = 8*features_title + features_content
 
 	return features_weighted
 
