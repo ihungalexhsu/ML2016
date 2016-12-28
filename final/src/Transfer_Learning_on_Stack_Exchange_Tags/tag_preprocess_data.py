@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import string
 import nltk
+import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import TruncatedSVD
 from sklearn.preprocessing import Normalizer
@@ -313,11 +314,11 @@ def getOutputVar(addTop, addThres):
 
 def bigramProcess(corpus,title,content):
     #tokenize corpus first
-    print ("tokenize data")
+    print ("... tokenize data ...")
     corpus = [nltk.word_tokenize(sentences.lower()) for sentences in corpus]
     title = [nltk.word_tokenize(sentences.lower()) for sentences in title]
     content = [nltk.word_tokenize(sentences.lower()) for sentences in content]
-    print ("create bigram")
+    print ("... create bigram ...")
     '''
     sentence=[['quantum','mechanics'],['newtonian','mechanics'],['general','relativity'],
               ['special','relativity'],['classical','mechanics'],['fluid','dynamics'],
@@ -334,10 +335,12 @@ def bigramProcess(corpus,title,content):
         for bb in range(len(sentence)):
             corpus.append(sentence[bb])
     '''
+    '''
     for weighted in range(10):
         corpus.append(title)
+    '''
     bigram = Phrases(corpus,min_count=3,threshold=9.0,delimiter=b'-')
-    print ("bigram corpus")
+    print ("... bigram corpus ...")
     title = bigram[title]
     title = [ " ".join(wordlist) for wordlist in title ]
     content = bigram[content]
@@ -379,12 +382,13 @@ if __name__ == '__main__':
     data = { 'corpus': corpus,
     'title': title,
     'content': content,
-    '_id' : _id }
+    'id_' : id_ }
 
     with open(outfileName, 'wb') as f:
         # Pickle the 'data' dictionary using the highest protocol available.
         pickle.dump(data, f, pickle.HIGHEST_PROTOCOL)
 
+    print("Successfully output data with 'corpus', 'title', 'content', 'id_'!")
     '''
     filename = [outfileName+"_corpus", outfileName+"_title",
            outfileName+"_content", outfileName+"_id" ]
