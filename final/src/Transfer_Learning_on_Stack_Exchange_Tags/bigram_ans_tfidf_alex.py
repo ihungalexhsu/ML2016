@@ -64,13 +64,21 @@ def process_data_stem(corpus, stemmer):
     corpus = [" ".join([stemmer.stem(word) for word in sentence.split(" ")]) for sentence in corpus]
     return corpus, stemmer
 
+def clean_corpus(corpus):
+    # '\n', '/', ',', '.', '?', '(', ')', ''' replaced by ' '
+    clean_space = re.compile('[\n\/,\.\?()\']')
+    # <xxx>, $xxx$, not alphabets and space and '_-', \begin xxx \end replaced by ''
+    clean_empty = re.compile('<.*?>|\$+[^$]+\$+|[^a-zA-Z_\- ]|\\+begin[^$]+\\+end')
+    corpus = [clean_space.sub(' ', sentence) for sentence in corpus]
+    corpus = [clean_empty.sub('', sentence) for sentence in corpus]
+    #corpus = [sentence.translate(sentence.maketrans({key: None for key in string.punctuation}))
+    #          for sentence in corpus]
+    return corpus
+
 def process_data(corpus):
     # process data
+    corpus = clean_corpus(corpus)
     lm = WordNetLemmatizer()
-    corpus = [re.sub(r'(<[^<]+?>)|(\d+)', '', sentence) for sentence in corpus]
-    corpus = [re.sub(r'(\n)',' ',sentence) for sentence in corpus]
-    corpus = [sentence.translate(sentence.maketrans({key: None for key in (string.punctuation).replace("-"," ") }))
-              for sentence in corpus]
     corpus = [" ".join([lm.lemmatize(word) for word in sentence.split(" ")]) for sentence in corpus]
     # print(corpus)
     # tags   = origin_data[:, 3]
