@@ -73,9 +73,9 @@ def process_data_stem(corpus, stemmer):
 
 def clean_corpus(corpus):
     # '\n', '/', ',', '.', '?', '(', ')', ''' replaced by ' '
-    clean_space = re.compile('[\n\/,\.\?()\']')
+    clean_space = re.compile('[\n\/,\.\?()\'_]')
     # <xxx>, $xxx$, not alphabets and space and '_-', \begin xxx \end replaced by ''
-    clean_empty = re.compile('<.*?>|\$+[^$]+\$+|[^a-zA-Z_\- ]|\\+begin[^$]+\\+end')
+    clean_empty = re.compile('<.*?>|\$+[^$]+\$+|[^a-zA-Z\- ]|\\+begin[^$]+\\+end')
     corpus = [clean_space.sub(' ', sentence) for sentence in corpus]
     corpus = [clean_empty.sub('', sentence) for sentence in corpus]
     #corpus = [sentence.translate(sentence.maketrans({key: None for key in string.punctuation}))
@@ -115,7 +115,7 @@ def process_data(corpus,name):
     corpus = [ removeWordFromStr(sentence, 3) for sentence in corpus ]
     lm = WordNetLemmatizer()
     #using pos tag
-    corpus_pos= generate_corpus_pos(corpus_title, name)
+    corpus_pos= generate_corpus_pos(corpus, name)
     corpus = [" ".join([lm.lemmatize(word[0], get_wordnet_pos(word[1])) for word in sentence])
               for sentence in corpus_pos]
     #corpus = [" ".join([lm.lemmatize(word) for word in sentence.split(" ")]) for sentence in corpus]
@@ -201,14 +201,16 @@ def getfeaturesWeighted(vect, corpus, title, content, start, end, num):
 
 def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):
     for i in range(len(features_weighted)):
-        # selectedFeature = svd.inverse_transform(features_weighted[i].reshape(1,-1))
         selectedFeature = features_weighted[i]
         arg = selectedFeature.argsort()[-1*n_top:][::-1]
         if addThres == True:
             tops = tagsThreshold(threshold, selectedFeature[arg], n_top)
         else:
             tops = n_top
-        feature_arr.append( featureName[arg[:tops]] )
+        
+        tags = nltk.pos_tag(nltk.word_tokenize(" ".join(featureName[arg[:tops]])))
+        filtered_featureName = [tag[0] for tag in tags if tag[1].startswith('N') or tag[1]=='VBG']
+        feature_arr.append( filtered_featureName )
     return feature_arr
 
 def filterFromList(results, stop_words):
@@ -329,7 +331,7 @@ if __name__ == '__main__':
     process_type = 1
     corpus, title, content, stemmer = preprocessing(corpus, title, content, process_type)
     # define vector
-    vect = getVect(2)
+    vect = getVect(3)
     # fit vector
     # generate output
     features = vect.fit(corpus)
