@@ -210,16 +210,32 @@ def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres,
             tops = tagsThreshold(threshold, selectedFeature[arg], n_top)
         else:
             tops = n_top
-        
+        tags = featureName[arg[:tops]]
+        tags = [ re.sub(" ", "-", word) for word in tags ]
+        # print(tags)
+        '''
+        for item in tags:
+            if len(item.split(" ")) > 1:
+                item = "-".join(item.split(" "))
+            feature_arr.append( item )
+        '''
+        feature_arr.append( tags )
+
+
+        '''
         tags = nltk.pos_tag(nltk.word_tokenize(" ".join(featureName[arg[:tops]])))
         filtered_featureName = [tag[0] for tag in tags if tag[1].startswith('N') or tag[1]=='VBG']
         feature_arr.append( filtered_featureName )
+        '''
     return feature_arr
 
 def filterFromList(results, stop_words):
     for i in range(len(results)):
         results[i] = [ x for x in results[i] if x not in stop_words ]
     return results
+
+def Tokenizer(corpus):
+    return [sentence.split(" ") for sentence in corpus]
 
 def getVect(num):
     my_words = read_words( "stop_words.txt")
@@ -233,7 +249,7 @@ def getVect(num):
         vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
                                use_idf=True, stop_words=my_stop_words)
     elif num == 2:
-        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
+        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', ngram_range=(1,2),
                                use_idf=False, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
     elif num == 3:
         vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
@@ -375,7 +391,7 @@ if __name__ == '__main__':
         elif li[0] == "n_top":
             n_top = int(li[1])
     print(vect_type)
-
+ 
     # process data
     id_, title, content, corpus = readFromPickle(path)
 
@@ -386,6 +402,7 @@ if __name__ == '__main__':
     features = vect.fit(corpus)
     weights = np.array( vect.idf_ )
     featureName = np.array(vect.get_feature_names() )
+    print("Number of words: ", len(featureName) )
     
     print ("Start to generate output!")
     nb_partition = 5000

@@ -344,5 +344,19 @@ if __name__ == '__main__':
             ans[i] = np.delete(ans[i], index)
             index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[1])
             ans[i] =np.delete(ans[i], index)
+    '''
+    for i in range(len(ans)):
+        bigram = [ word for word in ans[i] if len(word.split("-"))>1 ]
+        print(bigram)
+        for j in range(len(bigram)):
+            word = bigram[j].split("-")
+            print(word)
+            for k in range(2):
+                print(word[k])
+                index = np.argwhere(ans[i]==word[k])
+                print(index)
+                ans[i] = np.delete(ans[i], index)
+            print(ans[i])
+    '''
     writeResults(outfileName+"_bigram", id_, ans)
     print("Output file: ", outfileName+"_bigram")
