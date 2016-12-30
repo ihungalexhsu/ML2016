@@ -103,6 +103,10 @@ def clean_corpus(corpus):
     clean_empty = re.compile('<.*?>|\$+[^$]+\$+|[^a-zA-Z\' ]|\\+begin[^$]+\\+end|\'s')
     corpus = [clean_space.sub(' ', sentence) for sentence in corpus]
     corpus = [clean_empty.sub('', sentence) for sentence in corpus]
+<<<<<<< HEAD
+=======
+
+>>>>>>> d14517a6de91ddbb6be541b77fcc30cc08ebdd59
     return corpus
 '''
 def construct_phrase_dict(corpus_title):
@@ -228,4 +232,3 @@ if __name__ == '__main__':
     # save to files
     saveResults(outfileName, id_, feature_arr)
     print("Finish save to file!")
-
