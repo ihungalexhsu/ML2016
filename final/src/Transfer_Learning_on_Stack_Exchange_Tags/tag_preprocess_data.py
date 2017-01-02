@@ -3,8 +3,8 @@ import sys
 import numpy as np
 import pandas as pd
 import string
-import nltk
 import pickle
+import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import TruncatedSVD
 from sklearn.preprocessing import Normalizer
@@ -14,13 +14,15 @@ from nltk.corpus import wordnet
 from numpy import genfromtxt
 from sklearn.feature_extraction import text
 from gensim.models.phrases import Phrases
+from gensim.models.phrases import Phraser
+from collections import OrderedDict
+from collections import defaultdict
 import itertools
 import bottleneck as bn # sorting
 import os.path
 import collections
 import re
- 
-stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', ''])
+
 
 class SnowCastleStemmer(nltk.stem.SnowballStemmer):
     """ A wrapper around snowball stemmer with a reverse lookip table """
@@ -44,31 +46,28 @@ class SnowCastleStemmer(nltk.stem.SnowballStemmer):
 
 ################ clean word #######################
 def clean_html(raw_html):
-  # cleanr = re.compile('[<.*?>][\']')
   cleanr = re.compile('<.*?>')
   cleantext = re.sub(cleanr, '', raw_html)
-  cleanr = re.compile('\'')
-  cleantext = re.sub(cleanr, '', cleantext)
   return cleantext
 
 def get_words(text):
-    word_split = re.compile('[^a-zA-Z\\+\\-]')
+    word_split = re.compile('[^a-zA-Z\\+\\-/]')
     return [word.strip().lower() for word in word_split.split(text)]
     # return word_split
 
 def removeWordFromStr(sentence, length):
-    badWord = "zzz"
-    string = [ word for word in sentence.split(" ") if len(word) > length and badWord not in word  ]
+    string = [ word for word in sentence.split(" ") if len(word) > length ]
     return " ".join(string)
 
 def process_data_ref(corpus,name):
     corpus = [ clean_html(line) for line in corpus ]
     corpus = [ get_words(line) for line in corpus ]
     corpus = [" ".join(word) for word in corpus]
+    lm = WordNetLemmatizer()
     #using pos tag
-    # lm = WordNetLemmatizer()
-    # corpus_pos= generate_corpus_pos(corpus, name)
-    # corpus = [" ".join([lm.lemmatize(word[0], get_wordnet_pos(word[1])) for word in sentence for sentence in corpus_pos]
+    corpus_pos= generate_corpus_pos(corpus, name)
+    corpus = [" ".join([lm.lemmatize(word[0], get_wordnet_pos(word[1])) for word in sentence]) 
+                        for sentence in corpus_pos]
     return corpus
 
 def process_data_stem(corpus, stemmer):
@@ -81,9 +80,28 @@ def process_data_stem(corpus, stemmer):
 
 def clean_corpus(corpus):
     # '\n', '/', ',', '.', '?', '(', ')', ''' replaced by ' '
-    clean_space = re.compile('[\n\/,\.\?()\'_]')
+    clean_space = re.compile('[\n\/,\.\?()_]')
     # <xxx>, $xxx$, not alphabets and space and '_-', \begin xxx \end replaced by ''
-    clean_empty = re.compile('<.*?>|\$+[^$]+\$+|[^a-zA-Z\- ]|\\+begin[^$]+\\+end')
+    clean_empty = re.compile('<.*?>|\$+[^$]+\$+|[^a-zA-Z\' ]|\\+begin[^$]+\\+end')
+    corp = []
+    for sentence in corpus:
+        word = sentence.split(' ')
+        #delete words have @
+        words = [w for w in word if '@' not in w]
+        words = [w for w in words if 'http' not in w]
+        #delete word have \
+        word = []
+        for w in words:
+            if ('\\' not in w): 
+                word.append(w)
+            elif ((w=='\\begin') or (w=='\\end') or (w=='\\\\begin') or (w=='\\\\end')):
+                word.append(w)
+            elif ('$' in w):
+                word.append(w)
+            elif (w=='\\x08'):
+                word.append('\\begin')
+        corp.append(" ".join(word))
+    corpus = corp
     corpus = [clean_space.sub(' ', sentence) for sentence in corpus]
     corpus = [clean_empty.sub('', sentence) for sentence in corpus]
     #corpus = [sentence.translate(sentence.maketrans({key: None for key in string.punctuation}))
@@ -103,28 +121,17 @@ def get_wordnet_pos(treebank_tag):
         return wordnet.NOUN
 
 def generate_corpus_pos(corpus, name):
-    if os.path.isfile('test_corpus_pos_' + name + '.txt'):
-        corpus_tags = []
-        with open('test_corpus_pos_' + name + '.txt', 'r') as f:
-            for sentence in f:
-                word = sentence.split(' ')
-                corpus_tags.append([tuple(word.strip('\n').split(',')) for word in sentence.split(' ')])
-    else:
-        corpus_tags = [nltk.pos_tag(nltk.word_tokenize(sentence)) for sentence in corpus]
-        with open('test_corpus_pos_' + name + '.txt', 'w') as f:
-            for sentence in corpus_tags:
-                f.write(' '.join('%s,%s' % word for word in sentence))
-                f.write('\n')
+    corpus_tags = [nltk.pos_tag(nltk.word_tokenize(sentence)) for sentence in corpus]
     return corpus_tags
 
 def process_data(corpus,name):
     # process data
     corpus = clean_corpus(corpus)
-    lm = WordNetLemmatizer()
+    # lm = WordNetLemmatizer()
     #using pos tag
-    # corpus_pos= generate_corpus_pos(corpus, name)
-    corpus = [" ".join([lm.lemmatize(word[0], get_wordnet_pos(word[1])) for word in sentence])
-              for sentence in corpus_pos]
+    #corpus_pos= generate_corpus_pos(corpus, name)
+    #corpus = [" ".join([lm.lemmatize(word[0], get_wordnet_pos(word[1])) for word in sentence])
+    #         for sentence in corpus_pos]
     #corpus = [" ".join([lm.lemmatize(word) for word in sentence.split(" ")]) for sentence in corpus]
     return corpus
 
@@ -154,22 +161,14 @@ def saveResults(outfileName, id_, result, stemmer, n_tags=3):
         else:
             arr = result[i]
         ofile.write( '"' + str(id_[i]) + '"' + "," + '"' + str(" ".join(arr)) + '"' + '\n' )
-    '''
-    unstemfile = open('unstemfile'+'.csv','w',encoding='utf-8")
-    for j in range(len(id_)):
-    unstemfile.write('"'+str(id_[j])+'"'+","+'"')
-    if len(result[j]) > n_tags:
-    for k in range(n_tags):
-    unstemfile.write(str(" ".join(stemmer.unstem(result[j][k]))))
-    unstemfile.write(" ")
-    else:
-    for k in range(len(result[j])):
-    unstemfile.write(str(" ".join(stemmer.unstem(result[j][k]))))
-    unstemfile.write(" ")
-    unstemfile.write('"'+'\n')
+    ofile.close()
+    return True
 
-    unstemfile.close()
-    '''
+def saveFile(outfileName, id_, corpus, title, content):
+    ofile = open(outfileName + '.csv', "w",encoding='utf-8')
+    ofile.write('id, title, content, corpus\n')
+    for i in range(len(id_)):
+        ofile.write(  str(id_[i]) + "," + title[i] + ',' + content[i] + ',' + corpus[i] + '\n' )
     ofile.close()
     return True
 
@@ -205,11 +204,11 @@ def getfeaturesWeighted(vect, corpus, title, content, start, end, num):
         features_title = vect.transform(title[start:end]).toarray()
         # features_title, svd = lsa(features_title, 80)
         # features_content, svd = lsa(features_content, 80)
-        features_weighted = 8*features_title + features_content
+        features_weighted = 5*features_title + features_content
     elif num == 1:
         features_title = vect.transform(title[start:end]).toarray()
         features_content = vect.transform(content[start:end]).toarray()
-        features_weighted = 8*features_title + features_content
+        features_weighted = 5*features_title + features_content
     return features_weighted
 
 def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):
@@ -220,11 +219,28 @@ def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres,
             tops = tagsThreshold(threshold, selectedFeature[arg], n_top)
         else:
             tops = n_top
-        
         tags = nltk.pos_tag(nltk.word_tokenize(" ".join(featureName[arg[:tops]])))
         filtered_featureName = [tag[0] for tag in tags if tag[1].startswith('N') or tag[1]=='VBG']
-        feature_arr.append( filtered_featureName )
+        feature_arr.append( filtered_featureName )   
     return feature_arr
+
+def extend_abbreviation(mapping, corpus_title):
+    return [[word if mapping[word]=='0' else mapping[word] for word in sentence] 
+            for sentence in corpus_title]
+
+def construct_phrase_dict(corpus_title):
+    phrases = [[word for word in sentence if word.find('-') != -1] for sentence in corpus_title]
+    mapping = defaultdict(lambda: '0')
+    for sentence in phrases:
+        for word in sentence:
+            idx = word.find('-')
+            abbrev = word[0]
+            while idx != -1:
+                idx += 1
+                abbrev += word[idx]
+                idx = word.find('-', idx)
+            mapping[abbrev] = word
+    return mapping
 
 def filterFromList(results, stop_words):
     for i in range(len(results)):
@@ -233,20 +249,15 @@ def filterFromList(results, stop_words):
 
 def getVect(num):
     my_words = read_words( "stop_words.txt")
-    # my_data = pd.read_csv( 'stop_word_list_5000.csv', delimiter=',', skipinitialspace=True).as_matrix()
-    # my_data = my_data[:,1].tolist()
-    # nb_stopwords = int(len(my_data)*0.5)
-    # my_data = my_data[:nb_stopwords]
-    # my_stop_words = text.ENGLISH_STOP_WORDS.union(my_words)
     my_stop_words = text.ENGLISH_STOP_WORDS.union(stop_words_2)
     if num == 1:
         vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
                                use_idf=True, stop_words=my_stop_words)
     elif num == 2:
-        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
+        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', token_pattern=None, 
                                use_idf=False, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
     elif num == 3:
-        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
+        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', token_pattern=None,
                                use_idf=True, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
     return vect
 
@@ -309,25 +320,36 @@ def preprocessing(corpus, title, content, num):
         corpus = np.array(process_data_ref(corpus,'corpus') )
         title = np.array(process_data_ref(title,'title') )
         content = np.array(process_data_ref(content,'content') )
+    elif num == 4:
+        A = "'"
+        B = ' '
+        corpus = np.array(removeCharacter(corpus,A,B) )
+        title = np.array(removeCharacter(title,A,B) )
+        content = np.array(removeCharacter(content,A,B) )
     return corpus, title, content, stemmer
 
-# sys_input3 = sys.argv[3]
-def getOutputVar(addTop, addThres):
-    n_top = int(6)
-    if addTop:
-        n_top = int(sys_input3)
-    if addThres:
-        threshold = float(sys_input3)
-    else:
-        threshold = 1
-    return n_top, threshold
+# from A to B
+def removeCharacter(corpus, A, B):
+    clean_space = re.compile(A)
+    corpus = [clean_space.sub(B, sentence) for sentence in corpus]
+    return corpus
+
+
+def deletecomponent(corpus,numremove):
+    my_words = read_words( "long_stop_word.txt")
+    my_stop_words = text.ENGLISH_STOP_WORDS.union(my_words)
+    corpus = [ removeWordFromStr(sentence, numremove) for sentence in corpus ]
+    corpus = [" ".join([word for word in sentence.lower().split(' ')
+                    if word not in my_stop_words]) for sentence in corpus]
+    return corpus
+
 
 def bigramProcess(corpus,title,content):
     #tokenize corpus first
     print ("... tokenize data ...")
-    corpus = [nltk.word_tokenize(sentences.lower()) for sentences in corpus]
-    title = [nltk.word_tokenize(sentences.lower()) for sentences in title]
-    content = [nltk.word_tokenize(sentences.lower()) for sentences in content]
+    corpus = [[w for w in nltk.word_tokenize(sentences.lower())if w != "'s"] for sentences in corpus]
+    title = [[w for w in nltk.word_tokenize(sentences.lower()) if w!= "'s"] for sentences in title]
+    content = [[w for w in nltk.word_tokenize(sentences.lower()) if w!= "'s"] for sentences in content]
     print ("... create bigram ...")
     '''
     sentence=[['quantum','mechanics'],['newtonian','mechanics'],['general','relativity'],
@@ -341,81 +363,71 @@ def bigramProcess(corpus,title,content):
               ['rotational','dynamics'],['quantum','information'],['soft','question'],
               ['resource','recommendations'],['electrical','resistance'],['quantum','electrodynamics'],
               ['group','theory'],['quantum','gravity']]    
-    for aa in range(20):
-        for bb in range(len(sentence)):
-            corpus.append(sentence[bb])
+    
+    for aa in range(800):
+        corpus = corpus+sentence
     '''
-    '''
-    for weighted in range(10):
-        corpus.append(title)
-    '''
-    bigram = Phrases(corpus,min_count=3,threshold=9.0,delimiter=b'-')
+    bigram = Phrases(corpus,delimiter=b'-')
+    # bigram = Phraser(corpus,delimiter=b'-')
     print ("... bigram corpus ...")
+    bigram_counter = collections.Counter()
+    for key in bigram.vocab.keys():
+        if len(str(key).split('-')) > 1:
+            bigram_counter[key] += bigram.vocab[key]
+    for key,counts in bigram_counter.most_common(200):
+        #print ('{0: <100} {1}'.format(key, counts))
+        sudo = (str(key) + "      "+str(counts))
     title = bigram[title]
     title = [ " ".join(wordlist) for wordlist in title ]
     content = bigram[content]
     content = [ " ".join(wordlist) for wordlist in content ]
-
     corp = []
     for i in range(len(title)):
         corp.append(  title[i] + " " + content[i] )
     corpus = np.array(corp)
-    # corpus = [ title[i] + " " + content[i] for i in range(len(title))] 
     return bigram,corpus,title,content
 
 if __name__ == '__main__':
     # read from file
     path = sys.argv[1]
     outfileName = sys.argv[2]
-    process_type = 1
+    process_type = 1   # default value
     for i in range(len(sys.argv)):
         li = sys.argv[i].split("=")
         if li[0] == "pre_type":
             process_type = int(li[1])
+
     # process data
     id_, title, content, corpus = readFromData(path)
     print("Successfully load data!")
-    # process_type = int(sys.argv[4])
     corpus, title, content, stemmer = preprocessing(corpus, title, content, process_type)
     print("Successfully preprocess data!")
-    #bigram corpus
-    # bigram,corpus,title,content = bigramProcess(corpus,title,content)
+
+    saveFile(outfileName + "step1", id_, corpus, title, content)
+
+
+    # Clean stop words
+
+    # remove \'
+    corpus, title, content, stemmer = preprocessing(corpus, title, content, 4)
+
+
+    corpus = deletecomponent(corpus,2)
+    content = deletecomponent(content,2)
+    title = deletecomponent(title,2)
+    print("Successfully delete-componet!")
+
+    saveFile(outfileName + "step2", id_, corpus, title, content)
+
+
+    # create bigram
+    bigram,corpus,title,content = bigramProcess(corpus,title,content)
     print("Successfully do bi-gram to data!")
-    # print("content = ")
-    # print(content)
 
-    '''
-    corpus = [ removeWordFromStr(sentence, 3) for sentence in corpus ] 
-    title = [ removeWordFromStr(sentence, 3) for sentence in title ] 
-    content = [ removeWordFromStr(sentence, 3) for sentence in content ] 
-    '''
 
-    data = { 'corpus': corpus,
-    'title': title,
-    'content': content,
-    'id_' : id_ }
+    # output file
+    # saveFile(outfileName, id_, corpus, title, content)
+    saveFile(outfileName + "step3", id_, corpus, title, content)
 
-    with open(outfileName, 'wb') as f:
-        # Pickle the 'data' dictionary using the highest protocol available.
-        pickle.dump(data, f)
-
-    saveCorpus(outfileName, id_, corpus)
-
-    print("Successfully output data with 'corpus', 'title', 'content', 'id_'!")
-    '''
-    filename = [outfileName+"_corpus", outfileName+"_title",
-           outfileName+"_content", outfileName+"_id" ]
-    np.savez(filename[0], corpus=corpus )
-    np.savez(filename[1], title=title )
-    np.savez(filename[2], content=content )
-    np.savez(filename[3], _id=_id )
-    print("Successfully save to files!")
-    print("File name: ", filename)
-    '''
-
-    '''
-    np.savez("./data/corpus_bigram_corpus", corpus=corpus )
-    np.savez("./data/corpus_bigram_title", title=title )
-    np.savez("./data/corpus_bigram_content", content=content )
-    # np.savez("./data/corpus_bigram", corpus=corpus,title=title, content=content)    
-    '''
+    print("Successfully output data with 'id_', 'title', 'content', 'corpus' !")
+    print("File name: ", outfileName, "!!!")
