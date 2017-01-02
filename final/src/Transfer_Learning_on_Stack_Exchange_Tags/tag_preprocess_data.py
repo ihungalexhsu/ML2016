@@ -52,7 +52,7 @@ def clean_html(raw_html):
   return cleantext
 
 def get_words(text):
-    word_split = re.compile('[^a-zA-Z\\+\\-/]')
+    word_split = re.compile('[^a-zA-Z\\+\\-]')
     return [word.strip().lower() for word in word_split.split(text)]
     # return word_split
 
@@ -65,8 +65,8 @@ def process_data_ref(corpus,name):
     corpus = [ clean_html(line) for line in corpus ]
     corpus = [ get_words(line) for line in corpus ]
     corpus = [" ".join(word) for word in corpus]
-    lm = WordNetLemmatizer()
     #using pos tag
+    # lm = WordNetLemmatizer()
     # corpus_pos= generate_corpus_pos(corpus, name)
     # corpus = [" ".join([lm.lemmatize(word[0], get_wordnet_pos(word[1])) for word in sentence for sentence in corpus_pos]
     return corpus
@@ -379,15 +379,16 @@ if __name__ == '__main__':
     corpus, title, content, stemmer = preprocessing(corpus, title, content, process_type)
     print("Successfully preprocess data!")
     #bigram corpus
-    bigram,corpus,title,content = bigramProcess(corpus,title,content)
+    # bigram,corpus,title,content = bigramProcess(corpus,title,content)
     print("Successfully do bi-gram to data!")
     # print("content = ")
     # print(content)
 
-
+    '''
     corpus = [ removeWordFromStr(sentence, 3) for sentence in corpus ] 
     title = [ removeWordFromStr(sentence, 3) for sentence in title ] 
     content = [ removeWordFromStr(sentence, 3) for sentence in content ] 
+    '''
 
     data = { 'corpus': corpus,
     'title': title,
@@ -396,10 +397,10 @@ if __name__ == '__main__':
 
     with open(outfileName, 'wb') as f:
         # Pickle the 'data' dictionary using the highest protocol available.
-        pickle.dump(data, f, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(data, f)
 
     saveCorpus(outfileName, id_, corpus)
-    
+
     print("Successfully output data with 'corpus', 'title', 'content', 'id_'!")
     '''
     filename = [outfileName+"_corpus", outfileName+"_title",
