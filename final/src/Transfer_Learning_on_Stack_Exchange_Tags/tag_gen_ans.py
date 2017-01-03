@@ -429,7 +429,7 @@ if __name__ == '__main__':
     print ("Finish generating output!")
 
     # ==================================================
-    
+
     print ("Save original answer file.")
     saveResults(outfileName + "ori" , id_, feature_arr, stemmer, n_top)
     print("File name: ", outfileName + "ori.csv", "!!!")

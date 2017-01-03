@@ -55,8 +55,9 @@ def get_words(text):
     return [word.strip().lower() for word in word_split.split(text)]
     # return word_split
 
-def removeWordFromStr(sentence, length):
-    string = [ word for word in sentence.split(" ") if len(word) > length ]
+def removeWordFromStr(sentence, short_length, long_length):
+    string = [ word for word in sentence.split(" ") if len(word) > short_length ]
+    string = [ word for word in sentence.split(" ") if len(word) < long_length ]
     return " ".join(string)
 
 def process_data_ref(corpus,name):
@@ -335,10 +336,10 @@ def removeCharacter(corpus, A, B):
     return corpus
 
 
-def deletecomponent(corpus,numremove):
+def deletecomponent(corpus,numremove, numremoveMax):
     my_words = read_words( "long_stop_word.txt")
     my_stop_words = text.ENGLISH_STOP_WORDS.union(my_words)
-    corpus = [ removeWordFromStr(sentence, numremove) for sentence in corpus ]
+    corpus = [ removeWordFromStr(sentence, numremove, numremoveMax) for sentence in corpus ]
     corpus = [" ".join([word for word in sentence.lower().split(' ')
                     if word not in my_stop_words]) for sentence in corpus]
     return corpus
@@ -392,7 +393,8 @@ if __name__ == '__main__':
     path = sys.argv[1]
     outfileName = sys.argv[2]
     process_type = 1   # default value
-    debug = False
+    debug = True
+    Trigram = True
     for i in range(len(sys.argv)):
         li = sys.argv[i].split("=")
         if li[0] == "pre_type":
@@ -410,22 +412,28 @@ if __name__ == '__main__':
 
     # Clean stop words
 
-    # remove \'
-    corpus, title, content, stemmer = preprocessing(corpus, title, content, 4)
-
-
-    corpus = deletecomponent(corpus,2)
-    content = deletecomponent(content,2)
-    title = deletecomponent(title,2)
+    corpus = deletecomponent(corpus,2, 30)
+    content = deletecomponent(content,2, 30)
+    title = deletecomponent(title,2, 30)
     print("Successfully delete-componet!")
 
     if debug:
         saveFile(outfileName + "step2", id_, corpus, title, content)
 
+    # remove \'
+    corpus, title, content, stemmer = preprocessing(corpus, title, content, 4)
+    corpus = deletecomponent(corpus,2, 30)
+    content = deletecomponent(content,2, 30)
+    title = deletecomponent(title,2, 30)
 
     # create bigram
     bigram,corpus,title,content = bigramProcess(corpus,title,content)
     print("Successfully do bi-gram to data!")
+    if Trigram:
+        bigram,corpus,title,content = bigramProcess(corpus,title,content)
+        print("Successfully do tri-gram to data!")
+
+    
 
 
     # output file
