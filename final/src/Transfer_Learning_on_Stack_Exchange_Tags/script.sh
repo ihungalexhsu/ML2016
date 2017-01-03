@@ -1,10 +1,10 @@
 echo "Start to pre-process ..."
-python3 tag_preprocess_data.py ../../data/test.csv test_corpus pre_type=2
+python3 tag_preprocess_data.py ../../data/test.csv test_corpus pre_type=1
 echo "Start to generate answer ..."
 python3 tag_gen_ans.py 	test_corpus  test_test vect=2 n_top=5
 echo "Start to post-process ..."
 python3 tag_postprocess_ans.py test_test output.csv
-
+ 
 
 command <<HERE
 
