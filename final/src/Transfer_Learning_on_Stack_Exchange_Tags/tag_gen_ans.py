@@ -220,14 +220,16 @@ def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres,
             feature_arr.append( item )
         '''
         feature_arr.append( tags )
-
-
-        '''
-        tags = nltk.pos_tag(nltk.word_tokenize(" ".join(featureName[arg[:tops]])))
-        filtered_featureName = [tag[0] for tag in tags if tag[1].startswith('N') or tag[1]=='VBG']
-        feature_arr.append( filtered_featureName )
-        '''
+        
     return feature_arr
+
+def filterPostag(feature_arr):
+    features = []
+    for i in range(len(feature_arr)):
+        tags = nltk.pos_tag(feature_arr[i])
+        filtered_featureName = [tag[0] for tag in tags if tag[1].startswith('N') or tag[1]=='VBG']
+        features.append( filtered_featureName )
+    return features
 
 def filterFromList(results, stop_words):
     for i in range(len(results)):
@@ -246,14 +248,17 @@ def getVect(num):
     # my_stop_words = text.ENGLISH_STOP_WORDS.union(my_words)
     my_stop_words = text.ENGLISH_STOP_WORDS.union(stop_words_2)
     if num == 1:
-        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
+        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', token_pattern=r'\b(\w\w+\S\w\w+)|\w\w+\b',
                                use_idf=True, stop_words=my_stop_words)
     elif num == 2:
-        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', ngram_range=(1,2),
+        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', token_pattern=r'\b(\w\w+\S\w\w+)|\w\w+\b',
                                use_idf=False, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
     elif num == 3:
         vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
                                use_idf=True, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
+    elif num == 4:
+        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', ngram_range=(1,2), 
+                               use_idf=False, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
     return vect
 
 def readFromPickle(filename):
@@ -263,6 +268,14 @@ def readFromPickle(filename):
     title  = data['title']
     content= data['content']
     corpus = data['corpus']
+    return id_, title, content, corpus 
+
+def readFromCsv(filename):
+    origin_data = pd.read_csv( filename, quotechar='"', skipinitialspace=True).as_matrix()
+    id_ = origin_data[:, 0]
+    title  = origin_data[:, 1]
+    content= origin_data[:, 2]
+    corpus = origin_data[:, 3]
     return id_, title, content, corpus  
 
 def generateOutput(nb_partition, corpus, vect, title, content, featureName):
@@ -275,11 +288,12 @@ def generateOutput(nb_partition, corpus, vect, title, content, featureName):
     num = 0
     count = 0
     for i in range(nb_partition):
-        features_weighted = getfeaturesWeighted(vect, corpus, title, content, 
+        if i != nb_partition-1:
+            features_weighted = getfeaturesWeighted(vect, corpus, title, content, 
                                                 partion*i, partion*(i+1), num)
-        feature_arr = getFeaturearr(feature_arr, corpus[partion*i: partion*(i+1)], 
+            feature_arr = getFeaturearr(feature_arr, corpus[partion*i: partion*(i+1)], 
                                     features_weighted, featureName, addThres, threshold, n_top)
-        if i == nb_partition-1:
+        else:
             features_weighted = getfeaturesWeighted(vect, corpus, title, content, 
                                                     partion*i, len(corpus), num)
             feature_arr = getFeaturearr(feature_arr, corpus[partion*i: len(corpus)],
@@ -393,7 +407,11 @@ if __name__ == '__main__':
     print(vect_type)
  
     # process data
-    id_, title, content, corpus = readFromPickle(path)
+    # id_, title, content, corpus = readFromPickle(path)
+    id_, title, content, corpus = readFromCsv(path)
+
+    # ==================================================
+    # do whatever you want !!!
 
     # define vector
     vect = getVect(vect_type)
@@ -406,11 +424,18 @@ if __name__ == '__main__':
     
     print ("Start to generate output!")
     nb_partition = 5000
-    feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)
+    # feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)
+    feature_arr = [ sentence.split(" ") for sentence in title ]
     print ("Finish generating output!")
-    print ("Save original answer file.")
-    saveResults(outfileName + "ori" , id_, feature_arr, stemmer, n_top)   
 
+    # ==================================================
+    
+    print ("Save original answer file.")
+    saveResults(outfileName + "ori" , id_, feature_arr, stemmer, n_top)
+    print("File name: ", outfileName + "ori.csv", "!!!")
+
+
+    # ==================================================
 
 
     data = { 'feature_arr': feature_arr,
@@ -419,6 +444,7 @@ if __name__ == '__main__':
     with open(outfileName, 'wb') as f:
         # Pickle the 'data' dictionary using the highest protocol available.
         pickle.dump(data, f, pickle.HIGHEST_PROTOCOL)
+
 
     '''
     #bigram answer

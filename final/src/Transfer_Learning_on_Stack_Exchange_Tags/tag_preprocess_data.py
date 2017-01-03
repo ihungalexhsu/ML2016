@@ -165,7 +165,7 @@ def saveResults(outfileName, id_, result, stemmer, n_tags=3):
     return True
 
 def saveFile(outfileName, id_, corpus, title, content):
-    ofile = open(outfileName + '.csv', "w",encoding='utf-8')
+    ofile = open(outfileName, "w",encoding='utf-8')
     ofile.write('id, title, content, corpus\n')
     for i in range(len(id_)):
         ofile.write(  str(id_[i]) + "," + title[i] + ',' + content[i] + ',' + corpus[i] + '\n' )
@@ -392,6 +392,7 @@ if __name__ == '__main__':
     path = sys.argv[1]
     outfileName = sys.argv[2]
     process_type = 1   # default value
+    debug = False
     for i in range(len(sys.argv)):
         li = sys.argv[i].split("=")
         if li[0] == "pre_type":
@@ -403,7 +404,8 @@ if __name__ == '__main__':
     corpus, title, content, stemmer = preprocessing(corpus, title, content, process_type)
     print("Successfully preprocess data!")
 
-    saveFile(outfileName + "step1", id_, corpus, title, content)
+    if debug:
+        saveFile(outfileName + "step1", id_, corpus, title, content)
 
 
     # Clean stop words
@@ -417,7 +419,8 @@ if __name__ == '__main__':
     title = deletecomponent(title,2)
     print("Successfully delete-componet!")
 
-    saveFile(outfileName + "step2", id_, corpus, title, content)
+    if debug:
+        saveFile(outfileName + "step2", id_, corpus, title, content)
 
 
     # create bigram
@@ -427,7 +430,10 @@ if __name__ == '__main__':
 
     # output file
     # saveFile(outfileName, id_, corpus, title, content)
-    saveFile(outfileName + "step3", id_, corpus, title, content)
+    if debug:
+        saveFile(outfileName + "step3", id_, corpus, title, content)
+
+    saveFile(outfileName, id_, corpus, title, content)
 
     print("Successfully output data with 'id_', 'title', 'content', 'corpus' !")
     print("File name: ", outfileName, "!!!")
