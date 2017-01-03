@@ -390,11 +390,20 @@ def bigramProcess(corpus,title,content):
 
 if __name__ == '__main__':
     # read from file
+    if len(sys.argv) < 2:
+        print ("Usage:")
+        print ("python3 tag_preprocess_data.py ../../data/test.csv test_corpus pre_type=1" )
+        print ("Defualt: with tri-gram, long_stop_word.txt")
+        sys.exit()
+
     path = sys.argv[1]
     outfileName = sys.argv[2]
     process_type = 1   # default value
     debug = True
     Trigram = True
+
+
+
     for i in range(len(sys.argv)):
         li = sys.argv[i].split("=")
         if li[0] == "pre_type":
