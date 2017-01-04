@@ -268,10 +268,44 @@ def bigram(corpus):
     #tokenize corpus first
     corpus = [nltk.word_tokenize(sentences) for sentences in corpus]
     #bigram = Phrases(corpus,10,20.0,40000000,'-',10000)
-    bigram = Phrases(corpus)
+    bigram = Phrases(corpus,delimiter=b'-')
     corpus = bigram[corpus]
-    print (corpus)
     return corpus
+
+import collections
+def getTopBigram(bigram, numbershow, selectNandJ):
+    
+    #return a list of bigram words
+    #bigram is a gensim-Pharses which already been construct with words.
+    #numbershow is a integer that the number of most common bigram that user want
+    #selectNandJ is a boolean that want the return bigram words have been selected or not,
+    #   if it's true the return length would less then the numbershow
+    
+    answer = []
+    bigram_counter = collections.Counter()
+    for keys in bigram.vocab.keys():
+        if len(str(keys).split('-')) > 1:
+            bigram_counter[keys] += bigram.vocab[keys]
+    for keys,counts in bigram_counter.most_common(numbershow):
+        if type(keys)!=str:
+            key = keys.decode('utf-8')
+        else:
+            key = keys
+        if selectNandJ:
+            word = key.split('-')
+            if len(word[0])!=0 and len(word[1])!=0:
+                firstword = word[0]
+                secondword = word[1]
+                pos_first = nltk.pos_tag([firstword])
+                pos_second = nltk.pos_tag([secondword])
+                if ((pos_first[0][1].startswith('N') or pos_first[0][1].startswith('J')) 
+                        and pos_second[0][1].startswith('N')):
+                    answer.append(key)
+                    print(str(key) + "      "+str(counts))
+        else:
+            answer.append(key)
+            print(str(key) + "      "+str(counts))
+    return answer
 
 if __name__ == '__main__':
     # read from file
