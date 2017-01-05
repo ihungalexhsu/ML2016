@@ -78,9 +78,9 @@ def removeWordFromStr(sentence, short_length, long_length):
 def deletecomponent(corpus, numremove, numremoveMax):
     my_words = read_words( "long_stop_word.txt")
     my_stop_words = text.ENGLISH_STOP_WORDS.union(my_words)
-    corpus = [ removeWordFromStr(sentence, numremove, numremoveMax) for sentence in corpus ]
     corpus = [" ".join([word for word in sentence.lower().split(' ')
                     if word not in my_stop_words]) for sentence in corpus]
+    corpus = [ removeWordFromStr(sentence, numremove, numremoveMax) for sentence in corpus ]
     return corpus
 
 def bigramProcess(corpus,title,content,minCount = 5,thresholds = 10.0):
