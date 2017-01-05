@@ -2,14 +2,10 @@
 import sys
 import numpy as np
 import pandas as pd
-import string
-import pickle
 import nltk
 from nltk.corpus import wordnet
-from numpy import genfromtxt
 from sklearn.feature_extraction import text
 from gensim.models.phrases import Phrases
-import bottleneck as bn # sorting
 import os.path
 import collections
 import re
@@ -72,6 +68,12 @@ def preprocessing(corpus, title, content):
     corpus = process_data(corpus)
     title  = process_data(title)
     content  = process_data(content)
+    return corpus, title, content
+
+def removeWordFromStr(sentence, short_length, long_length):
+    string = [ word for word in sentence.split(" ") if len(word) > short_length ]
+    string = [ word for word in sentence.split(" ") if len(word) < long_length ]
+    return " ".join(string)
 
 def deletecomponent(corpus, numremove, numremoveMax):
     my_words = read_words( "long_stop_word.txt")
@@ -103,7 +105,6 @@ def bigramProcess(corpus,title,content,minCount = 5,thresholds = 10.0):
 # ====================================================
 
 def getTopBigram(bigram, numbershow, selectNandJ):
-    
     #return a list of bigram words
     #bigram is a gensim-Pharses which already been construct with words.
     #numbershow is a integer that the number of most common bigram that user want
