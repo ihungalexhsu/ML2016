@@ -20,7 +20,7 @@ stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about',
 import collections
 
 def clean_html(raw_html):
-  cleanr = re.compile('<.*?>')
+  cleanr = re.compile('<.*?>,\'')
   cleantext = re.sub(cleanr, '', raw_html)
   return cleantext
 
@@ -29,7 +29,8 @@ def get_words(text):
     return [word.strip().lower() for word in word_split.split(text)]
     # return word_split
 def removeWordFromStr(sentence, length):
-    string = [ word for word in sentence.split(" ") if len(word) > length ]
+    badWord = "zzz"
+    string = [ word for word in sentence.split(" ") if len(word) > length and badWord not in word  ]
     return " ".join(string)
 
 def process_data_ref(corpus):
