@@ -388,6 +388,59 @@ def bigramProcess(corpus,title,content):
     corpus = np.array(corp)
     return bigram,corpus,title,content
 
+# ====================================================
+
+import collections
+def getTopBigram(bigram, numbershow, selectNandJ):
+    
+    #return a list of bigram words
+    #bigram is a gensim-Pharses which already been construct with words.
+    #numbershow is a integer that the number of most common bigram that user want
+    #selectNandJ is a boolean that want the return bigram words have been selected or not,
+    #   if it's true the return length would less then the numbershow
+    
+    answer = []
+    bigram_counter = collections.Counter()
+    for keys in bigram.vocab.keys():
+        if len(str(keys).split('-')) > 1:
+            bigram_counter[keys] += bigram.vocab[keys]
+    for keys,counts in bigram_counter.most_common(numbershow):
+        if type(keys)!=str:
+            key = keys.decode('utf-8')
+        else:
+            key = keys
+        if selectNandJ:
+            word = key.split('-')
+            if len(word[0])!=0 and len(word[1])!=0:
+                firstword = word[0]
+                secondword = word[1]
+                pos_first = nltk.pos_tag([firstword])
+                pos_second = nltk.pos_tag([secondword])
+                if ((pos_first[0][1].startswith('N') or pos_first[0][1].startswith('J')) 
+                        and pos_second[0][1].startswith('N')):
+                    answer.append(key)
+                    # print(str(key) + "      "+str(counts))
+        else:
+            answer.append(key)
+            # print(str(key) + "      "+str(counts))
+    return answer
+
+def getTopMonogram(title, content, corpus, n_top):
+    vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', 
+            use_idf=True, stop_words='english')
+    vect.fit(title)
+    featureName = np.array(vect.get_feature_names() )
+    features_content = np.zeros(len(featureName))
+    for i in range(len(title)):
+        features_content = features_content + vect.transform(title).toarray()
+    featureName = np.array(vect.get_feature_names() )
+    feature_arr = features_content.sum(axis=0)
+    arg = feature_arr.argsort()[-1*n_top:][::-1]
+    tags = featureName[arg]
+        # tags = [ re.sub(" ", "-", word) for word in tags ]
+        # print(tags)
+    return tags
+
 if __name__ == '__main__':
     # read from file
     if len(sys.argv) < 2:
@@ -442,8 +495,18 @@ if __name__ == '__main__':
         bigram,corpus,title,content = bigramProcess(corpus,title,content)
         print("Successfully do tri-gram to data!")
 
-    
-
+    '''
+    ans = np.array( getTopBigram(bigram, 4000, False) )
+    np.savez("myTags_f_4000", ans=ans)
+    '''
+    '''
+    ans = np.array( getTopMonogram(title, corpus, content, 4000) )
+    np.savez("myMonoTags_f_4000", ans=ans)
+    '''
+    '''
+    files = np.load("myTags.npz")
+    ans = files['ans']
+    '''
 
     # output file
     # saveFile(outfileName, id_, corpus, title, content)
