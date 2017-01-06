@@ -71,8 +71,9 @@ def preprocessing(corpus, title, content):
     return corpus, title, content
 
 def removeWordFromStr(sentence, short_length, long_length):
-    string = [ word for word in sentence.split(" ") if len(word) > short_length ]
-    string = [ word for word in sentence.split(" ") if len(word) < long_length ]
+    string = [ word for word in sentence.split(" ") \
+              if len(word) >= short_length and len(word) <= long_length ]
+
     return " ".join(string)
 
 def deletecomponent(corpus, numremove, numremoveMax):
