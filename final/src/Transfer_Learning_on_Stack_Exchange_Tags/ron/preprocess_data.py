@@ -256,12 +256,13 @@ if __name__ == '__main__':
     corpus = [a + " " + b for a, b in zip(title, content)]
     print("Succesfully remove words with length < 3 or > 30!")
 
+    if debug:
+        saveFile(outfileName + "_step7", id_, corpus, title, content)
+
     corpus = filterNotEnglish(corpus)
     title = filterNotEnglish(title)
     content = filterNotEnglish(content)
     print("Succesfully remove words which is no english words!")
-
-
 
 
     saveFile(outfileName, id_, corpus, title, content)
