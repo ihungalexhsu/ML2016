@@ -185,7 +185,7 @@ def filterNotEnglish(corpus):
     # corpus = [ sentence for sentence in corpus]
     corp = []
     for sentence in corpus:
-        s = [ word for word in sentence.split(" ") for w in word.split("-") if len(w) > 0 if d.check(w) == True ]
+        s = [ word for word in sentence.split(" ") if len(word) > 0 if len( word.split("-") ) or d.check(word) == True ]
         # fail = [ word for word in sentence.split(" ") for w in word.split("-") if len(w) > 0 if d.check(w) == False ]
         # print(fail)
         corp.append(" ".join(s))
