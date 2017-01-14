@@ -178,6 +178,19 @@ def getTopBigram(bigram, numbershow, selectNandJ):
             # print(str(key) + "      "+str(counts))
     return answer
 
+def filterNotEnglish(corpus):
+    import enchant
+    d = enchant.Dict("en_US")
+    # corpus = [ word for sentence in corpus for word in sentence for w in word.split("-") if d.check(w) == True ]
+    # corpus = [ sentence for sentence in corpus]
+    corp = []
+    for sentence in corpus:
+        s = [ word for word in sentence.split(" ") for w in word.split("-") if len(w) > 0 if d.check(w) == True ]
+        # fail = [ word for word in sentence.split(" ") for w in word.split("-") if len(w) > 0 if d.check(w) == False ]
+        # print(fail)
+        corp.append(" ".join(s))
+    return corp
+
 if __name__ == '__main__':
     # read from file
     if len(sys.argv) < 2:
@@ -188,7 +201,7 @@ if __name__ == '__main__':
 
     path = sys.argv[1]
     outfileName = sys.argv[2]
-    debug = True
+    debug = False
     Trigram = True
 
     # process data
@@ -232,6 +245,8 @@ if __name__ == '__main__':
     title = extend_abbreviation(mapping, title)
     content = extend_abbreviation(mapping, content)
     corpus = [a + " " + b for a, b in zip(title, content)]
+    print("Succesfully create phrase mapping!")
+    
     if debug:
         saveFile(outfileName + "_step6", id_, corpus, title, content)
 
@@ -239,6 +254,15 @@ if __name__ == '__main__':
     title = [ removeWordFromStr(sentence, 3, 30) for sentence in title ]
     content = [ removeWordFromStr(sentence, 3, 30) for sentence in content ]
     corpus = [a + " " + b for a, b in zip(title, content)]
+    print("Succesfully remove words with length < 3 or > 30!")
+
+    corpus = filterNotEnglish(corpus)
+    title = filterNotEnglish(title)
+    content = filterNotEnglish(content)
+    print("Succesfully remove words which is no english words!")
+
+
+
 
     saveFile(outfileName, id_, corpus, title, content)
     print("Successfully output data with 'id_', 'title', 'content', 'corpus' !")
