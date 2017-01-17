@@ -20,7 +20,6 @@ import os.path
 import collections
 import re
 
-stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', ''])
 
 class SnowCastleStemmer(nltk.stem.SnowballStemmer):
     """ A wrapper around snowball stemmer with a reverse lookip table """
@@ -252,6 +251,20 @@ def readFromPickle(filename):
     corpus = data['corpus']
     return id_, feature_arr, corpus
 
+def readFromAns(filename):
+    origin_data = pd.read_csv( filename, quotechar='"', skipinitialspace=True).as_matrix()
+    id_ = origin_data[:, 0]
+    tags = origin_data[:, 1]
+    return id_, tags  
+
+def readFromCsv(filename):
+    origin_data = pd.read_csv( filename, quotechar='"', skipinitialspace=True).as_matrix()
+    id_ = origin_data[:, 0]
+    title  = origin_data[:, 1]
+    content= origin_data[:, 2]
+    corpus = origin_data[:, 3]
+    return id_, title, content, corpus  
+
 def generateOutput(nb_partition, corpus, vect, title, content, featureName):
     feature_arr = []
     partion = int(len(corpus)/nb_partition)
@@ -323,27 +336,81 @@ def bigramProcess(corpus):
     #corpus = bigram[corpus]
     return bigram,corpus
 
+def filterPostag(feature_arr):
+    features = []
+    for i in range(len(feature_arr)):
+        tags = nltk.pos_tag(feature_arr[i])
+        filtered_featureName = [tag[0] for tag in tags if tag[1].startswith('N') or tag[1]=='VBG']
+        features.append( filtered_featureName )
+    return features
+
+def wordCount(feature_arr):
+    from nltk import FreqDist
+    import nltk
+    all_tags = " ".join(feature_arr)
+    words = nltk.tokenize.word_tokenize(all_tags)
+    fdist = FreqDist(words)
+    return fdist
+
+    '''
+    from sklearn.feature_extraction.text import CountVectorizer
+    vect = CountVectorizer(min_df=1)
+    # vect = TfidfVectorizer(min_df=1, analyzer='word', token_pattern=r'\b(\w\w+\S\w\w+)|\w\w+\b',
+                           # use_idf=False, smooth_idf=False)
+    vect.fit(feature_arr)
+    featureName = vect.get_feature_names()
+    freq = vect.fit_transform(featureName).toarray()
+    return feature_arr
+    '''
+def filterRareTags(feature_arr, threshold):
+    # all_tags = np.array(tags_arr)
+    feature_arr_join = [ " ".join(tags) for tags in feature_arr ]
+    feature_arr_split = feature_arr
+    wordFreq = wordCount(feature_arr_join)
+    sel_tags = []
+    for tags in feature_arr_split:
+        sel_tags.append( [item for item in tags if wordFreq[item] > threshold] )
+    return sel_tags, wordFreq
+
+
 if __name__ == '__main__':
     # read from file
-    path = sys.argv[1]
-    outfileName = sys.argv[2]
-    id_, feature_arr, corpus = readFromPickle(path)
+    path_corp = sys.argv[1]
+    path = sys.argv[2]
+    outfileName = sys.argv[3]
+    # id_, feature_arr, corpus = readFromPickle(path)
+    id_, feature_arr = readFromAns(path)
+    id_, title, content, corpus = readFromCsv(path_corp)
+    feature_arr = [ tags.split(" ") for tags in feature_arr ]
+    ans = feature_arr
+
+    ans,wordFreq = filterRareTags(feature_arr, 300)
+
+    # parameters
+    bigram = False
+    pos = False
+
+    ###
+    if pos:
+        ans = filterPostag(feature_arr)
+
     #bigram answer
     # ans = getResults(feature_arr, id_, n_top)
-    ans = feature_arr
-    bigram,_ = bigramProcess(corpus)
-    for i in range(len(id_)):
-        total_permu = list(itertools.permutations(ans[i],2))
-        for j in range(len(total_permu)):
-            total_permu[j] = list(total_permu[j])
-        after_bigram = [bigram[words] for words in total_permu]
-        valid_bigram = [valid for valid in after_bigram if len(valid)==1 ]
-        for k in range(len(valid_bigram)):
-            ans[i] = np.append(ans[i],valid_bigram[k][0])
-            index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[0])
-            ans[i] = np.delete(ans[i], index)
-            index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[1])
-            ans[i] =np.delete(ans[i], index)
+    if bigram:
+        ans = feature_arr
+        bigram,_ = bigramProcess(corpus)
+        for i in range(len(id_)):
+            total_permu = list(itertools.permutations(ans[i],2))
+            for j in range(len(total_permu)):
+                total_permu[j] = list(total_permu[j])
+            after_bigram = [bigram[words] for words in total_permu]
+            valid_bigram = [valid for valid in after_bigram if len(valid)==1 ]
+            for k in range(len(valid_bigram)):
+                ans[i] = np.append(ans[i],valid_bigram[k][0])
+                index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[0])
+                ans[i] = np.delete(ans[i], index)
+                index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[1])
+                ans[i] =np.delete(ans[i], index)
     '''
     for i in range(len(ans)):
         bigram = [ word for word in ans[i] if len(word.split("-"))>1 ]
@@ -358,5 +425,5 @@ if __name__ == '__main__':
                 ans[i] = np.delete(ans[i], index)
             print(ans[i])
     '''
-    writeResults(outfileName+"_bigram", id_, ans)
-    print("Output file: ", outfileName+"_bigram")
+    writeResults(outfileName, id_, ans)
+    print("Output file: ", outfileName)
