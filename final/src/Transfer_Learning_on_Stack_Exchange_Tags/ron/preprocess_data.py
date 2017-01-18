@@ -44,7 +44,6 @@ def construct_phrase_dict(corpus):
     mapping = defaultdict(lambda: '0')
     for sentence in phrases:
         for word in sentence:
-            print(word)
             idx = word.find('-')
             abbrev = word[0]
             while idx != -1:
@@ -233,6 +232,12 @@ if __name__ == '__main__':
     if debug:
         saveFile(outfileName + "_step4", id_, corpus, title, content)
 
+    # keep words with len(word) >= 3
+    title = [ removeWordFromStr(sentence, 3, 30) for sentence in title ]
+    content = [ removeWordFromStr(sentence, 3, 30) for sentence in content ]
+    corpus = [a + " " + b for a, b in zip(title, content)]
+    print("Succesfully remove words with length < 3 or > 30!")
+
     # clean stopword in phrase
     title = clean_phrase_stopword(title)
     content = clean_phrase_stopword(content)
@@ -246,7 +251,7 @@ if __name__ == '__main__':
     content = extend_abbreviation(mapping, content)
     corpus = [a + " " + b for a, b in zip(title, content)]
     print("Succesfully create phrase mapping!")
-    
+
     if debug:
         saveFile(outfileName + "_step6", id_, corpus, title, content)
 
