@@ -2,6 +2,7 @@
 import sys
 import numpy as np
 import pandas as pd
+import nltk
 
 def generate_corpus_pos(corpus):
     corpus_tags = [nltk.pos_tag(nltk.word_tokenize(sentence)) for sentence in corpus]
@@ -38,6 +39,22 @@ def readFromData(filename):
     corpus = corpus[:, 0] + " " + corpus[:, 1]
     return id_, title, content, corpus  
 
+def filterRareTags(feature_arr, threshold):
+    feature_arr_join = [ " ".join(tags) for tags in feature_arr ]
+    feature_arr_split = feature_arr
+    wordFreq = wordCount(feature_arr_join)
+    sel_tags = []
+    for tags in feature_arr_split:
+        sel_tags.append( [item for item in tags if wordFreq[item] > threshold] )
+    return sel_tags, wordFreq
+
+def wordCount(feature_arr):
+    from nltk import FreqDist
+    all_tags = " ".join(feature_arr)
+    words = nltk.tokenize.word_tokenize(all_tags)
+    fdist = FreqDist(words)
+    return fdist
+
 if __name__ == '__main__':
     # read from file
     path = sys.argv[1]
@@ -46,7 +63,8 @@ if __name__ == '__main__':
     title_tags = [nltk.pos_tag(nltk.word_tokenize(sentence)) for sentence in title]
     filtered_title=[]
     for ii,sentence in enumerate(title_tags):
-        temp = []
+        #temp = []
+        temp = ['quantum-mechanics']
         for tag in sentence:
             if(tag[0].find('-') > 0):
                 # accumulate one "-"
@@ -56,9 +74,11 @@ if __name__ == '__main__':
                     secondword = tag_word[1]
                     pos_first = nltk.pos_tag([firstword])
                     pos_second = nltk.pos_tag([secondword])
-                    if ((pos_first[0][1].startswith('N') or pos_first[0][1].startswith('J')) 
-                            and pos_second[0][1].startswith('N')):
-                        temp.append(tag[0])
+                    if ((pos_first[0][1].startswith('N') or pos_first[0][1].startswith('J') 
+                         or pos_first[0][0]=='double') and (pos_second[0][1].startswith('N') 
+                                                            or pos_second[0][0]=='of')):
+                        if len(tag_word) < 4:
+                            temp.append(tag[0])
                 else:
                     firstword = tag_word[0]
                     pos_first = nltk.pos_tag([firstword])
@@ -67,18 +87,20 @@ if __name__ == '__main__':
             else:
                 if(tag[1].startswith('N')):
                     temp.append(tag[0])
-        if len(temp)!=2:
+        if len(temp)!=0:
             filtered_title.append(temp)
         else:
-            temp = ['homework-and-exercises','quantum-mechanics']
+            temp = ['quantum-mechanics']
             filtered_title.append(temp)
-
-    answer = getResults(filtered_title, id_, n_top)
+    filtered_title, freqlist = filterRareTags(filtered_title, 15)
+    answer = getResults(filtered_title, id_, 20)
     for aa in range(len(answer)):
         temp = []
         for iii in answer[aa]:
             if iii not in temp:
                 temp.append(iii)
         answer[aa] = temp
-    
+    #mostcommon = freqlist.most_common(3000) 
+    #for l in range(len(mostcommon)):
+    #    print (str(mostcommon[l][0])+","+str(mostcommon[l][1]))
     writeResults(outfileName, id_, answer)
