@@ -185,8 +185,8 @@ def filterNotEnglish(corpus):
     # corpus = [ sentence for sentence in corpus]
     corp = []
     for sentence in corpus:
-        s = [ word for word in sentence.split(" ") if len(word) > 0 if len( word.split("-") ) or d.check(word) == True ]
-        # fail = [ word for word in sentence.split(" ") for w in word.split("-") if len(w) > 0 if d.check(w) == False ]
+        s = [ word for word in sentence.split(" ") if len(word) > 0 if len( word.split("-") )>1 or d.check(word) == True ]
+        # fail = [ word for word in sentence.split(" ") if len(word) > 0 if len( word.split("-") )==1 and d.check(word) == False ]
         # print(fail)
         corp.append(" ".join(s))
     return corp
@@ -259,9 +259,10 @@ if __name__ == '__main__':
     if debug:
         saveFile(outfileName + "_step7", id_, corpus, title, content)
 
-    corpus = filterNotEnglish(corpus)
+    # corpus = filterNotEnglish(corpus)
     title = filterNotEnglish(title)
     content = filterNotEnglish(content)
+    corpus = [a + " " + b for a, b in zip(title, content)]
     print("Succesfully remove words which is no english words!")
 
 
