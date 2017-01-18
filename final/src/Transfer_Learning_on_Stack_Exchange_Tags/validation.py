@@ -7,13 +7,13 @@ import numpy as np
 iteration = str(1)
 
 def plot(y):
-    print("plot!")
-    # plot
-    plotX = np.arange( len(y))
-    plotY = np.array(y)
-    plt.plot(plotX, plotY, linewidth=1.0)
-    # plt.plot(t, t, 'r--', t, t**2, 'bs', t, t**3, 'g^')
-    plt.show()
+	print("plot!")
+	# plot
+	plotX = np.arange( len(y))
+	plotY = np.array(y)
+	plt.plot(plotX, plotY, linewidth=1.0)
+	# plt.plot(t, t, 'r--', t, t**2, 'bs', t, t**3, 'g^')
+	plt.show()
 
 def testing_data2(acc):
 	p = subprocess.Popen(['./test', 'modellist.txt', 'testing_data2.txt', 'result2.txt'], \
@@ -62,12 +62,18 @@ def get_num(text):
 	cleantext = re.sub(cleanr, '', text)
 	return cleantext
 
+def append2file(filename, run_file, run_argv, data_list, score):
+	with open(filename, "a") as myfile:
+		myfile.write(run_file + " " + " ".join(run_argv) + "\n")
+		for i in range(len(data_list)):
+			myfile.write(data_list[i] + ' : ' + str(score[i])+ "\n")
+		myfile.write("Ave: " + str(score.mean())+ "\n")
+
 if __name__ == '__main__':
 	'''
-	python3 validation.py tag_gen_ans_tfidf.py ... ...
-	run tag_postprocess_ans.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n5_8,1_eng.csv result_0117/test.csv
-	run tag_gen_ans_tfidf.py ron/corpus_biology result_0117/tf_v2_n3_biology co
+	- usage:
 	python3 validation.py <run file name> spec ...
+	- example:
 	run validation.py tag_gen_ans_tfidf.py vect=2 n_top=3
 	'''
 	data_list = ['biology', 'cooking', 'crypto', 'diy', 'robotics', 'travel']
@@ -88,7 +94,7 @@ if __name__ == '__main__':
 		sys.exit()
 
 	# flags ...
-	gen_ans = False
+	gen_ans = True
 	gen_score = True
 
 
@@ -103,44 +109,4 @@ if __name__ == '__main__':
 		for i in range(len(data_list)):
 			print(data_list[i], ' : ',  score[i])
 		print("Ave: ", score.mean())
-	'''
-	file_ans  = '../../ans/biology_o.csv'
-
-	score, err = getScore(pyScore, file_ans, file_test)
-	print(score)
-	'''
-
-	'''
-	if (len(sys.argv)==3):
-		state = int(sys.argv[1])
-		times = int(sys.argv[2])
-	'''
-	'''
-	outfile   = "test_" + str(times) + ".csv"
-	loss = []
-	if init_state_model == True:
-		Init_state_model(state)
-
-	if reset == True:
-		for i in range(5):
-			init_models(i+1)
-
-	for i in range(times):
-		result = train(i)
-		result = re.findall('\d+\.\d+', result)
-		temp = float(str(result[0]))
-		if temp > bestAcc:
-			bestAcc = temp
-			testing_data2(bestAcc)
-		result.append(i)
-		loss.append( result )
-		print("iteration = ", i)
-
-	loss = np.array(loss)
-	# loss.astype(str)
-	loss = loss.astype(float)
-	np.savetxt(outfile, loss, delimiter=",", fmt='%.5f')
-	maxIndex = np.argmax(loss[:,0])
-	print(loss[maxIndex])
-	plot(loss[:,0])
-	'''
+		append2file("val_result", run_file, run_argv, data_list, score)
