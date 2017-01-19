@@ -1,7 +1,6 @@
 #coding=utf-8
 import sys
 import numpy as np
-import pandas as pd
 import nltk
 from nltk.corpus import wordnet
 from sklearn.feature_extraction import text
