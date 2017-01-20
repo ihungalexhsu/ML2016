@@ -22,6 +22,40 @@
 - readme.md
 
 ## How to execute the program?
+- Run preprocess data
+./run_preprocess.sh $1 $2
+$1: <file to do preprocess>
+$2: <save file name>
+e.g.
+./run_preprocess.sh ../../data/test.csv corpus/corpus_test
+```
+./run_preprocess.sh ../../data/test.csv corpus/corpus_test
+```
+Run preprocessed data on all subjects
+# [biology', 'cooking', 'crypto', 'diy', 'robotics', 'travel']
+```
+./run_preprocess.sh ../../data/biology.csv corpus/corpus_biology
+./run_preprocess.sh ../../data/cooking.csv corpus/corpus_cooking
+./run_preprocess.sh ../../data/crypto.csv corpus/corpus_crypto
+./run_preprocess.sh ../../data/diy.csv corpus/corpus_diy
+./run_preprocess.sh ../../data/robotics.csv corpus/corpus_robotics
+./run_preprocess.sh ../../data/travel.csv corpus/corpus_travel
+
+```
+
+
+- Run TF-IDF
+./run_tfidf.sh $1 $2 $3 $4 $5
+$1: <preprocessed corpus file>
+$2: <output file name>
+$3: <vect type (1-7)>
+$4: <number of answers>
+$5: <title: content weighting>
+e.g.
+./run_tfidf.sh corpus/corpus_robotics testing_results vect=2 n_top=3 weight=8:1
+```
+./run_tfidf.sh corpus/corpus_test test_tfidf vect=2 n_top=3 weight=8:1
+```
 
 
 ### Data preprocessing
