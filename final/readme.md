@@ -8,12 +8,21 @@
 	- diy_o.csv
 	- robotics_o.csv
 	- travel_o.csv
-
 - src
 	- Transfer_Learning_on_Stack_Exchange_Tags
+		- data
+			- Original csv files
+		- old_code
+			- Put some old codes here ...
+		- corpus
+			- Preprocessed data corpus for all subjects
+		- preprocess.py
+		- tag_gen_ans_tfidf.py
+		- chaoAn.py
 - readme.md
 
 ## How to execute the program?
+
 
 ### Data preprocessing
 

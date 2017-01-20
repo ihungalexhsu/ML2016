@@ -20,7 +20,7 @@ import os.path
 import collections
 import re
 
-stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', ''])
+# stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', ''])
 
 class SnowCastleStemmer(nltk.stem.SnowballStemmer):
     """ A wrapper around snowball stemmer with a reverse lookip table """
@@ -142,7 +142,7 @@ def writeResults(outfileName, id_, ans):
         ofile.write( '"' + str(id_[i]) + '"' + "," + '"' + str(" ".join(ans[i])) + '"' + '\n' )
 
 def saveResults(outfileName, id_, result, stemmer, n_tags=3):
-    ofile = open(outfileName + '.csv', "w",encoding='utf-8')
+    ofile = open(outfileName, "w",encoding='utf-8')
     ofile.write('\"id\",\"tags\"\n')
     for i in range(len(id_)):
         if len(result[i]) > n_tags:
@@ -189,13 +189,13 @@ def tagsThreshold(threshold, selectedFeature, n_top):
         if num == n_top: break
     return num
 
-def getfeaturesWeighted(vect, corpus, title, content, start, end, num):
+def getfeaturesWeighted(vect, corpus, title, content, start, end, num, ratio):
     if num == 0:
         features_content = vect.transform(content[start:end]).toarray()
         features_title = vect.transform(title[start:end]).toarray()
         # features_title, svd = lsa(features_title, 80)
         # features_content, svd = lsa(features_content, 80)
-        features_weighted = 8*features_title + features_content
+        features_weighted = ratio[0]*features_title + ratio[1]*features_content
     elif num == 1:
         features_title = vect.transform(title[start:end]).toarray()
         features_content = vect.transform(content[start:end]).toarray()
@@ -248,7 +248,7 @@ def getVect(num):
     # nb_stopwords = int(len(my_data)*0.5)
     # my_data = my_data[:nb_stopwords]
     # my_stop_words = text.ENGLISH_STOP_WORDS.union(my_words)
-    my_stop_words = text.ENGLISH_STOP_WORDS.union(stop_words_2)
+    my_stop_words = text.ENGLISH_STOP_WORDS
     if num == 1:
         vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', token_pattern=r'\b(\w\w+\S\w\w+)|\w\w+\b',
                                use_idf=True, stop_words=my_stop_words)
@@ -261,6 +261,15 @@ def getVect(num):
     elif num == 4:
         vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', ngram_range=(1,2), 
                                use_idf=False, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
+    elif num == 5:
+        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', token_pattern=r'\b(\w\w+\S\w\w+)|\w\w+\b',
+                               use_idf=False, stop_words=my_stop_words, norm='l2', sublinear_tf=False)
+    elif num == 6:
+        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', token_pattern=r'\b(\w\w+\S\w\w+)|\w\w+\b',
+                               use_idf=True, stop_words=my_stop_words, norm='l2', sublinear_tf=True)
+    elif num == 7:
+        vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', token_pattern=r'\b(\w\w+\S\w\w+)|\w\w+\b',
+                               use_idf=False, stop_words=my_stop_words, norm='l2', sublinear_tf=False)
     return vect
 
 def readFromPickle(filename):
@@ -274,13 +283,14 @@ def readFromPickle(filename):
 
 def readFromCsv(filename):
     origin_data = pd.read_csv( filename, quotechar='"', skipinitialspace=True).as_matrix()
+    origin_data = origin_data.astype('U')
     id_ = origin_data[:, 0]
     title  = origin_data[:, 1]
     content= origin_data[:, 2]
     corpus = origin_data[:, 3]
     return id_, title, content, corpus  
 
-def generateOutput(nb_partition, corpus, vect, title, content, featureName):
+def generateOutput(nb_partition, corpus, vect, title, content, featureName, ratio):
     feature_arr = []
     partion = int(len(corpus)/nb_partition)
     while(partion ==0 ):
@@ -292,12 +302,12 @@ def generateOutput(nb_partition, corpus, vect, title, content, featureName):
     for i in range(nb_partition):
         if i != nb_partition-1:
             features_weighted = getfeaturesWeighted(vect, corpus, title, content, 
-                                                partion*i, partion*(i+1), num)
+                                                partion*i, partion*(i+1), num, ratio)
             feature_arr = getFeaturearr(feature_arr, corpus[partion*i: partion*(i+1)], 
                                     features_weighted, featureName, addThres, threshold, n_top)
         else:
             features_weighted = getfeaturesWeighted(vect, corpus, title, content, 
-                                                    partion*i, len(corpus), num)
+                                                    partion*i, len(corpus), num, ratio)
             feature_arr = getFeaturearr(feature_arr, corpus[partion*i: len(corpus)],
                                         features_weighted, featureName, addThres, threshold, n_top)
         print ("Part: ", i+1, "/", nb_partition)
@@ -332,7 +342,7 @@ def preprocessing(corpus, title, content, num):
         content = np.array(process_data_ref(content,'content') )
     return corpus, title, content, stemmer
 
-sys_input3 = sys.argv[3]
+# sys_input3 = sys.argv[3]
 def getOutputVar(addTop, addThres):
     n_top = int(6)
     if addTop:
@@ -382,6 +392,21 @@ def bigramProcess(corpus,title,content):
     # corpus = [ title[i] + " " + content[i] for i in range(len(title))] 
     return bigram,corpus,title,content
 
+def wordListToFreqDict(wordlist):
+    wordfreq = [wordlist.count(p) for p in wordlist]
+    return dict(zip(wordlist,wordfreq))
+
+# not working ...
+def filterRareTags(tags_arr, threshold):
+    # all_tags = np.array(tags_arr)
+    all_tags = [item for sublist in tags_arr for item in sublist]
+    wordFreq = wordListToFreqDict(all_tags)
+    sel_tags = []
+    for tags in tags_arr:
+        sel_tags.append( [item for item in tags if wordFreq[item] > threshold] )
+    return sel_tags, wordFreq
+
+
 if __name__ == '__main__':
     # read from file
     path = sys.argv[1]
@@ -397,6 +422,7 @@ if __name__ == '__main__':
     n_top = 5
     threshold = 1
     vect_type = 2
+    ratio = [8,1]
     ###
     # read from imput
     for i in range(len(sys.argv)):
@@ -406,6 +432,9 @@ if __name__ == '__main__':
             vect_type = int(li[1])
         elif li[0] == "n_top":
             n_top = int(li[1])
+        elif li[0] == "weight":
+            ratio = np.array( li[1].split(":") ).astype(int)
+            # print(ratio)
     print(vect_type)
  
     # process data
@@ -431,7 +460,7 @@ if __name__ == '__main__':
     
     print ("Start to generate output!")
     nb_partition = 5000
-    feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)
+    feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName, ratio)
     # print(feature_arr[:10])
     # feature_arr = [ sentence.split(" ") for sentence in title ]
     # print(feature_arr[:10])
@@ -441,8 +470,10 @@ if __name__ == '__main__':
 
     print ("Save original answer file.")
     saveResults(outfileName , id_, feature_arr, stemmer, n_top)
-    print("File name: ", outfileName + ".csv", "!!!")
+    print("File name: ", outfileName, "!!!")
 
+
+    # sel_tags, wordFreq = filterRareTags(feature_arr, 10)
 
     # ==================================================
 
