@@ -37,6 +37,7 @@ def getScore(pyName, ans_truth, ans_test):
 	p = subprocess.Popen(['python3', pyName, ans_truth, ans_test], \
 		stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	out, err = p.communicate()
+	print(out)
 	out = float( get_num(str(out)) )
 	return out
 
@@ -79,7 +80,7 @@ if __name__ == '__main__':
 	run validation.py tag_gen_ans_tfidf.py vect=2 n_top=3
 	'''
 	data_list = ['biology', 'cooking', 'crypto', 'diy', 'robotics', 'travel']
-	corpus_base = 'ron/corpus_'
+	corpus_base = 'corpus/corpus_'
 	ans_path = '../../ans/'
 	ans_ending = '_o.csv'
 	pyScore = 'f1_score.py'
@@ -87,7 +88,7 @@ if __name__ == '__main__':
 	score = []
 
 	# create corpus
-	createCorpus('ron/preprocess_data.py', '../../data/', data_list, corpus_base)
+	# createCorpus('ron/preprocess_data.py', '../../data/', data_list, corpus_base)
 
 	if len(sys.argv) > 2:
 		run_file = sys.argv[1]

@@ -375,11 +375,15 @@ def filterRareTags(feature_arr, threshold):
 
 if __name__ == '__main__':
     # read from file
-    path_corp = sys.argv[1]
-    path = sys.argv[2]
-    outfileName = sys.argv[3]
+    if len(sys.argv) == 4:
+        path_corp = sys.argv[1]
+        path_ans = sys.argv[2]
+        outfileName = sys.argv[3]
+    else:
+        print("Usage:")
+        print("python3 tag_postprocess_ans.py <corpus name> <my answer path> <output file name>")
     # id_, feature_arr, corpus = readFromPickle(path)
-    id_, feature_arr = readFromAns(path)
+    id_, feature_arr = readFromAns(path_ans)
     id_, title, content, corpus = readFromCsv(path_corp)
     feature_arr = [ tags.split(" ") for tags in feature_arr ]
     ans = feature_arr
@@ -392,7 +396,7 @@ if __name__ == '__main__':
 
     ###
     if filter_rare:
-        ans,wordFreq = filterRareTags(feature_arr, 300)
+        ans,wordFreq = filterRareTags(feature_arr, 30)
         import operator
         sorted_wordFreq = sorted(wordFreq.items(), key=operator.itemgetter(1))
 

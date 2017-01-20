@@ -1,10 +1,14 @@
-python3 f1_score.py $1 $2
+python3 preprocess_data.py $1 $2
 
 
 command <<HERE
-python3 f1_score.py truth.csv test.csv 
-# $1: directory path contains (all_label.p, all_unlabel.p, test.p) 
-# $2: input_model
-# $3: prediction.csv
-# ./test.sh data/ model prediction.csv
+python3 preprocess_data.py ../../data/robotics.csv corpus/testing
+python3 preprocess_data.py ../../data/test.csv corpus/corpus_test
+
+./run_preprocess.sh $1 $2
+$1: <file to do preprocess>
+$2: <save file name>
+e.g.
+./run_preprocess.sh ../../data/test.csv corpus/corpus_test
+./run_preprocess.sh ../../data/robotics.csv corpus/testing
 HERE

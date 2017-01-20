@@ -194,7 +194,7 @@ if __name__ == '__main__':
     # read from file
     if len(sys.argv) < 2:
         print ("Usage:")
-        print ("python3 tag_preprocess_data.py data/test.csv test_corpus" )
+        print ("python3 preprocess_data.py ../../data/test.csv corpus/corpus_test" )
         print ("Defualt: with tri-gram, long_stop_word.txt")
         sys.exit()
 
