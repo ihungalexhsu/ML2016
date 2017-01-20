@@ -1,5 +1,13 @@
 #Final Project for NTU Mechine Learning Course
 
+## Library
+- numpy
+- pandas
+- nltk
+- pickle
+- sklearn
+- gensim
+
 ## Files structure
 - data
 	- [Original csv files]
