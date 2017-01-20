@@ -1,5 +1,42 @@
 #Final Project for NTU Mechine Learning Course
 
+## Files structure
+- ans
+	- biology_o.csv
+	- cooking_o.csv
+	- crypto_o.csv
+	- diy_o.csv
+	- robotics_o.csv
+	- travel_o.csv
+
+- src
+	- Transfer_Learning_on_Stack_Exchange_Tags
+- readme.md
+
+## How to execute the program?
+
+### Data preprocessing
+
+### Generate answer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======================
 12/10 Eric
 add files: 
 train.sh 
