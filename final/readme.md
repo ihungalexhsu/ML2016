@@ -17,19 +17,19 @@
 		- corpus
 			- [Preprocessed data corpus for all subjects]
 		- "shell script"
-		- run_preprocess.sh
-		- run_tfidf.sh
-		- run_POS_tag.sh
-		- run_postprocess.sh
+			- run_preprocess.sh
+			- run_tfidf.sh
+			- run_POS_tag.sh
+			- run_postprocess.sh
 		- "python files"
-		- preprocess_data.py 
-		- tag_gen_ans_tfidf.py [method 2]
-		- tag_gen_ans_POS_tagging.py [method 2]
-		- tag_postprocess_ans.py [post processing]
-		- validation.py
-		- f1_score.py [calculate f1 score]
+			- preprocess_data.py 
+			- tag_gen_ans_tfidf.py [method 2]
+			- tag_gen_ans_POS_tagging.py [method 2]
+			- tag_postprocess_ans.py [post processing]
+			- validation.py
+			- f1_score.py [calculate f1 score]
 		- "other files"
-		- long_stop_word.txt
+			- long_stop_word.txt
 - readme.md
 
 ## How to execute the program?
