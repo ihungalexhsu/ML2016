@@ -66,7 +66,7 @@ Run preprocessed data on all subjects
 ```
 ### Generate answer
 
-- Run TF-IDF
+- Run TF-IDF (Can use post-processing for tuning the answer)
 	- ./run_tfidf.sh $1 $2 $3 $4 $5
 	- $1: < preprocessed corpus file\>
 	- $2: < output file name\>
@@ -79,7 +79,7 @@ Run preprocessed data on all subjects
 ./run_tfidf.sh corpus/corpus_test test_tfidf vect=2 n_top=3 weight=8:1
 ```
 
-- Run Title-only
+- Run POS tagging Title-only (already done post-processing inside)
 	- ./run_POS_tag.sh $1 $2
 	- $1: < preprocessed corpus file\>
 	- $2: < output file name\>
@@ -92,7 +92,7 @@ Run preprocessed data on all subjects
 ```
 
 ### Post-processing data
-- Run post-process
+- Run post-process (only used when you do TF-IDF, POS tagging Title-only has done inside)
 	- ./run_postprocess.sh < corpus name\> < my answer path\> < output file name\>
 	- $1: < corpus name\>
 	- $2: < my answer path\>
