@@ -57,8 +57,12 @@ def wordCount(feature_arr):
 
 if __name__ == '__main__':
     # read from file
-    path = sys.argv[1]
-    outfileName = sys.argv[2]    
+    if len(sys.argv) == 3:
+        path = sys.argv[1]
+        outfileName = sys.argv[2]    
+    else:
+        print("Usage:")
+        print("python3 tag_gen_ans_POS_tagging.py corpus/corpus_test testing")
     id_, title, content, corpus = readFromData(path)
     title_tags = [nltk.pos_tag(nltk.word_tokenize(sentence)) for sentence in title]
     filtered_title=[]
