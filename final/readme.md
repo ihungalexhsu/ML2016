@@ -1,6 +1,8 @@
 #Final Project for NTU Mechine Learning Course
 
 ## Files structure
+- data
+	- [Original csv files]
 - ans
 	- biology_o.csv
 	- cooking_o.csv
@@ -10,15 +12,24 @@
 	- travel_o.csv
 - src
 	- Transfer_Learning_on_Stack_Exchange_Tags
-		- data
-			- Original csv files
 		- old_code
-			- Put some old codes here ...
+			- [Put some old codes here ...]
 		- corpus
-			- Preprocessed data corpus for all subjects
-		- preprocess.py
-		- tag_gen_ans_tfidf.py
-		- chaoAn.py
+			- [Preprocessed data corpus for all subjects]
+		- "shell script"
+		- run_preprocess.sh
+		- run_tfidf.sh
+		- run_POS_tag.sh
+		- run_postprocess.sh
+		- "python files"
+		- preprocess_data.py 
+		- tag_gen_ans_tfidf.py [method 2]
+		- tag_gen_ans_POS_tagging.py [method 2]
+		- tag_postprocess_ans.py [post processing]
+		- validation.py
+		- f1_score.py [calculate f1 score]
+		- "other files"
+		- long_stop_word.txt
 - readme.md
 
 ## How to execute the program?
