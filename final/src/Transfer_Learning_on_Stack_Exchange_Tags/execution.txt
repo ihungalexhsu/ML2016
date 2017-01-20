@@ -1,3 +1,72 @@
+- 0120
+run tag_gen_ans_tfidf.py ron/test_preprocess result_0119/tfidf_v7_n3 vect=7 n_top=3 weight=8:1
+run tag_gen_ans_tfidf.py ron/test_preprocess result_0119/tfidf_v6_n3 vect=6 n_top=3 weight=8:1
+run tag_gen_ans_tfidf.py ron/test_preprocess result_0119/tfidf_v2_n3 vect=2 n_top=3 weight=8:1
+
+
+- 0119
+run tag_gen_ans_tfidf.py ron/test_preprocess result_0119/tfidf_v2_n3 vect=2 n_top=3 weight=1:1
+
+run tag_gen_ans_tfidf.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n5_8,1_eng vect=2 n_top=5
+
+run tag_gen_ans_tfidf.py ron/test_preprocess result_0114/tfidf_v2_n5_2 vect=2 n_top=5
+run tag_gen_ans_tfidf.py ron/test_preprocess result_0114/tfidf_v2_n5_top3 vect=2 n_top=3
+run tag_gen_ans_tfidf.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n5_8,1_eng_2 vect=2 n_top=5
+
+- plot
+run alex/proportion_tag.py ron/corpus_robotics ../../ans/robotics_o.csv
+
+- 0117
+post-processing
+
+run tag_postprocess_ans.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n5_8,1_eng.csv result_0117/test.csv
+run tag_postprocess_ans.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n5_8,1_eng.csv result_0117/tfidf_v2_n5_8,1_eng_pos
+run tag_postprocess_ans.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n5_8,1_eng.csv result_0117/tfidf_v2_n5_8,1_eng_filterRare10
+run tag_postprocess_ans.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n5_8,1_eng.csv result_0117/tfidf_v2_n5_8,1_eng_filterRare30
+run tag_postprocess_ans.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n5_8,1_eng.csv result_0117/tfidf_v2_n5_8,1_eng_filterRare100
+run tag_postprocess_ans.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n5_8,1_eng.csv result_0117/tfidf_v2_n5_8,1_eng_filterRare300
+
+# preprocess_data
+run preprocess_data.py ../../../data/test.csv test_corpus
+
+# work on other corpus
+run tag_gen_ans_tfidf.py ron/corpus_biology result_0117/tf_v2_n3_biology vect=2 n_top=3
+
+# validation
+run validation.py result_0117/tf_v2_n3_biology
+
+===========
+
+- 0114
+run preprocess_data.py ../../../data/test.csv test_corpus
+
+run tag_gen_ans_tfidf.py ron/test_preprocess result_0114/tfidf_v2_n5 vect=2 n_top=5
+run tag_gen_ans_tfidf.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n5_8,1_eng vect=2 n_top=5
+run tag_gen_ans_tfidf.py ron/test_preprocess result_0114/tfidf_v2_n5_2 vect=2 n_top=5
+run tag_gen_ans_tfidf.py ron/test_preprocess result_0114/tfidf_v2_n5_top3 vect=2 n_top=3
+run tag_gen_ans_tfidf.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n5_8,1_eng_2 vect=2 n_top=5
+==========
+
+- test four tags
+run tag_gen_ans_tfidf.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n4_8,1_eng_subl,F_idf,T vect=6 n_top=4
+
+
+run tag_gen_ans_tfidf.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n3_8,1_eng_subl,F_idf,T vect=6 n_top=3
+
+run tag_gen_ans_tfidf.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n3_8,1_eng_subl,F_idf,F vect=5 n_top=3
+
+run tag_gen_ans_tfidf.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n3_64,1_eng_subl,F vect=2 n_top=3   --> no big difference
+run tag_gen_ans_tfidf.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n3_64,1_eng vect=2 n_top=3
+run tag_gen_ans_tfidf.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n3_1,8_eng vect=2 n_top=3
+run tag_gen_ans_tfidf.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n3_1,1_eng vect=2 n_top=3
+
+run tag_gen_ans_tfidf.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n3_8,1_eng vect=2 n_top=3
+run tag_gen_ans_tfidf.py ron/test_preprocess result_0114/tfidf_v2_n3_8,1_1 vect=2 n_top=3
+
+run tag_gen_ans_tfidf.py ron/test_corpus_filter_eng result_0114/tfidf_v2_n5_8,1_eng vect=2 n_top=5
+
+
+===========
 python3 get_ans_truth.py data/biology.csv
 
 run  tag_prediction.py ../../data/ test.csv
@@ -12,6 +81,49 @@ run  tag_prediction_tfidf.py ../../data/cooking.csv cooking_test.csv
 
 run  tag_prediction_tfidf.py ../../data/test.csv test_test.csv
 python3  tag_prediction_tfidf.py ../../data/test.csv test_test.csv
+
+==========
+
+run bigram_ans_tfidf_alex.py ../../data/biology.csv biology_test 7 1 2
+run bigram_corpus_alex.py ../../data/test_small.csv test 5 2 2
+
+run readAndSaveFile.py ../../../data/test.csv test_corpus
+
+run method_chaoAn.py ../../data/test.csv test_method_1202 5 1 2
+
+===========
+1202
+
+run tag_preprocess_data.py ../../data/test.csv test_6 pre_type=1
+run tag_preprocess_data.py ../../data/test_small.csv test_0105 pre_type=1
+
+run tag_gen_ans.py 	test_2  test_test vect=2 n_top=5
+
+
+===========
+
+run tag_preprocess_data.py ../../data/test_small.csv pre_type=2
+run tag_gen_ans.py 	../../data/test_corpus  test_test vect=2 n_top=5
+run tag_postprocess_ans.py test_test output.csv
+
+run tag_preprocess_data.py ../../data/test.csv test_corpus_2 pre_type=2
+run tag_gen_ans.py test_corpus_2  test_test_v2_t5 vect=2 n_top=5
+run tag_postprocess_ans.py test_test_v2_t5 output.csv
+
+run tag_gen_ans.py test_corpus_2  test_test_v2_t4 vect=2 n_top=4
+run tag_postprocess_ans.py test_test_v2_t4 output.csv
+
+run tag_gen_ans.py test_corpus_2  test_test_v1_t5 vect=1 n_top=5
+run tag_postprocess_ans.py test_test_v2_t4 output.csv
+
+run tag_preprocess_data.py ../../data/test.csv test_corpus_3 pre_type=2
+run tag_gen_ans.py test_corpus_3  test_test_v2_t5 vect=2 n_top=5
+run tag_postprocess_ans.py test_test_v2_t5 output.csv
+
+===========
+
+run tag_gen_ans.py 	../../data/test_corpus  test_test vect=2 n_top=5
+run tag_postprocess_ans.py test_test output.csv
 
 
 ===========
@@ -47,6 +159,17 @@ Cooking:
 - weight (2, 1), (6) = 0.21
 add threshold
 - weight (2, 1), (6) = 0.11
+
+============
+
+mono:
+369
+
+bigram:
+420
+
+trigram:
+72
 
 
 

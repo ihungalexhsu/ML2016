@@ -384,13 +384,19 @@ if __name__ == '__main__':
     feature_arr = [ tags.split(" ") for tags in feature_arr ]
     ans = feature_arr
 
-    ans,wordFreq = filterRareTags(feature_arr, 300)
 
     # parameters
+    filter_rare = True
     bigram = False
     pos = False
 
     ###
+    if filter_rare:
+        ans,wordFreq = filterRareTags(feature_arr, 300)
+        import operator
+        sorted_wordFreq = sorted(wordFreq.items(), key=operator.itemgetter(1))
+
+
     if pos:
         ans = filterPostag(feature_arr)
 

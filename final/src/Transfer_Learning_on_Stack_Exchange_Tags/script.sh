@@ -8,6 +8,10 @@ python3 tag_postprocess_ans.py test_test output.csv
 
 command <<HERE
 
+- 0114
+python3 preprocess_data.py ../../data/test.csv test_corpus
+
+
 *Usage:
 python3 tag_preprocess_data.py <input origin csv file> <output processed-data> pre_type=2
 python3 tag_gen_ans.py 	<input processed-data>  <output results> vect=2 n_top=5

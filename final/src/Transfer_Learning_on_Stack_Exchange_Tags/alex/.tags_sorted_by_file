@@ -1,0 +1,128 @@
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_PROGRAM_VERSION	5.8	//
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+FreqDist	method_chaoAn.py	/^    from nltk import FreqDist$/;"	i
+answer	method_chaoAn.py	/^    answer = getResults(filtered_title, id_, 20)$/;"	v
+filterRareTags	method_chaoAn.py	/^def filterRareTags(feature_arr, threshold):$/;"	f
+filtered_title	method_chaoAn.py	/^    filtered_title=[]$/;"	v
+firstword	method_chaoAn.py	/^                    firstword = tag_word[0]$/;"	v
+generate_corpus_pos	method_chaoAn.py	/^def generate_corpus_pos(corpus):$/;"	f
+getResults	method_chaoAn.py	/^def getResults(result, id_, n_tags=3):$/;"	f
+nltk	method_chaoAn.py	/^import nltk$/;"	i
+np	method_chaoAn.py	/^import numpy as np$/;"	i
+outfileName	method_chaoAn.py	/^    outfileName = sys.argv[2]    $/;"	v
+path	method_chaoAn.py	/^    path = sys.argv[1]$/;"	v
+pd	method_chaoAn.py	/^import pandas as pd$/;"	i
+pos_first	method_chaoAn.py	/^                    pos_first = nltk.pos_tag([firstword])$/;"	v
+pos_second	method_chaoAn.py	/^                    pos_second = nltk.pos_tag([secondword])$/;"	v
+readFromData	method_chaoAn.py	/^def readFromData(filename):$/;"	f
+read_words	method_chaoAn.py	/^def read_words(words_file):$/;"	f
+secondword	method_chaoAn.py	/^                    secondword = tag_word[1]$/;"	v
+sys	method_chaoAn.py	/^import sys$/;"	i
+tag_word	method_chaoAn.py	/^                tag_word = tag[0].split('-')$/;"	v
+temp	method_chaoAn.py	/^            temp = ['quantum-mechanics']$/;"	v
+temp	method_chaoAn.py	/^        temp = ['quantum-mechanics']$/;"	v
+temp	method_chaoAn.py	/^        temp = []$/;"	v
+title_tags	method_chaoAn.py	/^    title_tags = [nltk.pos_tag(nltk.word_tokenize(sentence)) for sentence in title]$/;"	v
+wordCount	method_chaoAn.py	/^def wordCount(feature_arr):$/;"	f
+writeResults	method_chaoAn.py	/^def writeResults(outfileName, id_, ans):$/;"	f
+Phrases	preprocess_data.py	/^from gensim.models.phrases import Phrases$/;"	i
+Trigram	preprocess_data.py	/^    Trigram = True$/;"	v
+bigramProcess	preprocess_data.py	/^def bigramProcess(corpus,title,content,minCount = 5,thresholds = 10.0):$/;"	f
+clean_corpus	preprocess_data.py	/^def clean_corpus(corpus):$/;"	f
+collections	preprocess_data.py	/^import collections$/;"	i
+content	preprocess_data.py	/^    content = deletecomponent(content,2, 15)$/;"	v
+corpus	preprocess_data.py	/^    corpus = deletecomponent(corpus,2, 15)$/;"	v
+debug	preprocess_data.py	/^    debug = False$/;"	v
+deletecomponent	preprocess_data.py	/^def deletecomponent(corpus, numremove, numremoveMax):$/;"	f
+generate_corpus_pos	preprocess_data.py	/^def generate_corpus_pos(corpus):$/;"	f
+getTopBigram	preprocess_data.py	/^def getTopBigram(bigram, numbershow, selectNandJ):$/;"	f
+nltk	preprocess_data.py	/^import nltk$/;"	i
+np	preprocess_data.py	/^import numpy as np$/;"	i
+os	preprocess_data.py	/^import os.path$/;"	i
+outfileName	preprocess_data.py	/^    outfileName = sys.argv[2]$/;"	v
+path	preprocess_data.py	/^    path = sys.argv[1]$/;"	v
+path	preprocess_data.py	/^import os.path$/;"	i
+preprocessing	preprocess_data.py	/^def preprocessing(corpus, title, content):$/;"	f
+process_data	preprocess_data.py	/^def process_data(corpus):$/;"	f
+re	preprocess_data.py	/^import re$/;"	i
+readFromData	preprocess_data.py	/^def readFromData(filename):$/;"	f
+read_words	preprocess_data.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	preprocess_data.py	/^def removeWordFromStr(sentence, short_length, long_length):$/;"	f
+saveFile	preprocess_data.py	/^def saveFile(outfileName, id_, corpus, title, content):$/;"	f
+sys	preprocess_data.py	/^import sys$/;"	i
+text	preprocess_data.py	/^from sklearn.feature_extraction import text$/;"	i
+title	preprocess_data.py	/^    title = deletecomponent(title,2, 15)$/;"	v
+wordnet	preprocess_data.py	/^from nltk.corpus import wordnet$/;"	i
+bigramTags	proportion_tag.py	/^def bigramTags(all_tags):$/;"	f
+countAllTagsInTitle	proportion_tag.py	/^def countAllTagsInTitle(title, tags):$/;"	f
+countDiff	proportion_tag.py	/^def countDiff(tags):$/;"	f
+flatten	proportion_tag.py	/^def flatten(list2d):$/;"	f
+getStatistics	proportion_tag.py	/^def getStatistics(id_, tags, title, content):$/;"	f
+jointLists	proportion_tag.py	/^def jointLists(split_tags):$/;"	f
+matching	proportion_tag.py	/^def matching(myTags, trueTags):$/;"	f
+matchingTF	proportion_tag.py	/^def matchingTF(myTags, trueTags):$/;"	f
+matplotlib	proportion_tag.py	/^    import matplotlib$/;"	i
+matplotlib	proportion_tag.py	/^    import matplotlib.mlab as mlab$/;"	i
+matplotlib	proportion_tag.py	/^    import matplotlib.pylab as pylab$/;"	i
+matplotlib	proportion_tag.py	/^    import matplotlib.pyplot as plt$/;"	i
+mlab	proportion_tag.py	/^    import matplotlib.mlab as mlab$/;"	i
+monogramTags	proportion_tag.py	/^def monogramTags(all_tags):$/;"	f
+np	proportion_tag.py	/^import numpy as np$/;"	i
+pd	proportion_tag.py	/^import pandas as pd$/;"	i
+plotArr	proportion_tag.py	/^def plotArr(y):$/;"	f
+plotError	proportion_tag.py	/^def plotError(x1, y1, x2=[], y2=[], filename="test.png"):$/;"	f
+plotHist	proportion_tag.py	/^def plotHist(y1, filename="test.png"):$/;"	f
+plotSomeGraph	proportion_tag.py	/^def plotSomeGraph(statistics, name):$/;"	f
+plt	proportion_tag.py	/^    import matplotlib.pyplot as plt$/;"	i
+pylab	proportion_tag.py	/^    import matplotlib.pylab as pylab$/;"	i
+readFromAns	proportion_tag.py	/^def readFromAns(filename):$/;"	f
+readFromData	proportion_tag.py	/^def readFromData(filename):$/;"	f
+readTxt	proportion_tag.py	/^def readTxt(filename):$/;"	f
+readmyTags	proportion_tag.py	/^def readmyTags(filename):$/;"	f
+sys	proportion_tag.py	/^import sys$/;"	i
+trigramTags	proportion_tag.py	/^def trigramTags(all_tags):$/;"	f
+Phrases	ron_preprocess.py	/^from gensim.models.phrases import Phrases$/;"	i
+Trigram	ron_preprocess.py	/^    Trigram = True$/;"	v
+bigramProcess	ron_preprocess.py	/^def bigramProcess(corpus,title,content,minCount = 5,thresholds = 10.0):$/;"	f
+clean_corpus	ron_preprocess.py	/^def clean_corpus(corpus):$/;"	f
+clean_phrase_stopword	ron_preprocess.py	/^def clean_phrase_stopword(corpus):$/;"	f
+collections	ron_preprocess.py	/^import collections$/;"	i
+construct_phrase_dict	ron_preprocess.py	/^def construct_phrase_dict(corpus):$/;"	f
+content	ron_preprocess.py	/^    content = [ removeWordFromStr(sentence, 3, 30) for sentence in content ]$/;"	v
+content	ron_preprocess.py	/^    content = clean_phrase_stopword(content)$/;"	v
+content	ron_preprocess.py	/^    content = deletecomponent(content,2, 20)$/;"	v
+content	ron_preprocess.py	/^    content = extend_abbreviation(mapping, content)$/;"	v
+corpus	ron_preprocess.py	/^    corpus = [a + " " + b for a, b in zip(title, content)]$/;"	v
+corpus	ron_preprocess.py	/^    corpus = deletecomponent(corpus,2, 20)$/;"	v
+debug	ron_preprocess.py	/^    debug = True$/;"	v
+defaultdict	ron_preprocess.py	/^from collections import defaultdict$/;"	i
+deletecomponent	ron_preprocess.py	/^def deletecomponent(corpus, numremove, numremoveMax):$/;"	f
+extend_abbreviation	ron_preprocess.py	/^def extend_abbreviation(mapping, corpus):$/;"	f
+generate_corpus_pos	ron_preprocess.py	/^def generate_corpus_pos(corpus):$/;"	f
+getTopBigram	ron_preprocess.py	/^def getTopBigram(bigram, numbershow, selectNandJ):$/;"	f
+mapping	ron_preprocess.py	/^    mapping = construct_phrase_dict(corpus)$/;"	v
+nltk	ron_preprocess.py	/^import nltk$/;"	i
+np	ron_preprocess.py	/^import numpy as np$/;"	i
+os	ron_preprocess.py	/^import os.path$/;"	i
+outfileName	ron_preprocess.py	/^    outfileName = sys.argv[2]$/;"	v
+path	ron_preprocess.py	/^    path = sys.argv[1]$/;"	v
+path	ron_preprocess.py	/^import os.path$/;"	i
+pd	ron_preprocess.py	/^import pandas as pd$/;"	i
+preprocessing	ron_preprocess.py	/^def preprocessing(corpus, title, content):$/;"	f
+process_data	ron_preprocess.py	/^def process_data(corpus):$/;"	f
+re	ron_preprocess.py	/^import re$/;"	i
+readFromData	ron_preprocess.py	/^def readFromData(filename):$/;"	f
+read_words	ron_preprocess.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	ron_preprocess.py	/^def removeWordFromStr(sentence, short_length, long_length):$/;"	f
+saveFile	ron_preprocess.py	/^def saveFile(outfileName, id_, corpus, title, content):$/;"	f
+sys	ron_preprocess.py	/^import sys$/;"	i
+text	ron_preprocess.py	/^from sklearn.feature_extraction import text$/;"	i
+title	ron_preprocess.py	/^    title = [ removeWordFromStr(sentence, 3, 30) for sentence in title ]$/;"	v
+title	ron_preprocess.py	/^    title = clean_phrase_stopword(title)$/;"	v
+title	ron_preprocess.py	/^    title = deletecomponent(title,2, 20)$/;"	v
+title	ron_preprocess.py	/^    title = extend_abbreviation(mapping, title)$/;"	v
+wordnet	ron_preprocess.py	/^from nltk.corpus import wordnet$/;"	i

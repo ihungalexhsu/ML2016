@@ -1,0 +1,1339 @@
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_PROGRAM_VERSION	5.8	//
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+Dense	Seq2Seq.py	/^from keras.layers import Dense$/;"	i
+Embedding	Seq2Seq.py	/^from keras.layers.embeddings import Embedding$/;"	i
+LSTM	Seq2Seq.py	/^from keras.layers import LSTM$/;"	i
+Seq2Seq	Seq2Seq.py	/^from seq2seq.models import Seq2Seq$/;"	i
+Sequential	Seq2Seq.py	/^from keras.models import Sequential$/;"	i
+WordNetLemmatizer	Seq2Seq.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+datapath	Seq2Seq.py	/^datapath = sys.argv[1]$/;"	v
+model	Seq2Seq.py	/^    model = Seq2Seq($/;"	v
+np	Seq2Seq.py	/^import numpy as np$/;"	i
+outfileName	Seq2Seq.py	/^outfileName = sys.argv[2]$/;"	v
+pd	Seq2Seq.py	/^import pandas as pd$/;"	i
+process_data	Seq2Seq.py	/^def process_data():$/;"	f
+re	Seq2Seq.py	/^import re$/;"	i
+readCorpus	Seq2Seq.py	/^def readCorpus(): $/;"	f
+seq2seq	Seq2Seq.py	/^import seq2seq$/;"	i
+sequence	Seq2Seq.py	/^from keras.preprocessing import sequence$/;"	i
+string	Seq2Seq.py	/^import string$/;"	i
+sys	Seq2Seq.py	/^import sys$/;"	i
+FreqDist	alex/method_chaoAn.py	/^    from nltk import FreqDist$/;"	i
+answer	alex/method_chaoAn.py	/^    answer = getResults(filtered_title, id_, 20)$/;"	v
+filterRareTags	alex/method_chaoAn.py	/^def filterRareTags(feature_arr, threshold):$/;"	f
+filtered_title	alex/method_chaoAn.py	/^    filtered_title=[]$/;"	v
+firstword	alex/method_chaoAn.py	/^                    firstword = tag_word[0]$/;"	v
+generate_corpus_pos	alex/method_chaoAn.py	/^def generate_corpus_pos(corpus):$/;"	f
+getResults	alex/method_chaoAn.py	/^def getResults(result, id_, n_tags=3):$/;"	f
+nltk	alex/method_chaoAn.py	/^import nltk$/;"	i
+np	alex/method_chaoAn.py	/^import numpy as np$/;"	i
+outfileName	alex/method_chaoAn.py	/^    outfileName = sys.argv[2]    $/;"	v
+path	alex/method_chaoAn.py	/^    path = sys.argv[1]$/;"	v
+pd	alex/method_chaoAn.py	/^import pandas as pd$/;"	i
+pos_first	alex/method_chaoAn.py	/^                    pos_first = nltk.pos_tag([firstword])$/;"	v
+pos_second	alex/method_chaoAn.py	/^                    pos_second = nltk.pos_tag([secondword])$/;"	v
+readFromData	alex/method_chaoAn.py	/^def readFromData(filename):$/;"	f
+read_words	alex/method_chaoAn.py	/^def read_words(words_file):$/;"	f
+secondword	alex/method_chaoAn.py	/^                    secondword = tag_word[1]$/;"	v
+sys	alex/method_chaoAn.py	/^import sys$/;"	i
+tag_word	alex/method_chaoAn.py	/^                tag_word = tag[0].split('-')$/;"	v
+temp	alex/method_chaoAn.py	/^            temp = ['quantum-mechanics']$/;"	v
+temp	alex/method_chaoAn.py	/^        temp = ['quantum-mechanics']$/;"	v
+temp	alex/method_chaoAn.py	/^        temp = []$/;"	v
+title_tags	alex/method_chaoAn.py	/^    title_tags = [nltk.pos_tag(nltk.word_tokenize(sentence)) for sentence in title]$/;"	v
+wordCount	alex/method_chaoAn.py	/^def wordCount(feature_arr):$/;"	f
+writeResults	alex/method_chaoAn.py	/^def writeResults(outfileName, id_, ans):$/;"	f
+Phrases	alex/preprocess_data.py	/^from gensim.models.phrases import Phrases$/;"	i
+Trigram	alex/preprocess_data.py	/^    Trigram = True$/;"	v
+bigramProcess	alex/preprocess_data.py	/^def bigramProcess(corpus,title,content,minCount = 5,thresholds = 10.0):$/;"	f
+clean_corpus	alex/preprocess_data.py	/^def clean_corpus(corpus):$/;"	f
+collections	alex/preprocess_data.py	/^import collections$/;"	i
+content	alex/preprocess_data.py	/^    content = deletecomponent(content,2, 15)$/;"	v
+corpus	alex/preprocess_data.py	/^    corpus = deletecomponent(corpus,2, 15)$/;"	v
+debug	alex/preprocess_data.py	/^    debug = False$/;"	v
+deletecomponent	alex/preprocess_data.py	/^def deletecomponent(corpus, numremove, numremoveMax):$/;"	f
+generate_corpus_pos	alex/preprocess_data.py	/^def generate_corpus_pos(corpus):$/;"	f
+getTopBigram	alex/preprocess_data.py	/^def getTopBigram(bigram, numbershow, selectNandJ):$/;"	f
+nltk	alex/preprocess_data.py	/^import nltk$/;"	i
+np	alex/preprocess_data.py	/^import numpy as np$/;"	i
+os	alex/preprocess_data.py	/^import os.path$/;"	i
+outfileName	alex/preprocess_data.py	/^    outfileName = sys.argv[2]$/;"	v
+path	alex/preprocess_data.py	/^    path = sys.argv[1]$/;"	v
+path	alex/preprocess_data.py	/^import os.path$/;"	i
+pd	alex/preprocess_data.py	/^import pandas as pd$/;"	i
+preprocessing	alex/preprocess_data.py	/^def preprocessing(corpus, title, content):$/;"	f
+process_data	alex/preprocess_data.py	/^def process_data(corpus):$/;"	f
+re	alex/preprocess_data.py	/^import re$/;"	i
+readFromData	alex/preprocess_data.py	/^def readFromData(filename):$/;"	f
+read_words	alex/preprocess_data.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	alex/preprocess_data.py	/^def removeWordFromStr(sentence, short_length, long_length):$/;"	f
+saveFile	alex/preprocess_data.py	/^def saveFile(outfileName, id_, corpus, title, content):$/;"	f
+sys	alex/preprocess_data.py	/^import sys$/;"	i
+text	alex/preprocess_data.py	/^from sklearn.feature_extraction import text$/;"	i
+title	alex/preprocess_data.py	/^    title = deletecomponent(title,2, 15)$/;"	v
+wordnet	alex/preprocess_data.py	/^from nltk.corpus import wordnet$/;"	i
+Phrases	alex/ron_preprocess.py	/^from gensim.models.phrases import Phrases$/;"	i
+Trigram	alex/ron_preprocess.py	/^    Trigram = True$/;"	v
+bigramProcess	alex/ron_preprocess.py	/^def bigramProcess(corpus,title,content,minCount = 5,thresholds = 10.0):$/;"	f
+clean_corpus	alex/ron_preprocess.py	/^def clean_corpus(corpus):$/;"	f
+clean_phrase_stopword	alex/ron_preprocess.py	/^def clean_phrase_stopword(corpus):$/;"	f
+collections	alex/ron_preprocess.py	/^import collections$/;"	i
+construct_phrase_dict	alex/ron_preprocess.py	/^def construct_phrase_dict(corpus):$/;"	f
+content	alex/ron_preprocess.py	/^    content = [ removeWordFromStr(sentence, 3, 30) for sentence in content ]$/;"	v
+content	alex/ron_preprocess.py	/^    content = clean_phrase_stopword(content)$/;"	v
+content	alex/ron_preprocess.py	/^    content = deletecomponent(content,2, 20)$/;"	v
+content	alex/ron_preprocess.py	/^    content = extend_abbreviation(mapping, content)$/;"	v
+corpus	alex/ron_preprocess.py	/^    corpus = [a + " " + b for a, b in zip(title, content)]$/;"	v
+corpus	alex/ron_preprocess.py	/^    corpus = deletecomponent(corpus,2, 20)$/;"	v
+debug	alex/ron_preprocess.py	/^    debug = True$/;"	v
+defaultdict	alex/ron_preprocess.py	/^from collections import defaultdict$/;"	i
+deletecomponent	alex/ron_preprocess.py	/^def deletecomponent(corpus, numremove, numremoveMax):$/;"	f
+extend_abbreviation	alex/ron_preprocess.py	/^def extend_abbreviation(mapping, corpus):$/;"	f
+generate_corpus_pos	alex/ron_preprocess.py	/^def generate_corpus_pos(corpus):$/;"	f
+getTopBigram	alex/ron_preprocess.py	/^def getTopBigram(bigram, numbershow, selectNandJ):$/;"	f
+mapping	alex/ron_preprocess.py	/^    mapping = construct_phrase_dict(corpus)$/;"	v
+nltk	alex/ron_preprocess.py	/^import nltk$/;"	i
+np	alex/ron_preprocess.py	/^import numpy as np$/;"	i
+os	alex/ron_preprocess.py	/^import os.path$/;"	i
+outfileName	alex/ron_preprocess.py	/^    outfileName = sys.argv[2]$/;"	v
+path	alex/ron_preprocess.py	/^    path = sys.argv[1]$/;"	v
+path	alex/ron_preprocess.py	/^import os.path$/;"	i
+pd	alex/ron_preprocess.py	/^import pandas as pd$/;"	i
+preprocessing	alex/ron_preprocess.py	/^def preprocessing(corpus, title, content):$/;"	f
+process_data	alex/ron_preprocess.py	/^def process_data(corpus):$/;"	f
+re	alex/ron_preprocess.py	/^import re$/;"	i
+readFromData	alex/ron_preprocess.py	/^def readFromData(filename):$/;"	f
+read_words	alex/ron_preprocess.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	alex/ron_preprocess.py	/^def removeWordFromStr(sentence, short_length, long_length):$/;"	f
+saveFile	alex/ron_preprocess.py	/^def saveFile(outfileName, id_, corpus, title, content):$/;"	f
+sys	alex/ron_preprocess.py	/^import sys$/;"	i
+text	alex/ron_preprocess.py	/^from sklearn.feature_extraction import text$/;"	i
+title	alex/ron_preprocess.py	/^    title = [ removeWordFromStr(sentence, 3, 30) for sentence in title ]$/;"	v
+title	alex/ron_preprocess.py	/^    title = clean_phrase_stopword(title)$/;"	v
+title	alex/ron_preprocess.py	/^    title = deletecomponent(title,2, 20)$/;"	v
+title	alex/ron_preprocess.py	/^    title = extend_abbreviation(mapping, title)$/;"	v
+wordnet	alex/ron_preprocess.py	/^from nltk.corpus import wordnet$/;"	i
+Normalizer	bigram_ans_tfidf_alex.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+Phrases	bigram_ans_tfidf_alex.py	/^from gensim.models.phrases import Phrases$/;"	i
+SnowCastleStemmer	bigram_ans_tfidf_alex.py	/^class SnowCastleStemmer(nltk.stem.SnowballStemmer):$/;"	c
+TfidfVectorizer	bigram_ans_tfidf_alex.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+TruncatedSVD	bigram_ans_tfidf_alex.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	bigram_ans_tfidf_alex.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+__init__	bigram_ans_tfidf_alex.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:SnowCastleStemmer
+addThres	bigram_ans_tfidf_alex.py	/^    addThres = False$/;"	v
+addTop	bigram_ans_tfidf_alex.py	/^    addTop = True$/;"	v
+after_bigram	bigram_ans_tfidf_alex.py	/^        after_bigram = [bigram[words] for words in total_permu]$/;"	v
+ans	bigram_ans_tfidf_alex.py	/^    ans = getResults(feature_arr, id_, n_top)$/;"	v
+bigramProcess	bigram_ans_tfidf_alex.py	/^def bigramProcess(corpus):$/;"	f
+bn	bigram_ans_tfidf_alex.py	/^import bottleneck as bn # sorting$/;"	i
+clean_corpus	bigram_ans_tfidf_alex.py	/^def clean_corpus(corpus):$/;"	f
+clean_html	bigram_ans_tfidf_alex.py	/^def clean_html(raw_html):$/;"	f
+collections	bigram_ans_tfidf_alex.py	/^import collections$/;"	i
+featureName	bigram_ans_tfidf_alex.py	/^    featureName = np.array( vect.get_feature_names() )$/;"	v
+feature_arr	bigram_ans_tfidf_alex.py	/^    feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)$/;"	v
+features	bigram_ans_tfidf_alex.py	/^    features = vect.fit(corpus)$/;"	v
+filterFromList	bigram_ans_tfidf_alex.py	/^def filterFromList(results, stop_words):$/;"	f
+generateOutput	bigram_ans_tfidf_alex.py	/^def generateOutput(nb_partition, corpus, vect, title, content, featureName):$/;"	f
+generate_corpus_pos	bigram_ans_tfidf_alex.py	/^def generate_corpus_pos(corpus, name):$/;"	f
+genfromtxt	bigram_ans_tfidf_alex.py	/^from numpy import genfromtxt$/;"	i
+getFeaturearr	bigram_ans_tfidf_alex.py	/^def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):$/;"	f
+getOutputVar	bigram_ans_tfidf_alex.py	/^def getOutputVar(addTop, addThres):$/;"	f
+getResults	bigram_ans_tfidf_alex.py	/^def getResults(result, id_, n_tags=3):$/;"	f
+getVect	bigram_ans_tfidf_alex.py	/^def getVect(num):$/;"	f
+get_wordnet_pos	bigram_ans_tfidf_alex.py	/^def get_wordnet_pos(treebank_tag):$/;"	f
+get_words	bigram_ans_tfidf_alex.py	/^def get_words(text):$/;"	f
+getfeaturesWeighted	bigram_ans_tfidf_alex.py	/^def getfeaturesWeighted(vect, corpus, title, content, start, end, num):$/;"	f
+index	bigram_ans_tfidf_alex.py	/^            index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[0])$/;"	v
+index	bigram_ans_tfidf_alex.py	/^            index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[1])$/;"	v
+itertools	bigram_ans_tfidf_alex.py	/^import itertools$/;"	i
+lsa	bigram_ans_tfidf_alex.py	/^def lsa(X, n_components=80):$/;"	f
+make_pipeline	bigram_ans_tfidf_alex.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+memstem	bigram_ans_tfidf_alex.py	/^    def memstem(self, word):$/;"	m	class:SnowCastleStemmer
+nb_partition	bigram_ans_tfidf_alex.py	/^    nb_partition = 5000$/;"	v
+nltk	bigram_ans_tfidf_alex.py	/^import nltk$/;"	i
+np	bigram_ans_tfidf_alex.py	/^import numpy as np$/;"	i
+os	bigram_ans_tfidf_alex.py	/^import os.path$/;"	i
+outfileName	bigram_ans_tfidf_alex.py	/^    outfileName = sys.argv[2]$/;"	v
+path	bigram_ans_tfidf_alex.py	/^    path = sys.argv[1]$/;"	v
+path	bigram_ans_tfidf_alex.py	/^import os.path$/;"	i
+pd	bigram_ans_tfidf_alex.py	/^import pandas as pd$/;"	i
+preprocessing	bigram_ans_tfidf_alex.py	/^def preprocessing(corpus, title, content, num):$/;"	f
+printTfidfWeight	bigram_ans_tfidf_alex.py	/^def printTfidfWeight(features_weighted, n_top, featureName, weights):$/;"	f
+process_data	bigram_ans_tfidf_alex.py	/^def process_data(corpus,name):$/;"	f
+process_data_ref	bigram_ans_tfidf_alex.py	/^def process_data_ref(corpus, name):$/;"	f
+process_data_stem	bigram_ans_tfidf_alex.py	/^def process_data_stem(corpus, stemmer):$/;"	f
+process_type	bigram_ans_tfidf_alex.py	/^    process_type = int(sys.argv[4])$/;"	v
+re	bigram_ans_tfidf_alex.py	/^import re$/;"	i
+readFromData	bigram_ans_tfidf_alex.py	/^def readFromData(filename):$/;"	f
+read_words	bigram_ans_tfidf_alex.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	bigram_ans_tfidf_alex.py	/^def removeWordFromStr(sentence, length):$/;"	f
+saveResults	bigram_ans_tfidf_alex.py	/^def saveResults(outfileName, id_, result, stemmer, n_tags=3):$/;"	f
+sorting	bigram_ans_tfidf_alex.py	/^import bottleneck as bn # sorting$/;"	i
+stop_words_2	bigram_ans_tfidf_alex.py	/^stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', ''])$/;"	v
+string	bigram_ans_tfidf_alex.py	/^import string$/;"	i
+sys	bigram_ans_tfidf_alex.py	/^import sys$/;"	i
+sys_input3	bigram_ans_tfidf_alex.py	/^sys_input3 = sys.argv[3]$/;"	v
+tagsThreshold	bigram_ans_tfidf_alex.py	/^def tagsThreshold(threshold, selectedFeature, n_top):$/;"	f
+text	bigram_ans_tfidf_alex.py	/^from sklearn.feature_extraction import text$/;"	i
+total_permu	bigram_ans_tfidf_alex.py	/^        total_permu = list(itertools.permutations(ans[i],2))$/;"	v
+type_tfidf	bigram_ans_tfidf_alex.py	/^    type_tfidf = int(sys.argv[5])$/;"	v
+unstem	bigram_ans_tfidf_alex.py	/^    def unstem(self, stemmed_word):$/;"	m	class:SnowCastleStemmer
+valid_bigram	bigram_ans_tfidf_alex.py	/^        valid_bigram = [valid for valid in after_bigram if len(valid)==1 ]$/;"	v
+vect	bigram_ans_tfidf_alex.py	/^    vect = getVect(type_tfidf)$/;"	v
+weights	bigram_ans_tfidf_alex.py	/^    weights = np.array( vect.idf_ )$/;"	v
+wordnet	bigram_ans_tfidf_alex.py	/^from nltk.corpus import wordnet$/;"	i
+writeResults	bigram_ans_tfidf_alex.py	/^def writeResults(outfileName, id_, ans):$/;"	f
+CountVectorizer	bigram_corpus_alex.py	/^from sklearn.feature_extraction.text import TfidfVectorizer,CountVectorizer$/;"	i
+Normalizer	bigram_corpus_alex.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+OrderedDict	bigram_corpus_alex.py	/^from collections import OrderedDict$/;"	i
+Phrases	bigram_corpus_alex.py	/^from gensim.models.phrases import Phrases$/;"	i
+SnowCastleStemmer	bigram_corpus_alex.py	/^class SnowCastleStemmer(nltk.stem.SnowballStemmer):$/;"	c
+TfidfVectorizer	bigram_corpus_alex.py	/^from sklearn.feature_extraction.text import TfidfVectorizer,CountVectorizer$/;"	i
+TruncatedSVD	bigram_corpus_alex.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	bigram_corpus_alex.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+__init__	bigram_corpus_alex.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:SnowCastleStemmer
+addThres	bigram_corpus_alex.py	/^    addThres = False$/;"	v
+addTop	bigram_corpus_alex.py	/^    addTop = True$/;"	v
+bigramProcess	bigram_corpus_alex.py	/^def bigramProcess(corpus,title,content):$/;"	f
+bigram_counter	bigram_corpus_alex.py	/^    bigram_counter = collections.Counter()$/;"	v
+bn	bigram_corpus_alex.py	/^import bottleneck as bn # sorting$/;"	i
+clean_corpus	bigram_corpus_alex.py	/^def clean_corpus(corpus):$/;"	f
+clean_html	bigram_corpus_alex.py	/^def clean_html(raw_html):$/;"	f
+collections	bigram_corpus_alex.py	/^import collections$/;"	i
+construct_phrase_dict	bigram_corpus_alex.py	/^def construct_phrase_dict(corpus_title):$/;"	f
+content	bigram_corpus_alex.py	/^    content = deletecomponent(content,2)$/;"	v
+corpus	bigram_corpus_alex.py	/^    corpus = deletecomponent(corpus,2)$/;"	v
+defaultdict	bigram_corpus_alex.py	/^from collections import defaultdict$/;"	i
+deletecomponent	bigram_corpus_alex.py	/^def deletecomponent(corpus,numremove):$/;"	f
+extend_abbreviation	bigram_corpus_alex.py	/^def extend_abbreviation(mapping, corpus_title):$/;"	f
+filterFromList	bigram_corpus_alex.py	/^def filterFromList(results, stop_words):$/;"	f
+generateOutput	bigram_corpus_alex.py	/^def generateOutput(nb_partition, corpus, vect, title, content, featureName):$/;"	f
+generate_corpus_pos	bigram_corpus_alex.py	/^def generate_corpus_pos(corpus, name):$/;"	f
+genfromtxt	bigram_corpus_alex.py	/^from numpy import genfromtxt$/;"	i
+getFeaturearr	bigram_corpus_alex.py	/^def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):$/;"	f
+getOutputVar	bigram_corpus_alex.py	/^def getOutputVar(addTop, addThres):$/;"	f
+getResults	bigram_corpus_alex.py	/^def getResults(result, id_, n_tags=3):$/;"	f
+getVect	bigram_corpus_alex.py	/^def getVect(num):$/;"	f
+get_wordnet_pos	bigram_corpus_alex.py	/^def get_wordnet_pos(treebank_tag):$/;"	f
+get_words	bigram_corpus_alex.py	/^def get_words(text):$/;"	f
+getfeaturesWeighted	bigram_corpus_alex.py	/^def getfeaturesWeighted(vect, corpus, title, content, start, end, num):$/;"	f
+itertools	bigram_corpus_alex.py	/^import itertools$/;"	i
+lsa	bigram_corpus_alex.py	/^def lsa(X, n_components=80):$/;"	f
+make_pipeline	bigram_corpus_alex.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+memstem	bigram_corpus_alex.py	/^    def memstem(self, word):$/;"	m	class:SnowCastleStemmer
+nltk	bigram_corpus_alex.py	/^import nltk$/;"	i
+np	bigram_corpus_alex.py	/^import numpy as np$/;"	i
+os	bigram_corpus_alex.py	/^import os.path$/;"	i
+outfileName	bigram_corpus_alex.py	/^    outfileName = sys.argv[2]$/;"	v
+path	bigram_corpus_alex.py	/^    path = sys.argv[1]$/;"	v
+path	bigram_corpus_alex.py	/^import os.path$/;"	i
+pd	bigram_corpus_alex.py	/^import pandas as pd$/;"	i
+preprocessing	bigram_corpus_alex.py	/^def preprocessing(corpus, title, content, num):$/;"	f
+printTfidfWeight	bigram_corpus_alex.py	/^def printTfidfWeight(features_weighted, n_top, featureName, weights):$/;"	f
+process_data	bigram_corpus_alex.py	/^def process_data(corpus,name):$/;"	f
+process_data_ref	bigram_corpus_alex.py	/^def process_data_ref(corpus,name):$/;"	f
+process_data_stem	bigram_corpus_alex.py	/^def process_data_stem(corpus, stemmer):$/;"	f
+process_type	bigram_corpus_alex.py	/^    process_type = int(sys.argv[4])$/;"	v
+re	bigram_corpus_alex.py	/^import re$/;"	i
+readFromData	bigram_corpus_alex.py	/^def readFromData(filename):$/;"	f
+read_words	bigram_corpus_alex.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	bigram_corpus_alex.py	/^def removeWordFromStr(sentence, length):$/;"	f
+saveResults	bigram_corpus_alex.py	/^def saveResults(outfileName, id_, result, stemmer, n_tags=3):$/;"	f
+sorting	bigram_corpus_alex.py	/^import bottleneck as bn # sorting$/;"	i
+stop_words_2	bigram_corpus_alex.py	/^stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', '', "doesn't", "doesn", 'doesnt'])$/;"	v
+string	bigram_corpus_alex.py	/^import string$/;"	i
+sys	bigram_corpus_alex.py	/^import sys$/;"	i
+sys_input3	bigram_corpus_alex.py	/^sys_input3 = sys.argv[3]$/;"	v
+tagsThreshold	bigram_corpus_alex.py	/^def tagsThreshold(threshold, selectedFeature, n_top):$/;"	f
+text	bigram_corpus_alex.py	/^from sklearn.feature_extraction import text$/;"	i
+title	bigram_corpus_alex.py	/^    title = deletecomponent(title,2)$/;"	v
+unstem	bigram_corpus_alex.py	/^    def unstem(self, stemmed_word):$/;"	m	class:SnowCastleStemmer
+wordnet	bigram_corpus_alex.py	/^from nltk.corpus import wordnet$/;"	i
+writeResults	bigram_corpus_alex.py	/^def writeResults(outfileName, id_, ans):$/;"	f
+SnowCastleStemmer	example_snowballunstem.py	/^class SnowCastleStemmer(nltk.stem.SnowballStemmer):$/;"	c
+__init__	example_snowballunstem.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:SnowCastleStemmer
+collections	example_snowballunstem.py	/^import collections$/;"	i
+memstem	example_snowballunstem.py	/^    def memstem(self, word):$/;"	m	class:SnowCastleStemmer
+nltk	example_snowballunstem.py	/^import nltk$/;"	i
+stemmer	example_snowballunstem.py	/^  stemmer= SnowCastleStemmer('english')$/;"	v
+unstem	example_snowballunstem.py	/^    def unstem(self, stemmed_word):$/;"	m	class:SnowCastleStemmer
+CountVectorizer	f1_score.py	/^from sklearn.feature_extraction.text import CountVectorizer$/;"	i
+analysisAns	f1_score.py	/^def analysisAns(ans_truth, ans_test, top):$/;"	f
+analysisStopwords	f1_score.py	/^def analysisStopwords(ans_truth, stopwords, top):$/;"	f
+ans_test	f1_score.py	/^	ans_test = pd.read_csv(sys.argv[2], quotechar='"', skipinitialspace=True).as_matrix()$/;"	v
+ans_truth	f1_score.py	/^	ans_truth = pd.read_csv(sys.argv[1], quotechar='"', skipinitialspace=True).as_matrix()$/;"	v
+corpus	f1_score.py	/^	corpus = np.concatenate((ans_test[:, 1], ans_truth[:, 1]), axis=0).reshape(2, length).T$/;"	v
+entry	f1_score.py	/^		entry = corpus[i]$/;"	v
+f1_score	f1_score.py	/^from sklearn.metrics import f1_score$/;"	i
+feature	f1_score.py	/^		feature = vect.fit_transform( entry ).toarray()$/;"	v
+features	f1_score.py	/^	features = []$/;"	v
+genfromtxt	f1_score.py	/^from numpy import genfromtxt$/;"	i
+length	f1_score.py	/^	length = len(ans_test)$/;"	v
+nan_position	f1_score.py	/^	nan_position = pd.isnull(corpus)$/;"	v
+np	f1_score.py	/^import numpy as np$/;"	i
+pd	f1_score.py	/^import pandas as pd$/;"	i
+result	f1_score.py	/^	result = scores.mean()$/;"	v
+scores	f1_score.py	/^	scores = []$/;"	v
+scores	f1_score.py	/^	scores = np.array(scores)$/;"	v
+sys	f1_score.py	/^import sys$/;"	i
+top	f1_score.py	/^	top = 10$/;"	v
+vect	f1_score.py	/^	vect = CountVectorizer()$/;"	v
+ans_truth	get_ans_truth.py	/^ans_truth = ans_truth[['id', 'tags']]$/;"	v
+ans_truth	get_ans_truth.py	/^ans_truth = pd.read_csv(file_name, quotechar='"', skipinitialspace=True)$/;"	v
+file_name	get_ans_truth.py	/^file_name = sys.argv[1]$/;"	v
+genfromtxt	get_ans_truth.py	/^from numpy import genfromtxt$/;"	i
+outfile_name	get_ans_truth.py	/^outfile_name = file_name[:-4] + '_o' + file_name[-4:]$/;"	v
+pd	get_ans_truth.py	/^import pandas as pd$/;"	i
+saveResults	get_ans_truth.py	/^def saveResults(outfileName, result):$/;"	f
+sys	get_ans_truth.py	/^import sys$/;"	i
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+Normalizer	method_chaoAn.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+OrderedDict	method_chaoAn.py	/^from collections import OrderedDict$/;"	i
+Phrases	method_chaoAn.py	/^from gensim.models.phrases import Phrases$/;"	i
+SnowCastleStemmer	method_chaoAn.py	/^class SnowCastleStemmer(nltk.stem.SnowballStemmer):$/;"	c
+TfidfVectorizer	method_chaoAn.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+TruncatedSVD	method_chaoAn.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	method_chaoAn.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+__init__	method_chaoAn.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:SnowCastleStemmer
+addThres	method_chaoAn.py	/^    addThres = False$/;"	v
+addTop	method_chaoAn.py	/^    addTop = True$/;"	v
+answer	method_chaoAn.py	/^    answer = getResults(filtered_title, id_, n_top)$/;"	v
+bigramProcess	method_chaoAn.py	/^def bigramProcess(corpus,title,content):$/;"	f
+bn	method_chaoAn.py	/^import bottleneck as bn # sorting$/;"	i
+clean_corpus	method_chaoAn.py	/^def clean_corpus(corpus):$/;"	f
+clean_html	method_chaoAn.py	/^def clean_html(raw_html):$/;"	f
+collections	method_chaoAn.py	/^import collections$/;"	i
+construct_phrase_dict	method_chaoAn.py	/^def construct_phrase_dict(corpus_title):$/;"	f
+content	method_chaoAn.py	/^    content = deletecomponent(content,2)$/;"	v
+corpus	method_chaoAn.py	/^    corpus = deletecomponent(corpus,2)$/;"	v
+defaultdict	method_chaoAn.py	/^from collections import defaultdict$/;"	i
+deletecomponent	method_chaoAn.py	/^def deletecomponent(corpus,numremove):$/;"	f
+extend_abbreviation	method_chaoAn.py	/^def extend_abbreviation(mapping, corpus_title):$/;"	f
+filterFromList	method_chaoAn.py	/^def filterFromList(results, stop_words):$/;"	f
+filtered_title	method_chaoAn.py	/^    filtered_title=[]$/;"	v
+firstword	method_chaoAn.py	/^                    firstword = tag_word[0]$/;"	v
+generateOutput	method_chaoAn.py	/^def generateOutput(nb_partition, corpus, vect, title, content, featureName):$/;"	f
+generate_corpus_pos	method_chaoAn.py	/^def generate_corpus_pos(corpus, name):$/;"	f
+genfromtxt	method_chaoAn.py	/^from numpy import genfromtxt$/;"	i
+getFeaturearr	method_chaoAn.py	/^def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):$/;"	f
+getOutputVar	method_chaoAn.py	/^def getOutputVar(addTop, addThres):$/;"	f
+getResults	method_chaoAn.py	/^def getResults(result, id_, n_tags=3):$/;"	f
+getVect	method_chaoAn.py	/^def getVect(num):$/;"	f
+get_wordnet_pos	method_chaoAn.py	/^def get_wordnet_pos(treebank_tag):$/;"	f
+get_words	method_chaoAn.py	/^def get_words(text):$/;"	f
+getfeaturesWeighted	method_chaoAn.py	/^def getfeaturesWeighted(vect, corpus, title, content, start, end, num):$/;"	f
+itertools	method_chaoAn.py	/^import itertools$/;"	i
+lsa	method_chaoAn.py	/^def lsa(X, n_components=80):$/;"	f
+make_pipeline	method_chaoAn.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+memstem	method_chaoAn.py	/^    def memstem(self, word):$/;"	m	class:SnowCastleStemmer
+nltk	method_chaoAn.py	/^import nltk$/;"	i
+np	method_chaoAn.py	/^import numpy as np$/;"	i
+os	method_chaoAn.py	/^import os.path$/;"	i
+outfileName	method_chaoAn.py	/^    outfileName = sys.argv[2]$/;"	v
+path	method_chaoAn.py	/^    path = sys.argv[1]$/;"	v
+path	method_chaoAn.py	/^import os.path$/;"	i
+pd	method_chaoAn.py	/^import pandas as pd$/;"	i
+pos_first	method_chaoAn.py	/^                    pos_first = nltk.pos_tag([firstword])$/;"	v
+pos_second	method_chaoAn.py	/^                    pos_second = nltk.pos_tag([secondword])$/;"	v
+preprocessing	method_chaoAn.py	/^def preprocessing(corpus, title, content, num):$/;"	f
+printTfidfWeight	method_chaoAn.py	/^def printTfidfWeight(features_weighted, n_top, featureName, weights):$/;"	f
+process_data	method_chaoAn.py	/^def process_data(corpus,name):$/;"	f
+process_data_ref	method_chaoAn.py	/^def process_data_ref(corpus,name):$/;"	f
+process_data_stem	method_chaoAn.py	/^def process_data_stem(corpus, stemmer):$/;"	f
+process_type	method_chaoAn.py	/^    process_type = int(sys.argv[4])$/;"	v
+re	method_chaoAn.py	/^import re$/;"	i
+readFromData	method_chaoAn.py	/^def readFromData(filename):$/;"	f
+read_words	method_chaoAn.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	method_chaoAn.py	/^def removeWordFromStr(sentence, length):$/;"	f
+saveResults	method_chaoAn.py	/^def saveResults(outfileName, id_, result, stemmer, n_tags=3):$/;"	f
+secondword	method_chaoAn.py	/^                    secondword = tag_word[1]$/;"	v
+sorting	method_chaoAn.py	/^import bottleneck as bn # sorting$/;"	i
+stop_words_2	method_chaoAn.py	/^stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing','car', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e','high','school', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', '',"'s","amp","make","http","www","wiki","arxiv","org"])$/;"	v
+string	method_chaoAn.py	/^import string$/;"	i
+sys	method_chaoAn.py	/^import sys$/;"	i
+sys_input3	method_chaoAn.py	/^sys_input3 = sys.argv[3]$/;"	v
+tag_word	method_chaoAn.py	/^                tag_word = tag[0].split('-')$/;"	v
+tagsThreshold	method_chaoAn.py	/^def tagsThreshold(threshold, selectedFeature, n_top):$/;"	f
+temp	method_chaoAn.py	/^            temp = ['homework-and-exercises','quantum-mechanics']$/;"	v
+temp	method_chaoAn.py	/^        temp = []$/;"	v
+text	method_chaoAn.py	/^from sklearn.feature_extraction import text$/;"	i
+title	method_chaoAn.py	/^    title = deletecomponent(title,2)$/;"	v
+title_backup	method_chaoAn.py	/^    title_backup = title$/;"	v
+title_tags	method_chaoAn.py	/^    title_tags = [nltk.pos_tag(nltk.word_tokenize(sentence)) for sentence in title]$/;"	v
+unstem	method_chaoAn.py	/^    def unstem(self, stemmed_word):$/;"	m	class:SnowCastleStemmer
+wordnet	method_chaoAn.py	/^from nltk.corpus import wordnet$/;"	i
+writeResults	method_chaoAn.py	/^def writeResults(outfileName, id_, ans):$/;"	f
+Normalizer	old_code/bigram_corpus_alex.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+Phrases	old_code/bigram_corpus_alex.py	/^from gensim.models.phrases import Phrases$/;"	i
+SnowCastleStemmer	old_code/bigram_corpus_alex.py	/^class SnowCastleStemmer(nltk.stem.SnowballStemmer):$/;"	c
+TfidfVectorizer	old_code/bigram_corpus_alex.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+TruncatedSVD	old_code/bigram_corpus_alex.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	old_code/bigram_corpus_alex.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+__init__	old_code/bigram_corpus_alex.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:SnowCastleStemmer
+addThres	old_code/bigram_corpus_alex.py	/^    addThres = False$/;"	v
+addTop	old_code/bigram_corpus_alex.py	/^    addTop = True$/;"	v
+after_bigram	old_code/bigram_corpus_alex.py	/^        after_bigram = [bigram[words] for words in total_permu]$/;"	v
+ans	old_code/bigram_corpus_alex.py	/^    ans = getResults(feature_arr, id_, n_top)$/;"	v
+bigramProcess	old_code/bigram_corpus_alex.py	/^def bigramProcess(corpus,title,content):$/;"	f
+bn	old_code/bigram_corpus_alex.py	/^import bottleneck as bn # sorting$/;"	i
+clean_corpus	old_code/bigram_corpus_alex.py	/^def clean_corpus(corpus):$/;"	f
+clean_html	old_code/bigram_corpus_alex.py	/^def clean_html(raw_html):$/;"	f
+collections	old_code/bigram_corpus_alex.py	/^import collections$/;"	i
+content	old_code/bigram_corpus_alex.py	/^    content = [ removeWordFromStr(sentence, 3) for sentence in content ] $/;"	v
+corpus	old_code/bigram_corpus_alex.py	/^    corpus = [ removeWordFromStr(sentence, 3) for sentence in corpus ] $/;"	v
+featureName	old_code/bigram_corpus_alex.py	/^    featureName = np.array(vect.get_feature_names() )$/;"	v
+feature_arr	old_code/bigram_corpus_alex.py	/^    feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)$/;"	v
+features	old_code/bigram_corpus_alex.py	/^    features = vect.fit(corpus)$/;"	v
+filterFromList	old_code/bigram_corpus_alex.py	/^def filterFromList(results, stop_words):$/;"	f
+generateOutput	old_code/bigram_corpus_alex.py	/^def generateOutput(nb_partition, corpus, vect, title, content, featureName):$/;"	f
+generate_corpus_pos	old_code/bigram_corpus_alex.py	/^def generate_corpus_pos(corpus, name):$/;"	f
+genfromtxt	old_code/bigram_corpus_alex.py	/^from numpy import genfromtxt$/;"	i
+getFeaturearr	old_code/bigram_corpus_alex.py	/^def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):$/;"	f
+getOutputVar	old_code/bigram_corpus_alex.py	/^def getOutputVar(addTop, addThres):$/;"	f
+getResults	old_code/bigram_corpus_alex.py	/^def getResults(result, id_, n_tags=3):$/;"	f
+getVect	old_code/bigram_corpus_alex.py	/^def getVect(num):$/;"	f
+get_wordnet_pos	old_code/bigram_corpus_alex.py	/^def get_wordnet_pos(treebank_tag):$/;"	f
+get_words	old_code/bigram_corpus_alex.py	/^def get_words(text):$/;"	f
+getfeaturesWeighted	old_code/bigram_corpus_alex.py	/^def getfeaturesWeighted(vect, corpus, title, content, start, end, num):$/;"	f
+index	old_code/bigram_corpus_alex.py	/^            index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[0])$/;"	v
+index	old_code/bigram_corpus_alex.py	/^            index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[1])$/;"	v
+itertools	old_code/bigram_corpus_alex.py	/^import itertools$/;"	i
+lsa	old_code/bigram_corpus_alex.py	/^def lsa(X, n_components=80):$/;"	f
+make_pipeline	old_code/bigram_corpus_alex.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+memstem	old_code/bigram_corpus_alex.py	/^    def memstem(self, word):$/;"	m	class:SnowCastleStemmer
+nb_partition	old_code/bigram_corpus_alex.py	/^    nb_partition = 5000$/;"	v
+nltk	old_code/bigram_corpus_alex.py	/^import nltk$/;"	i
+np	old_code/bigram_corpus_alex.py	/^import numpy as np$/;"	i
+os	old_code/bigram_corpus_alex.py	/^import os.path$/;"	i
+outfileName	old_code/bigram_corpus_alex.py	/^    outfileName = sys.argv[2]$/;"	v
+path	old_code/bigram_corpus_alex.py	/^    path = sys.argv[1]$/;"	v
+path	old_code/bigram_corpus_alex.py	/^import os.path$/;"	i
+pd	old_code/bigram_corpus_alex.py	/^import pandas as pd$/;"	i
+preprocessing	old_code/bigram_corpus_alex.py	/^def preprocessing(corpus, title, content, num):$/;"	f
+printTfidfWeight	old_code/bigram_corpus_alex.py	/^def printTfidfWeight(features_weighted, n_top, featureName, weights):$/;"	f
+process_data	old_code/bigram_corpus_alex.py	/^def process_data(corpus,name):$/;"	f
+process_data_ref	old_code/bigram_corpus_alex.py	/^def process_data_ref(corpus,name):$/;"	f
+process_data_stem	old_code/bigram_corpus_alex.py	/^def process_data_stem(corpus, stemmer):$/;"	f
+process_type	old_code/bigram_corpus_alex.py	/^    process_type = int(sys.argv[4])$/;"	v
+re	old_code/bigram_corpus_alex.py	/^import re$/;"	i
+readFromData	old_code/bigram_corpus_alex.py	/^def readFromData(filename):$/;"	f
+read_words	old_code/bigram_corpus_alex.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	old_code/bigram_corpus_alex.py	/^def removeWordFromStr(sentence, length):$/;"	f
+saveResults	old_code/bigram_corpus_alex.py	/^def saveResults(outfileName, id_, result, stemmer, n_tags=3):$/;"	f
+sorting	old_code/bigram_corpus_alex.py	/^import bottleneck as bn # sorting$/;"	i
+stop_words_2	old_code/bigram_corpus_alex.py	/^stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', ''])$/;"	v
+string	old_code/bigram_corpus_alex.py	/^import string$/;"	i
+sys	old_code/bigram_corpus_alex.py	/^import sys$/;"	i
+sys_input3	old_code/bigram_corpus_alex.py	/^sys_input3 = sys.argv[3]$/;"	v
+tagsThreshold	old_code/bigram_corpus_alex.py	/^def tagsThreshold(threshold, selectedFeature, n_top):$/;"	f
+text	old_code/bigram_corpus_alex.py	/^from sklearn.feature_extraction import text$/;"	i
+title	old_code/bigram_corpus_alex.py	/^    title = [ removeWordFromStr(sentence, 3) for sentence in title ] $/;"	v
+total_permu	old_code/bigram_corpus_alex.py	/^        total_permu = list(itertools.permutations(ans[i],2))$/;"	v
+type_tfidf	old_code/bigram_corpus_alex.py	/^    type_tfidf = int(sys.argv[5])$/;"	v
+unstem	old_code/bigram_corpus_alex.py	/^    def unstem(self, stemmed_word):$/;"	m	class:SnowCastleStemmer
+valid_bigram	old_code/bigram_corpus_alex.py	/^        valid_bigram = [valid for valid in after_bigram if len(valid)==1 ]$/;"	v
+vect	old_code/bigram_corpus_alex.py	/^    vect = getVect(type_tfidf)$/;"	v
+weights	old_code/bigram_corpus_alex.py	/^    weights = np.array( vect.idf_ )$/;"	v
+wordnet	old_code/bigram_corpus_alex.py	/^from nltk.corpus import wordnet$/;"	i
+writeResults	old_code/bigram_corpus_alex.py	/^def writeResults(outfileName, id_, ans):$/;"	f
+TfidfVectorizer	old_code/tag_prediction.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+bn	old_code/tag_prediction.py	/^import bottleneck as bn # sorting$/;"	i
+corpus	old_code/tag_prediction.py	/^corpus = [re.sub(r'\\d+', '', word) for word in corpus]$/;"	v
+corpus	old_code/tag_prediction.py	/^corpus = corpus.astype(object)$/;"	v
+corpus	old_code/tag_prediction.py	/^corpus = corpus[:, 0] + " " + corpus[:, 1]$/;"	v
+corpus	old_code/tag_prediction.py	/^corpus = origin_data[:, 1:3]$/;"	v
+count	old_code/tag_prediction.py	/^count = 0$/;"	v
+featureName	old_code/tag_prediction.py	/^featureName = np.array( vect.get_feature_names() )$/;"	v
+feature_arr	old_code/tag_prediction.py	/^feature_arr = []$/;"	v
+features	old_code/tag_prediction.py	/^features = vect.fit_transform(corpus).toarray()$/;"	v
+id_	old_code/tag_prediction.py	/^id_ = origin_data[:, 0]$/;"	v
+my_stop_words	old_code/tag_prediction.py	/^my_stop_words = text.ENGLISH_STOP_WORDS.union(my_words)$/;"	v
+my_words	old_code/tag_prediction.py	/^my_words = read_words( "stop_words.txt")$/;"	v
+n_top	old_code/tag_prediction.py	/^n_top = int(5)$/;"	v
+np	old_code/tag_prediction.py	/^import numpy as np$/;"	i
+origin_data	old_code/tag_prediction.py	/^origin_data = pd.read_csv( path, quotechar='"', skipinitialspace=True).as_matrix()$/;"	v
+outfileName	old_code/tag_prediction.py	/^outfileName = sys.argv[2]$/;"	v
+partion	old_code/tag_prediction.py	/^partion = int(len(corpus)\/10)$/;"	v
+path	old_code/tag_prediction.py	/^path = sys.argv[1]$/;"	v
+pd	old_code/tag_prediction.py	/^import pandas as pd$/;"	i
+re	old_code/tag_prediction.py	/^import re$/;"	i
+read_words	old_code/tag_prediction.py	/^def read_words(words_file):$/;"	f
+saveResults	old_code/tag_prediction.py	/^def saveResults(outfileName, id_, result):$/;"	f
+sorting	old_code/tag_prediction.py	/^import bottleneck as bn # sorting$/;"	i
+sys	old_code/tag_prediction.py	/^import sys$/;"	i
+text	old_code/tag_prediction.py	/^from sklearn.feature_extraction import text$/;"	i
+vect	old_code/tag_prediction.py	/^vect = TfidfVectorizer(max_df=0.5, min_df=1, analyzer='word', $/;"	v
+weights	old_code/tag_prediction.py	/^weights = np.array( vect.idf_ )$/;"	v
+KMeans	old_code/tag_prediction_cluster.py	/^from sklearn.cluster import KMeans$/;"	i
+Normalizer	old_code/tag_prediction_cluster.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+TfidfVectorizer	old_code/tag_prediction_cluster.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+TruncatedSVD	old_code/tag_prediction_cluster.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	old_code/tag_prediction_cluster.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+feature_arr	old_code/tag_prediction_cluster.py	/^    feature_arr = get_tags(km, vect, features, n_clusters)$/;"	v
+get_tags	old_code/tag_prediction_cluster.py	/^def get_tags(km, vectorizer, features, n_clusters):$/;"	f
+km	old_code/tag_prediction_cluster.py	/^    km = kmeans(features, svd, vect, n_clusters)$/;"	v
+kmeans	old_code/tag_prediction_cluster.py	/^def kmeans(X, svd, vectorizer, n_clusters=20):$/;"	f
+lsa	old_code/tag_prediction_cluster.py	/^def lsa(X, n_components=80):$/;"	f
+make_pipeline	old_code/tag_prediction_cluster.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+n_clusters	old_code/tag_prediction_cluster.py	/^    n_clusters = 800$/;"	v
+nltk	old_code/tag_prediction_cluster.py	/^import nltk$/;"	i
+np	old_code/tag_prediction_cluster.py	/^import numpy as np$/;"	i
+outfileName	old_code/tag_prediction_cluster.py	/^outfileName = sys.argv[2]$/;"	v
+path	old_code/tag_prediction_cluster.py	/^path = sys.argv[1]$/;"	v
+pd	old_code/tag_prediction_cluster.py	/^import pandas as pd$/;"	i
+process_data	old_code/tag_prediction_cluster.py	/^def process_data():$/;"	f
+re	old_code/tag_prediction_cluster.py	/^import re$/;"	i
+read_words	old_code/tag_prediction_cluster.py	/^def read_words(words_file):$/;"	f
+saveResults	old_code/tag_prediction_cluster.py	/^def saveResults(outfileName, id_, result):$/;"	f
+string	old_code/tag_prediction_cluster.py	/^import string$/;"	i
+sys	old_code/tag_prediction_cluster.py	/^import sys$/;"	i
+text	old_code/tag_prediction_cluster.py	/^from sklearn.feature_extraction import text$/;"	i
+tf_idf	old_code/tag_prediction_cluster.py	/^def tf_idf(corpus):$/;"	f
+Normalizer	old_code/tag_preprocess_data_0102.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+Phrases	old_code/tag_preprocess_data_0102.py	/^from gensim.models.phrases import Phrases$/;"	i
+SnowCastleStemmer	old_code/tag_preprocess_data_0102.py	/^class SnowCastleStemmer(nltk.stem.SnowballStemmer):$/;"	c
+TfidfVectorizer	old_code/tag_preprocess_data_0102.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+TruncatedSVD	old_code/tag_preprocess_data_0102.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	old_code/tag_preprocess_data_0102.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+__init__	old_code/tag_preprocess_data_0102.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:SnowCastleStemmer
+bigramProcess	old_code/tag_preprocess_data_0102.py	/^def bigramProcess(corpus,title,content):$/;"	f
+bn	old_code/tag_preprocess_data_0102.py	/^import bottleneck as bn # sorting$/;"	i
+clean_corpus	old_code/tag_preprocess_data_0102.py	/^def clean_corpus(corpus):$/;"	f
+clean_html	old_code/tag_preprocess_data_0102.py	/^def clean_html(raw_html):$/;"	f
+collections	old_code/tag_preprocess_data_0102.py	/^import collections$/;"	i
+data	old_code/tag_preprocess_data_0102.py	/^    data = { 'corpus': corpus,$/;"	v
+filterFromList	old_code/tag_preprocess_data_0102.py	/^def filterFromList(results, stop_words):$/;"	f
+generateOutput	old_code/tag_preprocess_data_0102.py	/^def generateOutput(nb_partition, corpus, vect, title, content, featureName):$/;"	f
+generate_corpus_pos	old_code/tag_preprocess_data_0102.py	/^def generate_corpus_pos(corpus, name):$/;"	f
+genfromtxt	old_code/tag_preprocess_data_0102.py	/^from numpy import genfromtxt$/;"	i
+getFeaturearr	old_code/tag_preprocess_data_0102.py	/^def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):$/;"	f
+getOutputVar	old_code/tag_preprocess_data_0102.py	/^def getOutputVar(addTop, addThres):$/;"	f
+getResults	old_code/tag_preprocess_data_0102.py	/^def getResults(result, id_, n_tags=3):$/;"	f
+getVect	old_code/tag_preprocess_data_0102.py	/^def getVect(num):$/;"	f
+get_wordnet_pos	old_code/tag_preprocess_data_0102.py	/^def get_wordnet_pos(treebank_tag):$/;"	f
+get_words	old_code/tag_preprocess_data_0102.py	/^def get_words(text):$/;"	f
+getfeaturesWeighted	old_code/tag_preprocess_data_0102.py	/^def getfeaturesWeighted(vect, corpus, title, content, start, end, num):$/;"	f
+itertools	old_code/tag_preprocess_data_0102.py	/^import itertools$/;"	i
+li	old_code/tag_preprocess_data_0102.py	/^        li = sys.argv[i].split("=")$/;"	v
+lsa	old_code/tag_preprocess_data_0102.py	/^def lsa(X, n_components=80):$/;"	f
+make_pipeline	old_code/tag_preprocess_data_0102.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+memstem	old_code/tag_preprocess_data_0102.py	/^    def memstem(self, word):$/;"	m	class:SnowCastleStemmer
+nltk	old_code/tag_preprocess_data_0102.py	/^import nltk$/;"	i
+np	old_code/tag_preprocess_data_0102.py	/^import numpy as np$/;"	i
+os	old_code/tag_preprocess_data_0102.py	/^import os.path$/;"	i
+outfileName	old_code/tag_preprocess_data_0102.py	/^    outfileName = sys.argv[2]$/;"	v
+path	old_code/tag_preprocess_data_0102.py	/^    path = sys.argv[1]$/;"	v
+path	old_code/tag_preprocess_data_0102.py	/^import os.path$/;"	i
+pd	old_code/tag_preprocess_data_0102.py	/^import pandas as pd$/;"	i
+pickle	old_code/tag_preprocess_data_0102.py	/^import pickle$/;"	i
+preprocessing	old_code/tag_preprocess_data_0102.py	/^def preprocessing(corpus, title, content, num):$/;"	f
+printTfidfWeight	old_code/tag_preprocess_data_0102.py	/^def printTfidfWeight(features_weighted, n_top, featureName, weights):$/;"	f
+process_data	old_code/tag_preprocess_data_0102.py	/^def process_data(corpus,name):$/;"	f
+process_data_ref	old_code/tag_preprocess_data_0102.py	/^def process_data_ref(corpus,name):$/;"	f
+process_data_stem	old_code/tag_preprocess_data_0102.py	/^def process_data_stem(corpus, stemmer):$/;"	f
+process_type	old_code/tag_preprocess_data_0102.py	/^            process_type = int(li[1])$/;"	v
+process_type	old_code/tag_preprocess_data_0102.py	/^    process_type = 1$/;"	v
+re	old_code/tag_preprocess_data_0102.py	/^import re$/;"	i
+readFromData	old_code/tag_preprocess_data_0102.py	/^def readFromData(filename):$/;"	f
+read_words	old_code/tag_preprocess_data_0102.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	old_code/tag_preprocess_data_0102.py	/^def removeWordFromStr(sentence, length):$/;"	f
+saveCorpus	old_code/tag_preprocess_data_0102.py	/^def saveCorpus(outfileName, id_, corpus):$/;"	f
+saveResults	old_code/tag_preprocess_data_0102.py	/^def saveResults(outfileName, id_, result, stemmer, n_tags=3):$/;"	f
+sorting	old_code/tag_preprocess_data_0102.py	/^import bottleneck as bn # sorting$/;"	i
+stop_words_2	old_code/tag_preprocess_data_0102.py	/^stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', ''])$/;"	v
+string	old_code/tag_preprocess_data_0102.py	/^import string$/;"	i
+sys	old_code/tag_preprocess_data_0102.py	/^import sys$/;"	i
+tagsThreshold	old_code/tag_preprocess_data_0102.py	/^def tagsThreshold(threshold, selectedFeature, n_top):$/;"	f
+text	old_code/tag_preprocess_data_0102.py	/^from sklearn.feature_extraction import text$/;"	i
+unstem	old_code/tag_preprocess_data_0102.py	/^    def unstem(self, stemmed_word):$/;"	m	class:SnowCastleStemmer
+wordnet	old_code/tag_preprocess_data_0102.py	/^from nltk.corpus import wordnet$/;"	i
+writeResults	old_code/tag_preprocess_data_0102.py	/^def writeResults(outfileName, id_, ans):$/;"	f
+li	parse_argv.py	/^	li = sys.argv[i].split("=")$/;"	v
+n_top	parse_argv.py	/^		n_top = int(li[1])$/;"	v
+sys	parse_argv.py	/^import sys$/;"	i
+vect_type	parse_argv.py	/^		vect_type = int(li[1])$/;"	v
+vect_type	parse_argv.py	/^vect_type = []$/;"	v
+file_name	plotResult.py	/^		file_name = sys.argv[1]$/;"	v
+getAve	plotResult.py	/^def getAve(arr, seq_length):$/;"	f
+get_num	plotResult.py	/^def get_num(text):$/;"	f
+imread	plotResult.py	/^from scipy.misc import imread$/;"	i
+imresize	plotResult.py	/^from scipy.misc import imresize$/;"	i
+imsave	plotResult.py	/^from scipy.misc import imsave$/;"	i
+matplotlib	plotResult.py	/^	import matplotlib$/;"	i
+matplotlib	plotResult.py	/^	import matplotlib.pyplot as plt$/;"	i
+np	plotResult.py	/^import numpy as np$/;"	i
+os	plotResult.py	/^import os$/;"	i
+plot	plotResult.py	/^def plot(loss, filename):$/;"	f
+plt	plotResult.py	/^	import matplotlib.pyplot as plt$/;"	i
+re	plotResult.py	/^import re$/;"	i
+readTxt	plotResult.py	/^def readTxt(filename):$/;"	f
+sys	plotResult.py	/^import sys$/;"	i
+val_result	plotResult.py	/^	val_result = readTxt(file_name)$/;"	v
+val_result	plotResult.py	/^	val_result = val_result.reshape(int((len(val_result)\/8)), 8)$/;"	v
+weight	plotResult.py	/^	weight = np.array([13196,15404,10432,25918,2771,19279])$/;"	v
+weight	plotResult.py	/^	weight = weight\/weight.sum()$/;"	v
+Normalizer	preprocess_data.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+SnowCastleStemmer	preprocess_data.py	/^class SnowCastleStemmer(nltk.stem.SnowballStemmer):$/;"	c
+TfidfVectorizer	preprocess_data.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+TruncatedSVD	preprocess_data.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	preprocess_data.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+__init__	preprocess_data.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:SnowCastleStemmer
+addThres	preprocess_data.py	/^    addThres = False$/;"	v
+addTop	preprocess_data.py	/^    addTop = True$/;"	v
+bigram	preprocess_data.py	/^def bigram(corpus):$/;"	f
+bn	preprocess_data.py	/^import bottleneck as bn # sorting$/;"	i
+clean_html	preprocess_data.py	/^def clean_html(raw_html):$/;"	f
+collections	preprocess_data.py	/^import collections$/;"	i
+filterBeforeOutput	preprocess_data.py	/^def filterBeforeOutput():$/;"	f
+filterFromList	preprocess_data.py	/^def filterFromList(results, stop_words):$/;"	f
+generateOutput	preprocess_data.py	/^def generateOutput(nb_partition, corpus, vect, title, content, featureName):$/;"	f
+genfromtxt	preprocess_data.py	/^from numpy import genfromtxt$/;"	i
+getFeaturearr	preprocess_data.py	/^def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):$/;"	f
+getOutputVar	preprocess_data.py	/^def getOutputVar(addTop, addThres):$/;"	f
+getTopBigram	preprocess_data.py	/^def getTopBigram(bigram, numbershow, selectNandJ):$/;"	f
+getVect	preprocess_data.py	/^def getVect(num):$/;"	f
+get_words	preprocess_data.py	/^def get_words(text):$/;"	f
+getfeaturesWeighted	preprocess_data.py	/^def getfeaturesWeighted(vect, corpus, title, content, start, end, num):$/;"	f
+lsa	preprocess_data.py	/^def lsa(X, n_components=80):$/;"	f
+make_pipeline	preprocess_data.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+memstem	preprocess_data.py	/^    def memstem(self, word):$/;"	m	class:SnowCastleStemmer
+nltk	preprocess_data.py	/^import nltk$/;"	i
+np	preprocess_data.py	/^import numpy as np$/;"	i
+num	preprocess_data.py	/^    num = 2$/;"	v
+ofile	preprocess_data.py	/^    ofile = open(outfileName + '.txt', "w",encoding='utf-8')$/;"	v
+outfileName	preprocess_data.py	/^    outfileName = sys.argv[2]$/;"	v
+path	preprocess_data.py	/^    path = sys.argv[1]$/;"	v
+pd	preprocess_data.py	/^import pandas as pd$/;"	i
+preprocessing	preprocess_data.py	/^def preprocessing(corpus, title, content, num):$/;"	f
+printTfidfWeight	preprocess_data.py	/^def printTfidfWeight(features_weighted, n_top, featureName, weights):$/;"	f
+process_data	preprocess_data.py	/^def process_data(corpus):$/;"	f
+process_data_ref	preprocess_data.py	/^def process_data_ref(corpus):$/;"	f
+process_data_stem	preprocess_data.py	/^def process_data_stem(corpus, stemmer):$/;"	f
+re	preprocess_data.py	/^import re$/;"	i
+readFromData	preprocess_data.py	/^def readFromData(filename):$/;"	f
+read_words	preprocess_data.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	preprocess_data.py	/^def removeWordFromStr(sentence, length):$/;"	f
+saveResults	preprocess_data.py	/^def saveResults(outfileName, id_, result, stemmer, n_tags=3):$/;"	f
+sorting	preprocess_data.py	/^import bottleneck as bn # sorting$/;"	i
+stop_words_2	preprocess_data.py	/^stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', ''])$/;"	v
+string	preprocess_data.py	/^import string$/;"	i
+sys	preprocess_data.py	/^import sys$/;"	i
+tagsThreshold	preprocess_data.py	/^def tagsThreshold(threshold, selectedFeature, n_top):$/;"	f
+text	preprocess_data.py	/^from sklearn.feature_extraction import text$/;"	i
+unstem	preprocess_data.py	/^    def unstem(self, stemmed_word):$/;"	m	class:SnowCastleStemmer
+all_tags	ref/script.py	/^all_tags = ['quantum-mechanics', 'homework-and-exercises', 'newtonian-mechanics', 'electromagnetism', 'quantum-field-theory', 'thermodynamics', 'general-relativity', 'special-relativity', 'classical-mechanics', 'forces', 'optics', 'fluid-dynamics', 'gravity', 'energy', 'particle-physics', 'electrostatics', 'cosmology', 'visible-light', 'statistical-mechanics', 'waves', 'black-holes', 'electricity', 'newtonian-gravity', 'electromagnetic-radiation', 'condensed-matter', 'experimental-physics', 'kinematics', 'photons', 'magnetic-fields', 'string-theory', 'lagrangian-formalism', 'spacetime', 'electric-circuits', 'mathematical-physics', 'mass', 'angular-momentum', 'differential-geometry', 'speed-of-light', 'solid-state-physics', 'pressure', 'operators', 'energy-conservation', 'nuclear-physics', 'momentum', 'electrons', 'rotational-dynamics', 'quantum-information', 'astrophysics', 'soft-question', 'astronomy', 'resource-recommendations', 'reference-frames', 'wavefunction', 'acoustics', 'temperature', 'conservation-laws', 'orbital-motion', 'hilbert-space', 'acceleration', 'time', 'friction', 'atomic-physics', 'quantum-spin', 'terminology', 'electric-fields', 'electric-current', 'schroedinger-equation', 'entropy', 'everyday-life', 'symmetry', 'water', 'charge', 'work', 'potential', 'universe', 'electrical-resistance', 'quantum-electrodynamics', 'velocity', 'standard-model', 'harmonic-oscillator', 'vectors', 'metric-tensor', 'gauge-theory', 'potential-energy', 'space-expansion', 'hamiltonian-formalism', 'field-theory', 'supersymmetry', 'relativity', 'material-science', 'radiation', 'entanglement', 'capacitance', 'collision', 'renormalization', 'laser', 'semiconductor-physics', 'reflection', 'group-theory', 'scattering', 'quantum-gravity', 'uncertainty-principle', 'research-level', 'earth', 'education', 'voltage', 'simulation', 'big-bang', 'measurement', 'torque', 'projectile', 'superconductivity', 'computational-physics', 'double-slit-experiment', 'units', 'conformal-field-theory', 'refraction', 'classical-electrodynamics', 'conventions', 'curvature', 'frequency', 'thermal-radiation', 'gravitational-waves', 'gauss-law', 'tensor-calculus', 'atmospheric-science', 'history', 'vacuum', 'coordinate-systems', 'definition', 'fourier-transform', 'inertial-frames', 'atoms', 'quantum-interpretations', 'probability', 'planets', 'ideal-gas', 'measurement-problem', 'path-integral', 'rotation', 'physical-chemistry', 'notation', 'faster-than-light', 'polarization', 'mass-energy', 'spring', 'interference', 'drag', 'feynman-diagram', 'maxwell-equations', 'rotational-kinematics', 'fermions', 'group-representations', 'quantum-chromodynamics', 'dark-matter', 'air', 'geometric-optics', 'geometry', 'spectroscopy', 'variational-principle', 'mathematics', 'power', 'aerodynamics', 'biophysics', 'diffraction', 'sun', 'hamiltonian', 'home-experiment', 'quantum-optics', 'quantum-computer', 'phase-transition', 'antimatter', 'neutrinos', 'integration', 'differentiation', 'specific-reference', 'time-dilation', 'dimensions', 'higgs', 'representation-theory', 'speed', 'solar-system', 'space', 'stars', 'lie-algebra', 'wave-particle-duality', 'symmetry-breaking', 'free-body-diagram', 'dirac-equation', 'boundary-conditions', 'commutator', 'dimensional-analysis', 'oscillators', 'topology', 'observers', 'density', 'spinors', 'action', 'heat', 'rocket-science', 'event-horizon', 'causality', 'singularities', 'perturbation-theory', 'elasticity', 'vector-fields', 'galaxies', 'estimation', 'tensors', 'centripetal-force', 'flow', 'resonance', 'stress-energy-tensor', 'linear-algebra', 'noethers-theorem', 'cosmological-inflation', 'moment-of-inertia', 'lenses', 'surface-tension', 'celestial-mechanics', 'plasma-physics', 'rigid-body-dynamics', 'error-analysis', 'radioactivity', 'quarks', 'crystals', 'physical-constants', 'ads-cft', 'relative-motion', 'statics', 'conductors', 'lorentz-symmetry', 'induction', 'hydrogen', 'software', 'dark-energy', 'coulombs-law', 'equilibrium', 'wavelength', 'superposition', 'geodesics', 'angular-velocity', 'buoyancy', 'eigenvalue', 'continuum-mechanics', 'electronic-band-theory', 'complex-numbers', 'centrifugal-force', 'discrete', 'geophysics', 'many-body', 'string', 'gauge-invariance', 'stress-strain', 'photoelectric-effect', 'statistics', 'fusion', 'electronics', 'dielectric', 'differential-equations', 'large-hadron-collider', 'vibration', 'observables', 'hydrostatics', 'cmb', 'density-operator', 'calculus', 'kinetic-theory', 'interactions', 'molecules', 'topological-field-theory', 'hawking-radiation', 'inductance', 'information', 'thermal-conductivity', 'free-fall', 'moon', 'diffusion', 'popular-science', 'batteries', 'topological-order', 'electrical-engineering', 'doppler-effect', 'approximations', 'metals', 'viscosity', 'covariance', 'greens-functions', 'distributions', 'particles', 'tidal-effect', 'neutrons', 'equivalence-principle', 'yang-mills', 'topological-insulators', 'vision', 'regularization', 'correlation-functions', 'constrained-dynamics', 'inertia', 'klein-gordon-equation', 'si-units', 'virtual-particles', 'bose-einstein-condensate', 'experimental-technique', 'data-analysis', 'second-quantization', 'wavefunction-collapse', 'distance', 'magnetic-moment', 'elementary-particles', 'beyond-the-standard-model', 'determinism', 'weak-interaction', 'protons', 'stability', 'fluid-statics', 'ising-model', 'nuclear-engineering', 'phase-space', 'weight', 'pauli-exclusion-principle', 'quantization', 'telescopes', 'unit-conversion', 'turbulence', 'time-evolution', 'magnetic-monopoles', 'degrees-of-freedom', 'evaporation', 'bernoulli-equation', 'propagator', 'scattering-cross-section', 'reversibility', 'partition-function', 'variational-calculus', 'chaos-theory', 'branes', 'matter', 'parity', 'states-of-matter', 'lattice-model', 'satellites', 'signal-processing', 'time-reversal-symmetry', 'decoherence', 'dipole', 'space-travel', 'quantum-anomalies', 'x-rays', 'aircraft', 'navier-stokes', 'interferometry', 'absorption', 'unitarity', 'adiabatic', 'graphene', 'thought-experiment', 'quantum-hall-effect', 'neutron-stars', 'higgs-boson', 'time-travel', 'phonons', 'non-linear-systems', 'radio', 'volume', 'orbitals', 'bosons', 's-matrix-theory', 'antennas', 'electroweak', 'ice', 'binding-energy', 'perpetual-motion', 'supergravity', 'holographic-principle', 'molecular-dynamics', 'metrology', 'gauge', 'compactification', 'lightning', 'quantum-chemistry', 'quantum-tunneling', 'wormholes', 'models', 'chirality', 'electromagnetic-induction', 'bells-inequality', 'explosions', 'nanoscience', 'particle-detectors', 'renewable-energy', 'weather', 'observational-astronomy', 'majorana-fermions', 'gamma-rays', 'dispersion', 'cosmological-constant', 'locality', 'ligo', 'gyroscopes', 'biology', 'vortex', 'strong-force', 'dirac-matrices', 'microscopy', 'classical-field-theory', 'stellar-physics', 'qft-in-curved-spacetime', 'propulsion', 'eye', 'heat-engine', 'fiber-optics', 'non-equilibrium', 'normalization', 'wick-rotation', 'convection', 'applied-physics', 'coherence', 'magnetostatics', 'perception', 'subatomic', 'theory-of-everything', 'superfluidity', 'light-emitting-diodes', 'duality', 'chern-simons-theory', 'noise', 'poincare-symmetry', 'poisson-brackets', 'supernova', 'gas', 'coriolis-effect', 'accelerator-physics', 'microwaves', 'coupled-oscillators', 'dipole-moment', 'spin-statistics', 'non-linear-optics', 'lift', 'radio-frequency', 'semiclassical', 'multipole-expansion', 'galilean-relativity', 'infrared-radiation', 'dissipation', 'effective-field-theory', 'gravitational-lensing', 'x-ray-crystallography', 'multiverse', 'gravitational-redshift', 'grassmann-numbers', 'photon-emission', 'topological-phase', 'chemical-potential', 'arrow-of-time', 'elements', 'helicity', 'precession', 'solid-mechanics', 'kaluza-klein', 'escape-velocity', 'blackbody', 'complex-systems', 'moment', 'brownian-motion', 'cp-violation', 'cooling', 'displacement', 'stellar-evolution', 'observable-universe', 'light', 'instantons', 'general-physics', 'numerical-method', 'data', 'wick-theorem', 'identical-particles', 'imaging', 'levitation', 'exoplanets', 'electrochemistry', 'born-rule', 'carnot-cycle', 'carrier-particles', 'aether', 'casimir-effect', 'confinement', 'climate-science', 'optical-materials', 'point-particle', 'warp-drives', 'anti-de-sitter-spacetime', 'linear-systems', 'foundations', 'teleportation', 'photovoltaics', 'quantum-statistics', 'meteorology', 'anyons', 'berry-pancharatnam-phase', 'bubble', 'cosmic-rays', 'visualization', 'solitons', 'poynting-vector', 'experimental-technology', 'camera', 'asteroids', 'loop-quantum-gravity', 'non-perturbative', 'grand-unification', 'integrable-systems', 'spin-model', 'spherical-harmonics', 'pair-production', 'non-locality', 'gluons', 'functional-derivatives', 'randomness', 'freezing', 'laws-of-physics', 'critical-phenomena', 'structural-beam', 'tachyon', 'textbook-erratum', 'mesons', 'material', 'ground-state', 'isotope', 'jerk', 'harmonics', 'brst', 'space-mission', 'pions', 'waveguide', 'scaling', 'isospin-symmetry', 'ions', 'gauge-symmetry', 'kerr-metric', 'hologram', 'black-hole-thermodynamics', 'capillary-action', 'shockwave', 'scale-invariance', 'redshift', 'particle-accelerators', 'chemical-compounds', 'medical-physics', 'milky-way', 'cold-atoms', 'stochastic-processes', 'color-charge', 'algorithm', 'order-of-magnitude', 'insulators', 'humidity', 'galaxy-rotation-curve', 'luminosity', 'condensation', 'density-functional-theory', 'epr-experiment', 'effective-action', 'trace', 'tight-binding', 'thermoelectricity', 'unified-theories', 'twin-paradox', 'sensor', 'baryons', 'absolute-units', 'fine-tuning', 'higgs-mechanism', 'invariants', 'ghosts', 'combustion', 'cpt-symmetry', 'quasiparticles', 'virtual-photons', 'density-of-states', 'clifford-algebra', 'normal-modes', 'numerics', 'magnetohydrodynamics', 'geomagnetism', 'ionization-energy', 'technology', 'piezoelectric', 'phase-diagram', 'quantum-states', 'machs-principle', 'matrix-elements', 'leptons', 'anticommutator', 'fermis-golden-rule', 'length-contraction', 'solar-system-exploration', 'white-holes', 'scales', 'physics-careers', 'big-list', 'computer', 'entanglement-entropy', 'phase-velocity', 'solar-wind', 'spin-chains', 'wigner-transform', 'solar-cells', 'diffeomorphism-invariance', 'asymptotics', 'non-linear-dynamics', 'modified-gravity', 'nasa', 'instrument', 'analyticity', 'category-theory', 'conservative-field', 'efficient-energy-use', 'ward-identity', 'schroedingers-cat', 'superalgebra', 'de-sitter-spacetime', 'cellular-automaton', 'optimization', 'open-quantum-systems', 'meteors', 'gps', 'fractals', 'baryogenesis', 'black-hole-firewall', 'raman-spectroscopy', 'plane-wave', 'superconformality', 'charge-conjugation', 'equations-of-motion', 'boundary-terms', 'linearized-theory', 'synchrotron-radiation', 'plasmon', 'radiometry', 'virial-theorem', 'wilson-loop', 'jupiter', 'laser-interaction', 'matrix-model', 'nucleosynthesis', 'moduli', 'image-processing', 'fan', 'calabi-yau', 'fluctuation-dissipation', 'stochastic-models', 'string-theory-landscape', 'inert-gases', 'integrals-of-motion', 'comets', 'clock', 'faq', 'cryogenics', 'laboratory-safety', 'mssm', 'oceanography', 'short-circuits', 'proton-decay', 'gravitational-collapse', 'exotic-matter', 'eclipse', 'graph-theory', 'pulsars', 'sigma-models', 'galaxy-clusters', 'dimensional-reg', 'atomic-excitation', 'anharmonic-oscillators', 'anthropic-principle', 'emergent-properties', 'energy-storage', 'interstellar-matter', 'low-temperature-physics', 'shadow', 'superspace-formalism', 'twistor', 'unruh-effect', 'minkowski-space', 'internal-energy', 'disorder', 'design', 'astrophotography', 'cavity-qed', 'interstellar-travel', 'lienard-wiechert', 'sports', 'rigid-solid', 'radar', 'relativistic-jets', 'photometry', 'structure-formation', 'network', 'higgs-field', 'fermi-liquids', 'cold-fusion', 'algebraic-geometry', 'dirac-monopole', 'equation-of-state', 'exchange-interaction', 'earthquake', 'cherenkov-radiation', 'building-physics', 'fluorescence', 'higher-spin', 'nature', 'string-field-theory', 'three-body-problem', 'percolation', 'meteorites', 'half-life', 'epistemology', 'adhesion', 'food', 'mean-free-path', 'porous-media', 'runge-lenz-vector', 'strong-correlated', 'reissner-nordstrom-metric', 'newtonian-fluid', 'length', 'frame-dragging', 'hadron-dynamics', 'accretion-disk', 'brachistochrone-problem', 'axion', 'functional-determinants', 'fock-space', 'liquid-crystal', 'non-commutative-geometry', 'nuclei', 'soft-matter', 'positronium', 'poincare-recurrence', 'steady-state', 'special-functions', 'thermal-field-theory', 'self-energy', 'quark-gluon-plasma', 'heavy-ion', 'bloch-sphere', 'braggs-law', 'deformation-quantization', 'diamond', 'closed-timelike-curve', 'bohmian-mechanics', 'binary-stars', 'leptogenesis', 'metallicity', 'potential-flow', 'stellar-population', 'maxwell-relations', 'non-linear-schroedinger', 'parallax', 'osmosis', 'amorphous-solids', 'canonical-conjugation', 'cosmic-censorship', 'dynamical-systems', 'displacement-current', 'bosonization', 'anderson-localization', 'astrometrics', 'atomic-clocks', 'non-commutative-theory', 'liquid-state', 'glass', 'topological-entropy', 'quasars', 'spin-glass', 'white-dwarfs', 'josephson-junction', 'ion-traps', 'large-n', 'metric-space', 'nucleation', 'born-oppenheimer-approx', 'amplituhedron', 'dirac-string', 'enthalpy', 'optical-lattices', 'nebulae', 'light-pollution', 'isotropy', 'gravitational-potential', 'unruh-radiation', 'two-level-system', 'seiberg-witten-theory', 'radiation-pressure', 'tsunami', 'solar-sails', 'wimps', 'isentropic', 'kerr-newman-metric', 'mass-spectrometry', 'cpt-violation', 'bloch-oscillation', 'bao', 'central-charge', 'debye-length', 'ferromagnetism', 'meteoroids', 'mnemonic', 'hadronization', 'grav-wave-detectors', 'geometric-topology', 'floquet-theory', 'supersymmetric-particles', 'transit', 'tevatron', 'quasicrystals', 'rheology', 'weak-lensing', 'fracture', 'gauss-bonnet', 'granulated-materials', 'nuclear-structure', 'magnets', 'lamb-shift', 'electromagnetic-field', 'cosmic-string', 'ballistics', 'birrefringence', 'landauers-principle', 'non-gaussianity', 'frw-universe', 'wightman-fields', 'wetting', 'reflectance', 'spin-liquid', 'sine-gordon', 'stellar-wind', 'rabi-model', 'free-electron-lasers', 'hopf-algebra', 'impedance-spectroscopy', 'irreversible', 'bifurcation', 'brown-dwarfs', 'correspondence-principle', 'couette-flow', 'econo-physics', 'duration', 'chirp', 'backscattering', 'affine-lie-algebra', 'antimatter-storage', 'pentaquarks', 'synthetic-gauge-fields', 'spin-ice', 'topological-charges', 'quasi-periodic', 'self-capacitance', 'feedback', 'heterotic-string', 'lamb-waves', 'logic-gates', 'machos']$/;"	v
+all_tags	ref/script.py	/^all_tags = set(all_tags)$/;"	v
+clean_html	ref/script.py	/^def clean_html(raw_html):$/;"	f
+csv	ref/script.py	/^import csv$/;"	i
+data_path	ref/script.py	/^data_path = "..\/input\/"$/;"	v
+defaultdict	ref/script.py	/^from collections import defaultdict$/;"	i
+dfrequency_dict	ref/script.py	/^    dfrequency_dict = defaultdict(int)$/;"	v
+f1_score	ref/script.py	/^def f1_score(tp, fp, fn):$/;"	f
+get_words	ref/script.py	/^def get_words(text):$/;"	f
+in_file	ref/script.py	/^in_file = open(data_path+"test.csv")$/;"	v
+length	ref/script.py	/^    length = len(pred_tags)$/;"	v
+operator	ref/script.py	/^import operator$/;"	i
+out_file	ref/script.py	/^out_file = open("sub_freq.csv", "w")$/;"	v
+pred_content_tags	ref/script.py	/^    pred_content_tags = sorted(dfrequency_dict, key=dfrequency_dict.get, reverse=True)[:10]$/;"	v
+pred_tags	ref/script.py	/^    pred_tags = set(sorted(pred_tags_dict, key=pred_tags_dict.get, reverse=True)[:3])$/;"	v
+pred_tags_dict	ref/script.py	/^    pred_tags_dict = {}$/;"	v
+pred_title_tags	ref/script.py	/^    pred_title_tags = sorted(tfrequency_dict, key=tfrequency_dict.get, reverse=True)[:10]$/;"	v
+re	ref/script.py	/^import re$/;"	i
+reader	ref/script.py	/^reader = csv.DictReader(in_file)$/;"	v
+text	ref/script.py	/^    text = clean_html(row["content"])$/;"	v
+text	ref/script.py	/^    text = clean_html(row["title"])$/;"	v
+tf	ref/script.py	/^    	tf = dfrequency_dict[word] \/ word_count$/;"	v
+tf	ref/script.py	/^    	tf = tfrequency_dict[word] \/ word_count$/;"	v
+tfrequency_dict	ref/script.py	/^    tfrequency_dict = defaultdict(int)$/;"	v
+top_tags	ref/script.py	/^top_tags = ["quantum-mechanics", "homework-and-exercises", "newtonian-mechanics"]$/;"	v
+word_count	ref/script.py	/^    word_count = 0.$/;"	v
+writer	ref/script.py	/^writer = csv.writer(out_file)$/;"	v
+OrderedDict	ref/tfIdf.py	/^from collections import defaultdict, OrderedDict$/;"	i
+clean_html	ref/tfIdf.py	/^def clean_html(raw_html):$/;"	f
+csv	ref/tfIdf.py	/^import csv$/;"	i
+defaultdict	ref/tfIdf.py	/^from collections import defaultdict, OrderedDict$/;"	i
+get_words	ref/tfIdf.py	/^def get_words(text):$/;"	f
+main	ref/tfIdf.py	/^def main():$/;"	f
+math	ref/tfIdf.py	/^import math$/;"	i
+process_text	ref/tfIdf.py	/^def process_text(doc, idf, text):$/;"	f
+re	ref/tfIdf.py	/^import re$/;"	i
+stop_words	ref/tfIdf.py	/^stop_words = {'a', "a's", 'able', 'about', 'above', 'according', 'accordingly',$/;"	v
+sys	ref/tfIdf.py	/^import sys$/;"	i
+clean_html	ref/tfidf_2.py	/^def clean_html(raw_html):$/;"	f
+csv	ref/tfidf_2.py	/^import csv$/;"	i
+data_path	ref/tfidf_2.py	/^data_path = sys.argv[1]    $/;"	v
+defaultdict	ref/tfidf_2.py	/^from collections import defaultdict$/;"	i
+dfrequency_dict	ref/tfidf_2.py	/^	dfrequency_dict = defaultdict(int)$/;"	v
+f1_score	ref/tfidf_2.py	/^def f1_score(tp, fp, fn):$/;"	f
+get_words	ref/tfidf_2.py	/^def get_words(text):$/;"	f
+in_file	ref/tfidf_2.py	/^in_file = open(data_path)$/;"	v
+operator	ref/tfidf_2.py	/^import operator$/;"	i
+out_file	ref/tfidf_2.py	/^out_file = open(sys.argv[2], "w")$/;"	v
+pred_content_tags	ref/tfidf_2.py	/^	pred_content_tags = sorted(dfrequency_dict, key=dfrequency_dict.get, reverse=True)[:10]$/;"	v
+pred_tags	ref/tfidf_2.py	/^	pred_tags = set(sorted(pred_tags_dict, key=pred_tags_dict.get, reverse=True)[:5])$/;"	v
+pred_tags_dict	ref/tfidf_2.py	/^	pred_tags_dict = {}$/;"	v
+pred_title_tags	ref/tfidf_2.py	/^	pred_title_tags = sorted(tfrequency_dict, key=tfrequency_dict.get, reverse=True)[:10]$/;"	v
+re	ref/tfidf_2.py	/^import re$/;"	i
+reader	ref/tfidf_2.py	/^reader = csv.DictReader(in_file)$/;"	v
+stop_words	ref/tfidf_2.py	/^stop_words = set(['a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', ''])$/;"	v
+sys	ref/tfidf_2.py	/^import sys$/;"	i
+text	ref/tfidf_2.py	/^	text = clean_html(row["content"])$/;"	v
+text	ref/tfidf_2.py	/^	text = clean_html(row["title"])$/;"	v
+tf	ref/tfidf_2.py	/^		tf = dfrequency_dict[word] \/ word_count$/;"	v
+tf	ref/tfidf_2.py	/^		tf = tfrequency_dict[word] \/ word_count$/;"	v
+tfrequency_dict	ref/tfidf_2.py	/^	tfrequency_dict = defaultdict(int)$/;"	v
+word_count	ref/tfidf_2.py	/^	word_count = 0.$/;"	v
+writer	ref/tfidf_2.py	/^writer = csv.writer(out_file)$/;"	v
+createCorpus	ron/gen_corpus.py	/^def createCorpus(pyName, data_path, data_list, outputName):$/;"	f
+data_list	ron/gen_corpus.py	/^    data_list = ['biology', 'cooking', 'crypto', 'diy', 'robotics', 'travel']$/;"	v
+data_path	ron/gen_corpus.py	/^    data_path = '..\/..\/..\/data\/'$/;"	v
+np	ron/gen_corpus.py	/^import numpy as np$/;"	i
+outputName	ron/gen_corpus.py	/^    outputName = 'corpus_'$/;"	v
+pyName	ron/gen_corpus.py	/^    pyName = 'preprocess_data.py'$/;"	v
+re	ron/gen_corpus.py	/^import re$/;"	i
+subprocess	ron/gen_corpus.py	/^import subprocess$/;"	i
+sys	ron/gen_corpus.py	/^import sys$/;"	i
+Phrases	ron/preprocess_data.py	/^from gensim.models.phrases import Phrases$/;"	i
+Trigram	ron/preprocess_data.py	/^    Trigram = True$/;"	v
+bigramProcess	ron/preprocess_data.py	/^def bigramProcess(corpus,title,content,minCount = 5,thresholds = 10.0):$/;"	f
+clean_corpus	ron/preprocess_data.py	/^def clean_corpus(corpus):$/;"	f
+clean_phrase_stopword	ron/preprocess_data.py	/^def clean_phrase_stopword(corpus):$/;"	f
+collections	ron/preprocess_data.py	/^import collections$/;"	i
+construct_phrase_dict	ron/preprocess_data.py	/^def construct_phrase_dict(corpus):$/;"	f
+content	ron/preprocess_data.py	/^    content = [ removeWordFromStr(sentence, 3, 30) for sentence in content ]$/;"	v
+content	ron/preprocess_data.py	/^    content = clean_phrase_stopword(content)$/;"	v
+content	ron/preprocess_data.py	/^    content = deletecomponent(content,2, 20)$/;"	v
+content	ron/preprocess_data.py	/^    content = extend_abbreviation(mapping, content)$/;"	v
+content	ron/preprocess_data.py	/^    content = filterNotEnglish(content)$/;"	v
+corpus	ron/preprocess_data.py	/^    corpus = [a + " " + b for a, b in zip(title, content)]$/;"	v
+corpus	ron/preprocess_data.py	/^    corpus = deletecomponent(corpus,2, 20)$/;"	v
+debug	ron/preprocess_data.py	/^    debug = False$/;"	v
+defaultdict	ron/preprocess_data.py	/^from collections import defaultdict$/;"	i
+deletecomponent	ron/preprocess_data.py	/^def deletecomponent(corpus, numremove, numremoveMax):$/;"	f
+enchant	ron/preprocess_data.py	/^    import enchant$/;"	i
+extend_abbreviation	ron/preprocess_data.py	/^def extend_abbreviation(mapping, corpus):$/;"	f
+filterNotEnglish	ron/preprocess_data.py	/^def filterNotEnglish(corpus):$/;"	f
+generate_corpus_pos	ron/preprocess_data.py	/^def generate_corpus_pos(corpus):$/;"	f
+getTopBigram	ron/preprocess_data.py	/^def getTopBigram(bigram, numbershow, selectNandJ):$/;"	f
+mapping	ron/preprocess_data.py	/^    mapping = construct_phrase_dict(corpus)$/;"	v
+nltk	ron/preprocess_data.py	/^import nltk$/;"	i
+np	ron/preprocess_data.py	/^import numpy as np$/;"	i
+os	ron/preprocess_data.py	/^import os.path$/;"	i
+outfileName	ron/preprocess_data.py	/^    outfileName = sys.argv[2]$/;"	v
+path	ron/preprocess_data.py	/^    path = sys.argv[1]$/;"	v
+path	ron/preprocess_data.py	/^import os.path$/;"	i
+pd	ron/preprocess_data.py	/^import pandas as pd$/;"	i
+preprocessing	ron/preprocess_data.py	/^def preprocessing(corpus, title, content):$/;"	f
+process_data	ron/preprocess_data.py	/^def process_data(corpus):$/;"	f
+re	ron/preprocess_data.py	/^import re$/;"	i
+readFromData	ron/preprocess_data.py	/^def readFromData(filename):$/;"	f
+read_words	ron/preprocess_data.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	ron/preprocess_data.py	/^def removeWordFromStr(sentence, short_length, long_length):$/;"	f
+saveFile	ron/preprocess_data.py	/^def saveFile(outfileName, id_, corpus, title, content):$/;"	f
+sys	ron/preprocess_data.py	/^import sys$/;"	i
+text	ron/preprocess_data.py	/^from sklearn.feature_extraction import text$/;"	i
+title	ron/preprocess_data.py	/^    title = [ removeWordFromStr(sentence, 3, 30) for sentence in title ]$/;"	v
+title	ron/preprocess_data.py	/^    title = clean_phrase_stopword(title)$/;"	v
+title	ron/preprocess_data.py	/^    title = deletecomponent(title,2, 20)$/;"	v
+title	ron/preprocess_data.py	/^    title = extend_abbreviation(mapping, title)$/;"	v
+title	ron/preprocess_data.py	/^    title = filterNotEnglish(title)$/;"	v
+wordnet	ron/preprocess_data.py	/^from nltk.corpus import wordnet$/;"	i
+CountVectorizer	ron/tfidf.py	/^from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer$/;"	i
+KMeans	ron/tfidf.py	/^from sklearn.cluster import KMeans$/;"	i
+Normalizer	ron/tfidf.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+OrderedDict	ron/tfidf.py	/^from collections import OrderedDict$/;"	i
+Phrases	ron/tfidf.py	/^from gensim.models.phrases import Phrases$/;"	i
+TfidfVectorizer	ron/tfidf.py	/^from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer$/;"	i
+TruncatedSVD	ron/tfidf.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	ron/tfidf.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+contentVect	ron/tfidf.py	/^    contentVect = tf_idf(content)$/;"	v
+defaultdict	ron/tfidf.py	/^from collections import defaultdict$/;"	i
+feature_arr	ron/tfidf.py	/^    feature_arr = get_tags(corpus, title, content, titleVect, contentVect)$/;"	v
+getFeaturearr	ron/tfidf.py	/^def getFeaturearr(feature_arr, features_title, features_content, titleName, contentName, n_top):$/;"	f
+get_tags	ron/tfidf.py	/^def get_tags(corpus, title, content, titleVect, contentVect):$/;"	f
+getfeaturesWeighted	ron/tfidf.py	/^def getfeaturesWeighted(titleVect, contentVect, title, content):$/;"	f
+make_pipeline	ron/tfidf.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+my_stop_words	ron/tfidf.py	/^my_stop_words = read_words('long_stop_word.txt')$/;"	v
+nltk	ron/tfidf.py	/^import nltk$/;"	i
+np	ron/tfidf.py	/^import numpy as np$/;"	i
+os	ron/tfidf.py	/^import os.path$/;"	i
+outfileName	ron/tfidf.py	/^outfileName = sys.argv[2]$/;"	v
+path	ron/tfidf.py	/^import os.path$/;"	i
+path	ron/tfidf.py	/^path = sys.argv[1]$/;"	v
+pd	ron/tfidf.py	/^import pandas as pd$/;"	i
+re	ron/tfidf.py	/^import re$/;"	i
+readFromData	ron/tfidf.py	/^def readFromData(filename):$/;"	f
+read_words	ron/tfidf.py	/^def read_words(words_file):$/;"	f
+saveResults	ron/tfidf.py	/^def saveResults(outfileName, id_, result):$/;"	f
+stop_words	ron/tfidf.py	/^stop_words = text.ENGLISH_STOP_WORDS.union(my_stop_words)$/;"	v
+string	ron/tfidf.py	/^import string$/;"	i
+sys	ron/tfidf.py	/^import sys$/;"	i
+text	ron/tfidf.py	/^from sklearn.feature_extraction import text$/;"	i
+tf_idf	ron/tfidf.py	/^def tf_idf(corpus):$/;"	f
+titleVect	ron/tfidf.py	/^    titleVect = tf_idf(title)$/;"	v
+wordnet	ron/tfidf.py	/^from nltk.corpus import wordnet$/;"	i
+Normalizer	tag_gen_ans.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+Phrases	tag_gen_ans.py	/^from gensim.models.phrases import Phrases$/;"	i
+SnowCastleStemmer	tag_gen_ans.py	/^class SnowCastleStemmer(nltk.stem.SnowballStemmer):$/;"	c
+TfidfVectorizer	tag_gen_ans.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+Tokenizer	tag_gen_ans.py	/^def Tokenizer(corpus):$/;"	f
+TruncatedSVD	tag_gen_ans.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	tag_gen_ans.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+__init__	tag_gen_ans.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:SnowCastleStemmer
+addThres	tag_gen_ans.py	/^    addThres = False$/;"	v
+addTop	tag_gen_ans.py	/^    addTop = True$/;"	v
+bigram	tag_gen_ans.py	/^    bigram = []$/;"	v
+bigramProcess	tag_gen_ans.py	/^def bigramProcess(corpus,title,content):$/;"	f
+bn	tag_gen_ans.py	/^import bottleneck as bn # sorting$/;"	i
+clean_corpus	tag_gen_ans.py	/^def clean_corpus(corpus):$/;"	f
+clean_html	tag_gen_ans.py	/^def clean_html(raw_html):$/;"	f
+collections	tag_gen_ans.py	/^import collections$/;"	i
+data	tag_gen_ans.py	/^    data = { 'feature_arr': feature_arr,$/;"	v
+featureName	tag_gen_ans.py	/^    featureName = np.array(vect.get_feature_names() )$/;"	v
+feature_arr	tag_gen_ans.py	/^    feature_arr = [ sentence.split(" ") for sentence in title ]$/;"	v
+feature_arr	tag_gen_ans.py	/^    feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)$/;"	v
+features	tag_gen_ans.py	/^    features = vect.fit(corpus)$/;"	v
+filterFromList	tag_gen_ans.py	/^def filterFromList(results, stop_words):$/;"	f
+filterPostag	tag_gen_ans.py	/^def filterPostag(feature_arr):$/;"	f
+generateOutput	tag_gen_ans.py	/^def generateOutput(nb_partition, corpus, vect, title, content, featureName):$/;"	f
+generate_corpus_pos	tag_gen_ans.py	/^def generate_corpus_pos(corpus, name):$/;"	f
+genfromtxt	tag_gen_ans.py	/^from numpy import genfromtxt$/;"	i
+getFeaturearr	tag_gen_ans.py	/^def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):$/;"	f
+getOutputVar	tag_gen_ans.py	/^def getOutputVar(addTop, addThres):$/;"	f
+getResults	tag_gen_ans.py	/^def getResults(result, id_, n_tags=3):$/;"	f
+getVect	tag_gen_ans.py	/^def getVect(num):$/;"	f
+get_wordnet_pos	tag_gen_ans.py	/^def get_wordnet_pos(treebank_tag):$/;"	f
+get_words	tag_gen_ans.py	/^def get_words(text):$/;"	f
+getfeaturesWeighted	tag_gen_ans.py	/^def getfeaturesWeighted(vect, corpus, title, content, start, end, num):$/;"	f
+itertools	tag_gen_ans.py	/^import itertools$/;"	i
+li	tag_gen_ans.py	/^        li = sys.argv[i].split("=")$/;"	v
+lsa	tag_gen_ans.py	/^def lsa(X, n_components=80):$/;"	f
+make_pipeline	tag_gen_ans.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+memstem	tag_gen_ans.py	/^    def memstem(self, word):$/;"	m	class:SnowCastleStemmer
+n_top	tag_gen_ans.py	/^            n_top = int(li[1])$/;"	v
+n_top	tag_gen_ans.py	/^    n_top = 5$/;"	v
+nb_partition	tag_gen_ans.py	/^    nb_partition = 5000$/;"	v
+nltk	tag_gen_ans.py	/^import nltk$/;"	i
+np	tag_gen_ans.py	/^import numpy as np$/;"	i
+os	tag_gen_ans.py	/^import os.path$/;"	i
+outfileName	tag_gen_ans.py	/^    outfileName = sys.argv[2]$/;"	v
+path	tag_gen_ans.py	/^    path = sys.argv[1]$/;"	v
+path	tag_gen_ans.py	/^import os.path$/;"	i
+pd	tag_gen_ans.py	/^import pandas as pd$/;"	i
+pickle	tag_gen_ans.py	/^import pickle$/;"	i
+preprocessing	tag_gen_ans.py	/^def preprocessing(corpus, title, content, num):$/;"	f
+printTfidfWeight	tag_gen_ans.py	/^def printTfidfWeight(features_weighted, n_top, featureName, weights):$/;"	f
+process_data	tag_gen_ans.py	/^def process_data(corpus,name):$/;"	f
+process_data_ref	tag_gen_ans.py	/^def process_data_ref(corpus,name):$/;"	f
+process_data_stem	tag_gen_ans.py	/^def process_data_stem(corpus, stemmer):$/;"	f
+re	tag_gen_ans.py	/^import re$/;"	i
+readFromCsv	tag_gen_ans.py	/^def readFromCsv(filename):$/;"	f
+readFromPickle	tag_gen_ans.py	/^def readFromPickle(filename):$/;"	f
+read_words	tag_gen_ans.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	tag_gen_ans.py	/^def removeWordFromStr(sentence, length):$/;"	f
+saveResults	tag_gen_ans.py	/^def saveResults(outfileName, id_, result, stemmer, n_tags=3):$/;"	f
+sorting	tag_gen_ans.py	/^import bottleneck as bn # sorting$/;"	i
+stemmer	tag_gen_ans.py	/^    stemmer = []$/;"	v
+stop_words_2	tag_gen_ans.py	/^stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', ''])$/;"	v
+string	tag_gen_ans.py	/^import string$/;"	i
+sys	tag_gen_ans.py	/^import sys$/;"	i
+sys_input3	tag_gen_ans.py	/^sys_input3 = sys.argv[3]$/;"	v
+tagsThreshold	tag_gen_ans.py	/^def tagsThreshold(threshold, selectedFeature, n_top):$/;"	f
+text	tag_gen_ans.py	/^from sklearn.feature_extraction import text$/;"	i
+threshold	tag_gen_ans.py	/^    threshold = 1$/;"	v
+unstem	tag_gen_ans.py	/^    def unstem(self, stemmed_word):$/;"	m	class:SnowCastleStemmer
+vect	tag_gen_ans.py	/^    vect = getVect(vect_type)$/;"	v
+vect_type	tag_gen_ans.py	/^            vect_type = int(li[1])$/;"	v
+vect_type	tag_gen_ans.py	/^    vect_type = 2$/;"	v
+weights	tag_gen_ans.py	/^    weights = np.array( vect.idf_ )$/;"	v
+wordnet	tag_gen_ans.py	/^from nltk.corpus import wordnet$/;"	i
+writeResults	tag_gen_ans.py	/^def writeResults(outfileName, id_, ans):$/;"	f
+Normalizer	tag_gen_ans_tfidf.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+Phrases	tag_gen_ans_tfidf.py	/^from gensim.models.phrases import Phrases$/;"	i
+SnowCastleStemmer	tag_gen_ans_tfidf.py	/^class SnowCastleStemmer(nltk.stem.SnowballStemmer):$/;"	c
+TfidfVectorizer	tag_gen_ans_tfidf.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+Tokenizer	tag_gen_ans_tfidf.py	/^def Tokenizer(corpus):$/;"	f
+TruncatedSVD	tag_gen_ans_tfidf.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	tag_gen_ans_tfidf.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+__init__	tag_gen_ans_tfidf.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:SnowCastleStemmer
+addThres	tag_gen_ans_tfidf.py	/^    addThres = False$/;"	v
+addTop	tag_gen_ans_tfidf.py	/^    addTop = True$/;"	v
+bigram	tag_gen_ans_tfidf.py	/^    bigram = []$/;"	v
+bigramProcess	tag_gen_ans_tfidf.py	/^def bigramProcess(corpus,title,content):$/;"	f
+bn	tag_gen_ans_tfidf.py	/^import bottleneck as bn # sorting$/;"	i
+clean_corpus	tag_gen_ans_tfidf.py	/^def clean_corpus(corpus):$/;"	f
+clean_html	tag_gen_ans_tfidf.py	/^def clean_html(raw_html):$/;"	f
+collections	tag_gen_ans_tfidf.py	/^import collections$/;"	i
+content	tag_gen_ans_tfidf.py	/^    content = content.astype('U')$/;"	v
+featureName	tag_gen_ans_tfidf.py	/^    featureName = np.array(vect.get_feature_names() )$/;"	v
+feature_arr	tag_gen_ans_tfidf.py	/^    feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName, ratio)$/;"	v
+features	tag_gen_ans_tfidf.py	/^    features = vect.fit(corpus)$/;"	v
+filterFromList	tag_gen_ans_tfidf.py	/^def filterFromList(results, stop_words):$/;"	f
+filterPostag	tag_gen_ans_tfidf.py	/^def filterPostag(feature_arr):$/;"	f
+filterRareTags	tag_gen_ans_tfidf.py	/^def filterRareTags(tags_arr, threshold):$/;"	f
+generateOutput	tag_gen_ans_tfidf.py	/^def generateOutput(nb_partition, corpus, vect, title, content, featureName, ratio):$/;"	f
+generate_corpus_pos	tag_gen_ans_tfidf.py	/^def generate_corpus_pos(corpus, name):$/;"	f
+genfromtxt	tag_gen_ans_tfidf.py	/^from numpy import genfromtxt$/;"	i
+getFeaturearr	tag_gen_ans_tfidf.py	/^def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):$/;"	f
+getOutputVar	tag_gen_ans_tfidf.py	/^def getOutputVar(addTop, addThres):$/;"	f
+getResults	tag_gen_ans_tfidf.py	/^def getResults(result, id_, n_tags=3):$/;"	f
+getVect	tag_gen_ans_tfidf.py	/^def getVect(num):$/;"	f
+get_wordnet_pos	tag_gen_ans_tfidf.py	/^def get_wordnet_pos(treebank_tag):$/;"	f
+get_words	tag_gen_ans_tfidf.py	/^def get_words(text):$/;"	f
+getfeaturesWeighted	tag_gen_ans_tfidf.py	/^def getfeaturesWeighted(vect, corpus, title, content, start, end, num, ratio):$/;"	f
+itertools	tag_gen_ans_tfidf.py	/^import itertools$/;"	i
+li	tag_gen_ans_tfidf.py	/^        li = sys.argv[i].split("=")$/;"	v
+lsa	tag_gen_ans_tfidf.py	/^def lsa(X, n_components=80):$/;"	f
+make_pipeline	tag_gen_ans_tfidf.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+memstem	tag_gen_ans_tfidf.py	/^    def memstem(self, word):$/;"	m	class:SnowCastleStemmer
+n_top	tag_gen_ans_tfidf.py	/^            n_top = int(li[1])$/;"	v
+n_top	tag_gen_ans_tfidf.py	/^    n_top = 5$/;"	v
+nb_partition	tag_gen_ans_tfidf.py	/^    nb_partition = 5000$/;"	v
+nltk	tag_gen_ans_tfidf.py	/^import nltk$/;"	i
+np	tag_gen_ans_tfidf.py	/^import numpy as np$/;"	i
+os	tag_gen_ans_tfidf.py	/^import os.path$/;"	i
+outfileName	tag_gen_ans_tfidf.py	/^    outfileName = sys.argv[2]$/;"	v
+path	tag_gen_ans_tfidf.py	/^    path = sys.argv[1]$/;"	v
+path	tag_gen_ans_tfidf.py	/^import os.path$/;"	i
+pd	tag_gen_ans_tfidf.py	/^import pandas as pd$/;"	i
+pickle	tag_gen_ans_tfidf.py	/^import pickle$/;"	i
+preprocessing	tag_gen_ans_tfidf.py	/^def preprocessing(corpus, title, content, num):$/;"	f
+printTfidfWeight	tag_gen_ans_tfidf.py	/^def printTfidfWeight(features_weighted, n_top, featureName, weights):$/;"	f
+process_data	tag_gen_ans_tfidf.py	/^def process_data(corpus,name):$/;"	f
+process_data_ref	tag_gen_ans_tfidf.py	/^def process_data_ref(corpus,name):$/;"	f
+process_data_stem	tag_gen_ans_tfidf.py	/^def process_data_stem(corpus, stemmer):$/;"	f
+ratio	tag_gen_ans_tfidf.py	/^            ratio = np.array( li[1].split(":") ).astype(int)$/;"	v
+ratio	tag_gen_ans_tfidf.py	/^    ratio = [8,1]$/;"	v
+re	tag_gen_ans_tfidf.py	/^import re$/;"	i
+readFromCsv	tag_gen_ans_tfidf.py	/^def readFromCsv(filename):$/;"	f
+readFromPickle	tag_gen_ans_tfidf.py	/^def readFromPickle(filename):$/;"	f
+read_words	tag_gen_ans_tfidf.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	tag_gen_ans_tfidf.py	/^def removeWordFromStr(sentence, length):$/;"	f
+saveResults	tag_gen_ans_tfidf.py	/^def saveResults(outfileName, id_, result, stemmer, n_tags=3):$/;"	f
+sorting	tag_gen_ans_tfidf.py	/^import bottleneck as bn # sorting$/;"	i
+stemmer	tag_gen_ans_tfidf.py	/^    stemmer = []$/;"	v
+string	tag_gen_ans_tfidf.py	/^import string$/;"	i
+sys	tag_gen_ans_tfidf.py	/^import sys$/;"	i
+tagsThreshold	tag_gen_ans_tfidf.py	/^def tagsThreshold(threshold, selectedFeature, n_top):$/;"	f
+text	tag_gen_ans_tfidf.py	/^from sklearn.feature_extraction import text$/;"	i
+threshold	tag_gen_ans_tfidf.py	/^    threshold = 1$/;"	v
+title	tag_gen_ans_tfidf.py	/^    title = title.astype('U')$/;"	v
+unstem	tag_gen_ans_tfidf.py	/^    def unstem(self, stemmed_word):$/;"	m	class:SnowCastleStemmer
+vect	tag_gen_ans_tfidf.py	/^    vect = getVect(vect_type)$/;"	v
+vect_type	tag_gen_ans_tfidf.py	/^            vect_type = int(li[1])$/;"	v
+vect_type	tag_gen_ans_tfidf.py	/^    vect_type = 2$/;"	v
+weights	tag_gen_ans_tfidf.py	/^    weights = np.array( vect.idf_ )$/;"	v
+wordListToFreqDict	tag_gen_ans_tfidf.py	/^def wordListToFreqDict(wordlist):$/;"	f
+wordnet	tag_gen_ans_tfidf.py	/^from nltk.corpus import wordnet$/;"	i
+writeResults	tag_gen_ans_tfidf.py	/^def writeResults(outfileName, id_, ans):$/;"	f
+Normalizer	tag_gen_ans_tfidf_sep.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+Phrases	tag_gen_ans_tfidf_sep.py	/^from gensim.models.phrases import Phrases$/;"	i
+SnowCastleStemmer	tag_gen_ans_tfidf_sep.py	/^class SnowCastleStemmer(nltk.stem.SnowballStemmer):$/;"	c
+TfidfVectorizer	tag_gen_ans_tfidf_sep.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+Tokenizer	tag_gen_ans_tfidf_sep.py	/^def Tokenizer(corpus):$/;"	f
+TruncatedSVD	tag_gen_ans_tfidf_sep.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	tag_gen_ans_tfidf_sep.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+__init__	tag_gen_ans_tfidf_sep.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:SnowCastleStemmer
+addThres	tag_gen_ans_tfidf_sep.py	/^    addThres = False$/;"	v
+addTop	tag_gen_ans_tfidf_sep.py	/^    addTop = True$/;"	v
+bigram	tag_gen_ans_tfidf_sep.py	/^    bigram = []$/;"	v
+bigramProcess	tag_gen_ans_tfidf_sep.py	/^def bigramProcess(corpus,title,content):$/;"	f
+bn	tag_gen_ans_tfidf_sep.py	/^import bottleneck as bn # sorting$/;"	i
+clean_corpus	tag_gen_ans_tfidf_sep.py	/^def clean_corpus(corpus):$/;"	f
+clean_html	tag_gen_ans_tfidf_sep.py	/^def clean_html(raw_html):$/;"	f
+collections	tag_gen_ans_tfidf_sep.py	/^import collections$/;"	i
+content	tag_gen_ans_tfidf_sep.py	/^    content = content.astype('U')$/;"	v
+featureName	tag_gen_ans_tfidf_sep.py	/^    featureName = np.array(vect.get_feature_names() )$/;"	v
+feature_arr	tag_gen_ans_tfidf_sep.py	/^    feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)$/;"	v
+features	tag_gen_ans_tfidf_sep.py	/^    features = vect.fit(corpus)$/;"	v
+filterFromList	tag_gen_ans_tfidf_sep.py	/^def filterFromList(results, stop_words):$/;"	f
+filterPostag	tag_gen_ans_tfidf_sep.py	/^def filterPostag(feature_arr):$/;"	f
+generateOutput	tag_gen_ans_tfidf_sep.py	/^def generateOutput(nb_partition, corpus, vect, title, content, featureName):$/;"	f
+generate_corpus_pos	tag_gen_ans_tfidf_sep.py	/^def generate_corpus_pos(corpus, name):$/;"	f
+genfromtxt	tag_gen_ans_tfidf_sep.py	/^from numpy import genfromtxt$/;"	i
+getFeaturearr	tag_gen_ans_tfidf_sep.py	/^def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):$/;"	f
+getOutputVar	tag_gen_ans_tfidf_sep.py	/^def getOutputVar(addTop, addThres):$/;"	f
+getResults	tag_gen_ans_tfidf_sep.py	/^def getResults(result, id_, n_tags=3):$/;"	f
+getVect	tag_gen_ans_tfidf_sep.py	/^def getVect(num):$/;"	f
+get_wordnet_pos	tag_gen_ans_tfidf_sep.py	/^def get_wordnet_pos(treebank_tag):$/;"	f
+get_words	tag_gen_ans_tfidf_sep.py	/^def get_words(text):$/;"	f
+getfeaturesWeighted	tag_gen_ans_tfidf_sep.py	/^def getfeaturesWeighted(vect, corpus, title, content, start, end, num):$/;"	f
+itertools	tag_gen_ans_tfidf_sep.py	/^import itertools$/;"	i
+li	tag_gen_ans_tfidf_sep.py	/^        li = sys.argv[i].split("=")$/;"	v
+lsa	tag_gen_ans_tfidf_sep.py	/^def lsa(X, n_components=80):$/;"	f
+make_pipeline	tag_gen_ans_tfidf_sep.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+memstem	tag_gen_ans_tfidf_sep.py	/^    def memstem(self, word):$/;"	m	class:SnowCastleStemmer
+n_top	tag_gen_ans_tfidf_sep.py	/^            n_top = int(li[1])$/;"	v
+n_top	tag_gen_ans_tfidf_sep.py	/^    n_top = 5$/;"	v
+nb_partition	tag_gen_ans_tfidf_sep.py	/^    nb_partition = 5000$/;"	v
+nltk	tag_gen_ans_tfidf_sep.py	/^import nltk$/;"	i
+np	tag_gen_ans_tfidf_sep.py	/^import numpy as np$/;"	i
+os	tag_gen_ans_tfidf_sep.py	/^import os.path$/;"	i
+outfileName	tag_gen_ans_tfidf_sep.py	/^    outfileName = sys.argv[2]$/;"	v
+path	tag_gen_ans_tfidf_sep.py	/^    path = sys.argv[1]$/;"	v
+path	tag_gen_ans_tfidf_sep.py	/^import os.path$/;"	i
+pd	tag_gen_ans_tfidf_sep.py	/^import pandas as pd$/;"	i
+pickle	tag_gen_ans_tfidf_sep.py	/^import pickle$/;"	i
+preprocessing	tag_gen_ans_tfidf_sep.py	/^def preprocessing(corpus, title, content, num):$/;"	f
+printTfidfWeight	tag_gen_ans_tfidf_sep.py	/^def printTfidfWeight(features_weighted, n_top, featureName, weights):$/;"	f
+process_data	tag_gen_ans_tfidf_sep.py	/^def process_data(corpus,name):$/;"	f
+process_data_ref	tag_gen_ans_tfidf_sep.py	/^def process_data_ref(corpus,name):$/;"	f
+process_data_stem	tag_gen_ans_tfidf_sep.py	/^def process_data_stem(corpus, stemmer):$/;"	f
+re	tag_gen_ans_tfidf_sep.py	/^import re$/;"	i
+readFromCsv	tag_gen_ans_tfidf_sep.py	/^def readFromCsv(filename):$/;"	f
+readFromPickle	tag_gen_ans_tfidf_sep.py	/^def readFromPickle(filename):$/;"	f
+read_words	tag_gen_ans_tfidf_sep.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	tag_gen_ans_tfidf_sep.py	/^def removeWordFromStr(sentence, length):$/;"	f
+saveResults	tag_gen_ans_tfidf_sep.py	/^def saveResults(outfileName, id_, result, stemmer, n_tags=3):$/;"	f
+sorting	tag_gen_ans_tfidf_sep.py	/^import bottleneck as bn # sorting$/;"	i
+stemmer	tag_gen_ans_tfidf_sep.py	/^    stemmer = []$/;"	v
+string	tag_gen_ans_tfidf_sep.py	/^import string$/;"	i
+sys	tag_gen_ans_tfidf_sep.py	/^import sys$/;"	i
+sys_input3	tag_gen_ans_tfidf_sep.py	/^sys_input3 = sys.argv[3]$/;"	v
+tagsThreshold	tag_gen_ans_tfidf_sep.py	/^def tagsThreshold(threshold, selectedFeature, n_top):$/;"	f
+text	tag_gen_ans_tfidf_sep.py	/^from sklearn.feature_extraction import text$/;"	i
+threshold	tag_gen_ans_tfidf_sep.py	/^    threshold = 1$/;"	v
+title	tag_gen_ans_tfidf_sep.py	/^    title = title.astype('U')$/;"	v
+unstem	tag_gen_ans_tfidf_sep.py	/^    def unstem(self, stemmed_word):$/;"	m	class:SnowCastleStemmer
+vect	tag_gen_ans_tfidf_sep.py	/^    vect = getVect(vect_type)$/;"	v
+vect_type	tag_gen_ans_tfidf_sep.py	/^            vect_type = int(li[1])$/;"	v
+vect_type	tag_gen_ans_tfidf_sep.py	/^    vect_type = 2$/;"	v
+weights	tag_gen_ans_tfidf_sep.py	/^    weights = np.array( vect.idf_ )$/;"	v
+wordnet	tag_gen_ans_tfidf_sep.py	/^from nltk.corpus import wordnet$/;"	i
+writeResults	tag_gen_ans_tfidf_sep.py	/^def writeResults(outfileName, id_, ans):$/;"	f
+FreqDist	tag_postprocess_ans.py	/^    from nltk import FreqDist$/;"	i
+Normalizer	tag_postprocess_ans.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+Phrases	tag_postprocess_ans.py	/^from gensim.models.phrases import Phrases$/;"	i
+SnowCastleStemmer	tag_postprocess_ans.py	/^class SnowCastleStemmer(nltk.stem.SnowballStemmer):$/;"	c
+TfidfVectorizer	tag_postprocess_ans.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+TruncatedSVD	tag_postprocess_ans.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	tag_postprocess_ans.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+__init__	tag_postprocess_ans.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:SnowCastleStemmer
+after_bigram	tag_postprocess_ans.py	/^            after_bigram = [bigram[words] for words in total_permu]$/;"	v
+ans	tag_postprocess_ans.py	/^        ans = feature_arr$/;"	v
+ans	tag_postprocess_ans.py	/^        ans = filterPostag(feature_arr)$/;"	v
+ans	tag_postprocess_ans.py	/^    ans = feature_arr$/;"	v
+bigram	tag_postprocess_ans.py	/^    bigram = False$/;"	v
+bigramProcess	tag_postprocess_ans.py	/^def bigramProcess(corpus):$/;"	f
+bn	tag_postprocess_ans.py	/^import bottleneck as bn # sorting$/;"	i
+clean_corpus	tag_postprocess_ans.py	/^def clean_corpus(corpus):$/;"	f
+clean_html	tag_postprocess_ans.py	/^def clean_html(raw_html):$/;"	f
+collections	tag_postprocess_ans.py	/^import collections$/;"	i
+feature_arr	tag_postprocess_ans.py	/^    feature_arr = [ tags.split(" ") for tags in feature_arr ]$/;"	v
+filterFromList	tag_postprocess_ans.py	/^def filterFromList(results, stop_words):$/;"	f
+filterPostag	tag_postprocess_ans.py	/^def filterPostag(feature_arr):$/;"	f
+filterRareTags	tag_postprocess_ans.py	/^def filterRareTags(feature_arr, threshold):$/;"	f
+filter_rare	tag_postprocess_ans.py	/^    filter_rare = True$/;"	v
+generateOutput	tag_postprocess_ans.py	/^def generateOutput(nb_partition, corpus, vect, title, content, featureName):$/;"	f
+generate_corpus_pos	tag_postprocess_ans.py	/^def generate_corpus_pos(corpus, name):$/;"	f
+genfromtxt	tag_postprocess_ans.py	/^from numpy import genfromtxt$/;"	i
+getFeaturearr	tag_postprocess_ans.py	/^def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):$/;"	f
+getOutputVar	tag_postprocess_ans.py	/^def getOutputVar(addTop, addThres):$/;"	f
+getResults	tag_postprocess_ans.py	/^def getResults(result, id_, n_tags=3):$/;"	f
+getVect	tag_postprocess_ans.py	/^def getVect(num):$/;"	f
+get_wordnet_pos	tag_postprocess_ans.py	/^def get_wordnet_pos(treebank_tag):$/;"	f
+get_words	tag_postprocess_ans.py	/^def get_words(text):$/;"	f
+getfeaturesWeighted	tag_postprocess_ans.py	/^def getfeaturesWeighted(vect, corpus, title, content, start, end, num):$/;"	f
+index	tag_postprocess_ans.py	/^                index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[0])$/;"	v
+index	tag_postprocess_ans.py	/^                index = np.argwhere(ans[i]==(valid_bigram[k][0].split('-'))[1])$/;"	v
+itertools	tag_postprocess_ans.py	/^import itertools$/;"	i
+lsa	tag_postprocess_ans.py	/^def lsa(X, n_components=80):$/;"	f
+make_pipeline	tag_postprocess_ans.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+memstem	tag_postprocess_ans.py	/^    def memstem(self, word):$/;"	m	class:SnowCastleStemmer
+nltk	tag_postprocess_ans.py	/^    import nltk$/;"	i
+nltk	tag_postprocess_ans.py	/^import nltk$/;"	i
+np	tag_postprocess_ans.py	/^import numpy as np$/;"	i
+operator	tag_postprocess_ans.py	/^        import operator$/;"	i
+os	tag_postprocess_ans.py	/^import os.path$/;"	i
+outfileName	tag_postprocess_ans.py	/^    outfileName = sys.argv[3]$/;"	v
+path	tag_postprocess_ans.py	/^    path = sys.argv[2]$/;"	v
+path	tag_postprocess_ans.py	/^import os.path$/;"	i
+path_corp	tag_postprocess_ans.py	/^    path_corp = sys.argv[1]$/;"	v
+pd	tag_postprocess_ans.py	/^import pandas as pd$/;"	i
+pickle	tag_postprocess_ans.py	/^import pickle$/;"	i
+pos	tag_postprocess_ans.py	/^    pos = False$/;"	v
+preprocessing	tag_postprocess_ans.py	/^def preprocessing(corpus, title, content, num):$/;"	f
+printTfidfWeight	tag_postprocess_ans.py	/^def printTfidfWeight(features_weighted, n_top, featureName, weights):$/;"	f
+process_data	tag_postprocess_ans.py	/^def process_data(corpus,name):$/;"	f
+process_data_ref	tag_postprocess_ans.py	/^def process_data_ref(corpus, name):$/;"	f
+process_data_stem	tag_postprocess_ans.py	/^def process_data_stem(corpus, stemmer):$/;"	f
+re	tag_postprocess_ans.py	/^import re$/;"	i
+readFromAns	tag_postprocess_ans.py	/^def readFromAns(filename):$/;"	f
+readFromCsv	tag_postprocess_ans.py	/^def readFromCsv(filename):$/;"	f
+readFromPickle	tag_postprocess_ans.py	/^def readFromPickle(filename):$/;"	f
+read_words	tag_postprocess_ans.py	/^def read_words(words_file):$/;"	f
+removeWordFromStr	tag_postprocess_ans.py	/^def removeWordFromStr(sentence, length):$/;"	f
+saveResults	tag_postprocess_ans.py	/^def saveResults(outfileName, id_, result, stemmer, n_tags=3):$/;"	f
+sorted_wordFreq	tag_postprocess_ans.py	/^        sorted_wordFreq = sorted(wordFreq.items(), key=operator.itemgetter(1))$/;"	v
+sorting	tag_postprocess_ans.py	/^import bottleneck as bn # sorting$/;"	i
+string	tag_postprocess_ans.py	/^import string$/;"	i
+sys	tag_postprocess_ans.py	/^import sys$/;"	i
+tagsThreshold	tag_postprocess_ans.py	/^def tagsThreshold(threshold, selectedFeature, n_top):$/;"	f
+text	tag_postprocess_ans.py	/^from sklearn.feature_extraction import text$/;"	i
+total_permu	tag_postprocess_ans.py	/^            total_permu = list(itertools.permutations(ans[i],2))$/;"	v
+unstem	tag_postprocess_ans.py	/^    def unstem(self, stemmed_word):$/;"	m	class:SnowCastleStemmer
+valid_bigram	tag_postprocess_ans.py	/^            valid_bigram = [valid for valid in after_bigram if len(valid)==1 ]$/;"	v
+wordCount	tag_postprocess_ans.py	/^def wordCount(feature_arr):$/;"	f
+wordnet	tag_postprocess_ans.py	/^from nltk.corpus import wordnet$/;"	i
+writeResults	tag_postprocess_ans.py	/^def writeResults(outfileName, id_, ans):$/;"	f
+X	tag_prediction_lsa.py	/^X = [0, 1, 2]$/;"	v
+Y	tag_prediction_lsa.py	/^Y = [0, 1, 2]$/;"	v
+dist	tag_prediction_lsa.py	/^dist = pairwise_distances('euclidean')$/;"	v
+pairwise_distances	tag_prediction_lsa.py	/^from sklearn.metrics.pairwise import pairwise_distances$/;"	i
+KMeans	tag_prediction_pj.py	/^from sklearn.cluster import KMeans$/;"	i
+Normalizer	tag_prediction_pj.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+Phrases	tag_prediction_pj.py	/^from gensim.models import Phrases$/;"	i
+TfidfVectorizer	tag_prediction_pj.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+TruncatedSVD	tag_prediction_pj.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	tag_prediction_pj.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+clean_corpus	tag_prediction_pj.py	/^def clean_corpus(corpus):$/;"	f
+feature_arr	tag_prediction_pj.py	/^    feature_arr = get_tags(corpus, title, content, vect)$/;"	v
+generate_corpus_pos	tag_prediction_pj.py	/^def generate_corpus_pos(corpus, name):$/;"	f
+getFeaturearr	tag_prediction_pj.py	/^def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):$/;"	f
+get_tags	tag_prediction_pj.py	/^def get_tags(corpus, title, content, vectorizer):$/;"	f
+get_wordnet_pos	tag_prediction_pj.py	/^def get_wordnet_pos(treebank_tag):$/;"	f
+getfeaturesWeighted	tag_prediction_pj.py	/^def getfeaturesWeighted(vect, title, content, start, end):$/;"	f
+make_pipeline	tag_prediction_pj.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+nltk	tag_prediction_pj.py	/^import nltk$/;"	i
+np	tag_prediction_pj.py	/^import numpy as np$/;"	i
+os	tag_prediction_pj.py	/^import os.path$/;"	i
+outfileName	tag_prediction_pj.py	/^outfileName = sys.argv[2]$/;"	v
+path	tag_prediction_pj.py	/^import os.path$/;"	i
+path	tag_prediction_pj.py	/^path = sys.argv[1]$/;"	v
+pd	tag_prediction_pj.py	/^import pandas as pd$/;"	i
+process_data	tag_prediction_pj.py	/^def process_data():$/;"	f
+re	tag_prediction_pj.py	/^import re$/;"	i
+read_words	tag_prediction_pj.py	/^def read_words(words_file):$/;"	f
+saveResults	tag_prediction_pj.py	/^def saveResults(outfileName, id_, result):$/;"	f
+string	tag_prediction_pj.py	/^import string$/;"	i
+sys	tag_prediction_pj.py	/^import sys$/;"	i
+tagsThreshold	tag_prediction_pj.py	/^def tagsThreshold(threshold, selectedFeature, n_top):$/;"	f
+text	tag_prediction_pj.py	/^from sklearn.feature_extraction import text$/;"	i
+tf_idf	tag_prediction_pj.py	/^def tf_idf(corpus, title, content):$/;"	f
+vect	tag_prediction_pj.py	/^    vect = tf_idf(content, title, content)$/;"	v
+wordnet	tag_prediction_pj.py	/^from nltk.corpus import wordnet$/;"	i
+Normalizer	tag_prediction_tfidf.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+Phraser	tag_prediction_tfidf.py	/^from gensim.models.phrases import Phraser$/;"	i
+SnowCastleStemmer	tag_prediction_tfidf.py	/^class SnowCastleStemmer(nltk.stem.SnowballStemmer):$/;"	c
+TfidfVectorizer	tag_prediction_tfidf.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+TruncatedSVD	tag_prediction_tfidf.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	tag_prediction_tfidf.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+__init__	tag_prediction_tfidf.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:SnowCastleStemmer
+addThres	tag_prediction_tfidf.py	/^    addThres = False$/;"	v
+addTop	tag_prediction_tfidf.py	/^    addTop = True$/;"	v
+bigram	tag_prediction_tfidf.py	/^def bigram(corpus):$/;"	f
+bn	tag_prediction_tfidf.py	/^import bottleneck as bn # sorting$/;"	i
+clean_html	tag_prediction_tfidf.py	/^def clean_html(raw_html):$/;"	f
+collections	tag_prediction_tfidf.py	/^import collections$/;"	i
+featureName	tag_prediction_tfidf.py	/^    featureName = np.array( vect.get_feature_names() )$/;"	v
+feature_arr	tag_prediction_tfidf.py	/^    feature_arr = generateOutput(nb_partition, corpus, vect, title, content, featureName)$/;"	v
+features	tag_prediction_tfidf.py	/^    features = vect.fit(corpus)$/;"	v
+filterBeforeOutput	tag_prediction_tfidf.py	/^def filterBeforeOutput():$/;"	f
+filterFromList	tag_prediction_tfidf.py	/^def filterFromList(results, stop_words):$/;"	f
+generateOutput	tag_prediction_tfidf.py	/^def generateOutput(nb_partition, corpus, vect, title, content, featureName):$/;"	f
+genfromtxt	tag_prediction_tfidf.py	/^from numpy import genfromtxt$/;"	i
+getFeaturearr	tag_prediction_tfidf.py	/^def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):$/;"	f
+getOutputVar	tag_prediction_tfidf.py	/^def getOutputVar(addTop, addThres):$/;"	f
+getVect	tag_prediction_tfidf.py	/^def getVect(num):$/;"	f
+get_words	tag_prediction_tfidf.py	/^def get_words(text):$/;"	f
+getfeaturesWeighted	tag_prediction_tfidf.py	/^def getfeaturesWeighted(vect, corpus, title, content, start, end, num):$/;"	f
+lsa	tag_prediction_tfidf.py	/^def lsa(X, n_components=80):$/;"	f
+make_pipeline	tag_prediction_tfidf.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+memstem	tag_prediction_tfidf.py	/^    def memstem(self, word):$/;"	m	class:SnowCastleStemmer
+nb_partition	tag_prediction_tfidf.py	/^    nb_partition = 100$/;"	v
+nltk	tag_prediction_tfidf.py	/^import nltk$/;"	i
+np	tag_prediction_tfidf.py	/^import numpy as np$/;"	i
+num	tag_prediction_tfidf.py	/^	num = 2$/;"	v
+outfileName	tag_prediction_tfidf.py	/^    outfileName = sys.argv[2]$/;"	v
+path	tag_prediction_tfidf.py	/^    path = sys.argv[1]$/;"	v
+pd	tag_prediction_tfidf.py	/^import pandas as pd$/;"	i
+preprocessing	tag_prediction_tfidf.py	/^def preprocessing(corpus, title, content, num):$/;"	f
+printTfidfWeight	tag_prediction_tfidf.py	/^def printTfidfWeight(features_weighted, n_top, featureName, weights):$/;"	f
+process_data	tag_prediction_tfidf.py	/^def process_data(corpus):$/;"	f
+process_data_ref	tag_prediction_tfidf.py	/^def process_data_ref(corpus):$/;"	f
+process_data_stem	tag_prediction_tfidf.py	/^def process_data_stem(corpus, stemmer):$/;"	f
+re	tag_prediction_tfidf.py	/^import re$/;"	i
+readFromData	tag_prediction_tfidf.py	/^def readFromData(filename):$/;"	f
+read_words	tag_prediction_tfidf.py	/^def read_words(words_file):$/;"	f
+saveResults	tag_prediction_tfidf.py	/^def saveResults(outfileName, id_, result, stemmer, n_tags=3):$/;"	f
+sorting	tag_prediction_tfidf.py	/^import bottleneck as bn # sorting$/;"	i
+stop_words_2	tag_prediction_tfidf.py	/^stop_words_2 = set(['螳螂捕蝉', '黄雀在后', 'a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't", 'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', "hadn't", 'happens', 'hardly', 'has', "hasn't", 'have', "haven't", 'having', 'he', "he's", 'hello', 'help', 'hence', 'her', 'here', "here's", 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', "i'd", "i'll", "i'm", "i've", 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', "isn't", 'it', "it'd", "it'll", "it's", 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', "let's", 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', "shouldn't", 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', "t's", 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', "that's", 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', "there's", 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', "they'd", "they'll", "they're", "they've", 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', "wasn't", 'way', 'we', "we'd", "we'll", "we're", "we've", 'welcome', 'well', 'went', 'were', "weren't", 'what', "what's", 'whatever', 'when', 'whence', 'whenever', 'where', "where's", 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', "who's", 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't", 'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', ''])$/;"	v
+string	tag_prediction_tfidf.py	/^import string$/;"	i
+sys	tag_prediction_tfidf.py	/^import sys$/;"	i
+tagsThreshold	tag_prediction_tfidf.py	/^def tagsThreshold(threshold, selectedFeature, n_top):$/;"	f
+text	tag_prediction_tfidf.py	/^from sklearn.feature_extraction import text$/;"	i
+unstem	tag_prediction_tfidf.py	/^    def unstem(self, stemmed_word):$/;"	m	class:SnowCastleStemmer
+vect	tag_prediction_tfidf.py	/^    vect = getVect(3)$/;"	v
+weights	tag_prediction_tfidf.py	/^    weights = np.array( vect.idf_ )$/;"	v
+Normalizer	tag_preprocess_data.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+OrderedDict	tag_preprocess_data.py	/^from collections import OrderedDict$/;"	i
+Phraser	tag_preprocess_data.py	/^from gensim.models.phrases import Phraser$/;"	i
+Phrases	tag_preprocess_data.py	/^from gensim.models.phrases import Phrases$/;"	i
+SnowCastleStemmer	tag_preprocess_data.py	/^class SnowCastleStemmer(nltk.stem.SnowballStemmer):$/;"	c
+TfidfVectorizer	tag_preprocess_data.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	i
+Trigram	tag_preprocess_data.py	/^    Trigram = True$/;"	v
+TruncatedSVD	tag_preprocess_data.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	tag_preprocess_data.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+__init__	tag_preprocess_data.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:SnowCastleStemmer
+bigramProcess	tag_preprocess_data.py	/^def bigramProcess(corpus,title,content):$/;"	f
+bn	tag_preprocess_data.py	/^import bottleneck as bn # sorting$/;"	i
+clean_corpus	tag_preprocess_data.py	/^def clean_corpus(corpus):$/;"	f
+clean_html	tag_preprocess_data.py	/^def clean_html(raw_html):$/;"	f
+collections	tag_preprocess_data.py	/^import collections$/;"	i
+construct_phrase_dict	tag_preprocess_data.py	/^def construct_phrase_dict(corpus_title):$/;"	f
+content	tag_preprocess_data.py	/^    content = deletecomponent(content,2, 30)$/;"	v
+corpus	tag_preprocess_data.py	/^    corpus = deletecomponent(corpus,2, 30)$/;"	v
+debug	tag_preprocess_data.py	/^    debug = True$/;"	v
+defaultdict	tag_preprocess_data.py	/^from collections import defaultdict$/;"	i
+deletecomponent	tag_preprocess_data.py	/^def deletecomponent(corpus,numremove, numremoveMax):$/;"	f
+extend_abbreviation	tag_preprocess_data.py	/^def extend_abbreviation(mapping, corpus_title):$/;"	f
+filterFromList	tag_preprocess_data.py	/^def filterFromList(results, stop_words):$/;"	f
+generateOutput	tag_preprocess_data.py	/^def generateOutput(nb_partition, corpus, vect, title, content, featureName):$/;"	f
+generate_corpus_pos	tag_preprocess_data.py	/^def generate_corpus_pos(corpus, name):$/;"	f
+genfromtxt	tag_preprocess_data.py	/^from numpy import genfromtxt$/;"	i
+getFeaturearr	tag_preprocess_data.py	/^def getFeaturearr(feature_arr, corpus, features_weighted, featureName, addThres, threshold, n_top):$/;"	f
+getResults	tag_preprocess_data.py	/^def getResults(result, id_, n_tags=3):$/;"	f
+getTopBigram	tag_preprocess_data.py	/^def getTopBigram(bigram, numbershow, selectNandJ):$/;"	f
+getTopMonogram	tag_preprocess_data.py	/^def getTopMonogram(title, content, corpus, n_top):$/;"	f
+getVect	tag_preprocess_data.py	/^def getVect(num):$/;"	f
+get_wordnet_pos	tag_preprocess_data.py	/^def get_wordnet_pos(treebank_tag):$/;"	f
+get_words	tag_preprocess_data.py	/^def get_words(text):$/;"	f
+getfeaturesWeighted	tag_preprocess_data.py	/^def getfeaturesWeighted(vect, corpus, title, content, start, end, num):$/;"	f
+itertools	tag_preprocess_data.py	/^import itertools$/;"	i
+li	tag_preprocess_data.py	/^        li = sys.argv[i].split("=")$/;"	v
+lsa	tag_preprocess_data.py	/^def lsa(X, n_components=80):$/;"	f
+make_pipeline	tag_preprocess_data.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+memstem	tag_preprocess_data.py	/^    def memstem(self, word):$/;"	m	class:SnowCastleStemmer
+nltk	tag_preprocess_data.py	/^import nltk$/;"	i
+np	tag_preprocess_data.py	/^import numpy as np$/;"	i
+os	tag_preprocess_data.py	/^import os.path$/;"	i
+outfileName	tag_preprocess_data.py	/^    outfileName = sys.argv[2]$/;"	v
+path	tag_preprocess_data.py	/^    path = sys.argv[1]$/;"	v
+path	tag_preprocess_data.py	/^import os.path$/;"	i
+pd	tag_preprocess_data.py	/^import pandas as pd$/;"	i
+pickle	tag_preprocess_data.py	/^import pickle$/;"	i
+preprocessing	tag_preprocess_data.py	/^def preprocessing(corpus, title, content, num):$/;"	f
+printTfidfWeight	tag_preprocess_data.py	/^def printTfidfWeight(features_weighted, n_top, featureName, weights):$/;"	f
+process_data	tag_preprocess_data.py	/^def process_data(corpus,name):$/;"	f
+process_data_ref	tag_preprocess_data.py	/^def process_data_ref(corpus,name):$/;"	f
+process_data_stem	tag_preprocess_data.py	/^def process_data_stem(corpus, stemmer):$/;"	f
+process_type	tag_preprocess_data.py	/^            process_type = int(li[1])$/;"	v
+process_type	tag_preprocess_data.py	/^    process_type = 1   # default value$/;"	v
+re	tag_preprocess_data.py	/^import re$/;"	i
+readFromData	tag_preprocess_data.py	/^def readFromData(filename):$/;"	f
+read_words	tag_preprocess_data.py	/^def read_words(words_file):$/;"	f
+removeCharacter	tag_preprocess_data.py	/^def removeCharacter(corpus, A, B):$/;"	f
+removeWordFromStr	tag_preprocess_data.py	/^def removeWordFromStr(sentence, short_length, long_length):$/;"	f
+saveCorpus	tag_preprocess_data.py	/^def saveCorpus(outfileName, id_, corpus):$/;"	f
+saveFile	tag_preprocess_data.py	/^def saveFile(outfileName, id_, corpus, title, content):$/;"	f
+saveResults	tag_preprocess_data.py	/^def saveResults(outfileName, id_, result, stemmer, n_tags=3):$/;"	f
+sorting	tag_preprocess_data.py	/^import bottleneck as bn # sorting$/;"	i
+string	tag_preprocess_data.py	/^import string$/;"	i
+sys	tag_preprocess_data.py	/^import sys$/;"	i
+tagsThreshold	tag_preprocess_data.py	/^def tagsThreshold(threshold, selectedFeature, n_top):$/;"	f
+text	tag_preprocess_data.py	/^from sklearn.feature_extraction import text$/;"	i
+title	tag_preprocess_data.py	/^    title = deletecomponent(title,2, 30)$/;"	v
+unstem	tag_preprocess_data.py	/^    def unstem(self, stemmed_word):$/;"	m	class:SnowCastleStemmer
+wordnet	tag_preprocess_data.py	/^from nltk.corpus import wordnet$/;"	i
+writeResults	tag_preprocess_data.py	/^def writeResults(outfileName, id_, ans):$/;"	f
+all_tags	test_code/cpTags.py	/^all_tags = ['quantum-mechanics', 'homework-and-exercises', 'newtonian-mechanics', 'electromagnetism', 'quantum-field-theory', 'thermodynamics', 'general-relativity', 'special-relativity', 'classical-mechanics', 'forces', 'optics', 'fluid-dynamics', 'gravity', 'energy', 'particle-physics', 'electrostatics', 'cosmology', 'visible-light', 'statistical-mechanics', 'waves', 'black-holes', 'electricity', 'newtonian-gravity', 'electromagnetic-radiation', 'condensed-matter', 'experimental-physics', 'kinematics', 'photons', 'magnetic-fields', 'string-theory', 'lagrangian-formalism', 'spacetime', 'electric-circuits', 'mathematical-physics', 'mass', 'angular-momentum', 'differential-geometry', 'speed-of-light', 'solid-state-physics', 'pressure', 'operators', 'energy-conservation', 'nuclear-physics', 'momentum', 'electrons', 'rotational-dynamics', 'quantum-information', 'astrophysics', 'soft-question', 'astronomy', 'resource-recommendations', 'reference-frames', 'wavefunction', 'acoustics', 'temperature', 'conservation-laws', 'orbital-motion', 'hilbert-space', 'acceleration', 'time', 'friction', 'atomic-physics', 'quantum-spin', 'terminology', 'electric-fields', 'electric-current', 'schroedinger-equation', 'entropy', 'everyday-life', 'symmetry', 'water', 'charge', 'work', 'potential', 'universe', 'electrical-resistance', 'quantum-electrodynamics', 'velocity', 'standard-model', 'harmonic-oscillator', 'vectors', 'metric-tensor', 'gauge-theory', 'potential-energy', 'space-expansion', 'hamiltonian-formalism', 'field-theory', 'supersymmetry', 'relativity', 'material-science', 'radiation', 'entanglement', 'capacitance', 'collision', 'renormalization', 'laser', 'semiconductor-physics', 'reflection', 'group-theory', 'scattering', 'quantum-gravity', 'uncertainty-principle', 'research-level', 'earth', 'education', 'voltage', 'simulation', 'big-bang', 'measurement', 'torque', 'projectile', 'superconductivity', 'computational-physics', 'double-slit-experiment', 'units', 'conformal-field-theory', 'refraction', 'classical-electrodynamics', 'conventions', 'curvature', 'frequency', 'thermal-radiation', 'gravitational-waves', 'gauss-law', 'tensor-calculus', 'atmospheric-science', 'history', 'vacuum', 'coordinate-systems', 'definition', 'fourier-transform', 'inertial-frames', 'atoms', 'quantum-interpretations', 'probability', 'planets', 'ideal-gas', 'measurement-problem', 'path-integral', 'rotation', 'physical-chemistry', 'notation', 'faster-than-light', 'polarization', 'mass-energy', 'spring', 'interference', 'drag', 'feynman-diagram', 'maxwell-equations', 'rotational-kinematics', 'fermions', 'group-representations', 'quantum-chromodynamics', 'dark-matter', 'air', 'geometric-optics', 'geometry', 'spectroscopy', 'variational-principle', 'mathematics', 'power', 'aerodynamics', 'biophysics', 'diffraction', 'sun', 'hamiltonian', 'home-experiment', 'quantum-optics', 'quantum-computer', 'phase-transition', 'antimatter', 'neutrinos', 'integration', 'differentiation', 'specific-reference', 'time-dilation', 'dimensions', 'higgs', 'representation-theory', 'speed', 'solar-system', 'space', 'stars', 'lie-algebra', 'wave-particle-duality', 'symmetry-breaking', 'free-body-diagram', 'dirac-equation', 'boundary-conditions', 'commutator', 'dimensional-analysis', 'oscillators', 'topology', 'observers', 'density', 'spinors', 'action', 'heat', 'rocket-science', 'event-horizon', 'causality', 'singularities', 'perturbation-theory', 'elasticity', 'vector-fields', 'galaxies', 'estimation', 'tensors', 'centripetal-force', 'flow', 'resonance', 'stress-energy-tensor', 'linear-algebra', 'noethers-theorem', 'cosmological-inflation', 'moment-of-inertia', 'lenses', 'surface-tension', 'celestial-mechanics', 'plasma-physics', 'rigid-body-dynamics', 'error-analysis', 'radioactivity', 'quarks', 'crystals', 'physical-constants', 'ads-cft', 'relative-motion', 'statics', 'conductors', 'lorentz-symmetry', 'induction', 'hydrogen', 'software', 'dark-energy', 'coulombs-law', 'equilibrium', 'wavelength', 'superposition', 'geodesics', 'angular-velocity', 'buoyancy', 'eigenvalue', 'continuum-mechanics', 'electronic-band-theory', 'complex-numbers', 'centrifugal-force', 'discrete', 'geophysics', 'many-body', 'string', 'gauge-invariance', 'stress-strain', 'photoelectric-effect', 'statistics', 'fusion', 'electronics', 'dielectric', 'differential-equations', 'large-hadron-collider', 'vibration', 'observables', 'hydrostatics', 'cmb', 'density-operator', 'calculus', 'kinetic-theory', 'interactions', 'molecules', 'topological-field-theory', 'hawking-radiation', 'inductance', 'information', 'thermal-conductivity', 'free-fall', 'moon', 'diffusion', 'popular-science', 'batteries', 'topological-order', 'electrical-engineering', 'doppler-effect', 'approximations', 'metals', 'viscosity', 'covariance', 'greens-functions', 'distributions', 'particles', 'tidal-effect', 'neutrons', 'equivalence-principle', 'yang-mills', 'topological-insulators', 'vision', 'regularization', 'correlation-functions', 'constrained-dynamics', 'inertia', 'klein-gordon-equation', 'si-units', 'virtual-particles', 'bose-einstein-condensate', 'experimental-technique', 'data-analysis', 'second-quantization', 'wavefunction-collapse', 'distance', 'magnetic-moment', 'elementary-particles', 'beyond-the-standard-model', 'determinism', 'weak-interaction', 'protons', 'stability', 'fluid-statics', 'ising-model', 'nuclear-engineering', 'phase-space', 'weight', 'pauli-exclusion-principle', 'quantization', 'telescopes', 'unit-conversion', 'turbulence', 'time-evolution', 'magnetic-monopoles', 'degrees-of-freedom', 'evaporation', 'bernoulli-equation', 'propagator', 'scattering-cross-section', 'reversibility', 'partition-function', 'variational-calculus', 'chaos-theory', 'branes', 'matter', 'parity', 'states-of-matter', 'lattice-model', 'satellites', 'signal-processing', 'time-reversal-symmetry', 'decoherence', 'dipole', 'space-travel', 'quantum-anomalies', 'x-rays', 'aircraft', 'navier-stokes', 'interferometry', 'absorption', 'unitarity', 'adiabatic', 'graphene', 'thought-experiment', 'quantum-hall-effect', 'neutron-stars', 'higgs-boson', 'time-travel', 'phonons', 'non-linear-systems', 'radio', 'volume', 'orbitals', 'bosons', 's-matrix-theory', 'antennas', 'electroweak', 'ice', 'binding-energy', 'perpetual-motion', 'supergravity', 'holographic-principle', 'molecular-dynamics', 'metrology', 'gauge', 'compactification', 'lightning', 'quantum-chemistry', 'quantum-tunneling', 'wormholes', 'models', 'chirality', 'electromagnetic-induction', 'bells-inequality', 'explosions', 'nanoscience', 'particle-detectors', 'renewable-energy', 'weather', 'observational-astronomy', 'majorana-fermions', 'gamma-rays', 'dispersion', 'cosmological-constant', 'locality', 'ligo', 'gyroscopes', 'biology', 'vortex', 'strong-force', 'dirac-matrices', 'microscopy', 'classical-field-theory', 'stellar-physics', 'qft-in-curved-spacetime', 'propulsion', 'eye', 'heat-engine', 'fiber-optics', 'non-equilibrium', 'normalization', 'wick-rotation', 'convection', 'applied-physics', 'coherence', 'magnetostatics', 'perception', 'subatomic', 'theory-of-everything', 'superfluidity', 'light-emitting-diodes', 'duality', 'chern-simons-theory', 'noise', 'poincare-symmetry', 'poisson-brackets', 'supernova', 'gas', 'coriolis-effect', 'accelerator-physics', 'microwaves', 'coupled-oscillators', 'dipole-moment', 'spin-statistics', 'non-linear-optics', 'lift', 'radio-frequency', 'semiclassical', 'multipole-expansion', 'galilean-relativity', 'infrared-radiation', 'dissipation', 'effective-field-theory', 'gravitational-lensing', 'x-ray-crystallography', 'multiverse', 'gravitational-redshift', 'grassmann-numbers', 'photon-emission', 'topological-phase', 'chemical-potential', 'arrow-of-time', 'elements', 'helicity', 'precession', 'solid-mechanics', 'kaluza-klein', 'escape-velocity', 'blackbody', 'complex-systems', 'moment', 'brownian-motion', 'cp-violation', 'cooling', 'displacement', 'stellar-evolution', 'observable-universe', 'light', 'instantons', 'general-physics', 'numerical-method', 'data', 'wick-theorem', 'identical-particles', 'imaging', 'levitation', 'exoplanets', 'electrochemistry', 'born-rule', 'carnot-cycle', 'carrier-particles', 'aether', 'casimir-effect', 'confinement', 'climate-science', 'optical-materials', 'point-particle', 'warp-drives', 'anti-de-sitter-spacetime', 'linear-systems', 'foundations', 'teleportation', 'photovoltaics', 'quantum-statistics', 'meteorology', 'anyons', 'berry-pancharatnam-phase', 'bubble', 'cosmic-rays', 'visualization', 'solitons', 'poynting-vector', 'experimental-technology', 'camera', 'asteroids', 'loop-quantum-gravity', 'non-perturbative', 'grand-unification', 'integrable-systems', 'spin-model', 'spherical-harmonics', 'pair-production', 'non-locality', 'gluons', 'functional-derivatives', 'randomness', 'freezing', 'laws-of-physics', 'critical-phenomena', 'structural-beam', 'tachyon', 'textbook-erratum', 'mesons', 'material', 'ground-state', 'isotope', 'jerk', 'harmonics', 'brst', 'space-mission', 'pions', 'waveguide', 'scaling', 'isospin-symmetry', 'ions', 'gauge-symmetry', 'kerr-metric', 'hologram', 'black-hole-thermodynamics', 'capillary-action', 'shockwave', 'scale-invariance', 'redshift', 'particle-accelerators', 'chemical-compounds', 'medical-physics', 'milky-way', 'cold-atoms', 'stochastic-processes', 'color-charge', 'algorithm', 'order-of-magnitude', 'insulators', 'humidity', 'galaxy-rotation-curve', 'luminosity', 'condensation', 'density-functional-theory', 'epr-experiment', 'effective-action', 'trace', 'tight-binding', 'thermoelectricity', 'unified-theories', 'twin-paradox', 'sensor', 'baryons', 'absolute-units', 'fine-tuning', 'higgs-mechanism', 'invariants', 'ghosts', 'combustion', 'cpt-symmetry', 'quasiparticles', 'virtual-photons', 'density-of-states', 'clifford-algebra', 'normal-modes', 'numerics', 'magnetohydrodynamics', 'geomagnetism', 'ionization-energy', 'technology', 'piezoelectric', 'phase-diagram', 'quantum-states', 'machs-principle', 'matrix-elements', 'leptons', 'anticommutator', 'fermis-golden-rule', 'length-contraction', 'solar-system-exploration', 'white-holes', 'scales', 'physics-careers', 'big-list', 'computer', 'entanglement-entropy', 'phase-velocity', 'solar-wind', 'spin-chains', 'wigner-transform', 'solar-cells', 'diffeomorphism-invariance', 'asymptotics', 'non-linear-dynamics', 'modified-gravity', 'nasa', 'instrument', 'analyticity', 'category-theory', 'conservative-field', 'efficient-energy-use', 'ward-identity', 'schroedingers-cat', 'superalgebra', 'de-sitter-spacetime', 'cellular-automaton', 'optimization', 'open-quantum-systems', 'meteors', 'gps', 'fractals', 'baryogenesis', 'black-hole-firewall', 'raman-spectroscopy', 'plane-wave', 'superconformality', 'charge-conjugation', 'equations-of-motion', 'boundary-terms', 'linearized-theory', 'synchrotron-radiation', 'plasmon', 'radiometry', 'virial-theorem', 'wilson-loop', 'jupiter', 'laser-interaction', 'matrix-model', 'nucleosynthesis', 'moduli', 'image-processing', 'fan', 'calabi-yau', 'fluctuation-dissipation', 'stochastic-models', 'string-theory-landscape', 'inert-gases', 'integrals-of-motion', 'comets', 'clock', 'faq', 'cryogenics', 'laboratory-safety', 'mssm', 'oceanography', 'short-circuits', 'proton-decay', 'gravitational-collapse', 'exotic-matter', 'eclipse', 'graph-theory', 'pulsars', 'sigma-models', 'galaxy-clusters', 'dimensional-reg', 'atomic-excitation', 'anharmonic-oscillators', 'anthropic-principle', 'emergent-properties', 'energy-storage', 'interstellar-matter', 'low-temperature-physics', 'shadow', 'superspace-formalism', 'twistor', 'unruh-effect', 'minkowski-space', 'internal-energy', 'disorder', 'design', 'astrophotography', 'cavity-qed', 'interstellar-travel', 'lienard-wiechert', 'sports', 'rigid-solid', 'radar', 'relativistic-jets', 'photometry', 'structure-formation', 'network', 'higgs-field', 'fermi-liquids', 'cold-fusion', 'algebraic-geometry', 'dirac-monopole', 'equation-of-state', 'exchange-interaction', 'earthquake', 'cherenkov-radiation', 'building-physics', 'fluorescence', 'higher-spin', 'nature', 'string-field-theory', 'three-body-problem', 'percolation', 'meteorites', 'half-life', 'epistemology', 'adhesion', 'food', 'mean-free-path', 'porous-media', 'runge-lenz-vector', 'strong-correlated', 'reissner-nordstrom-metric', 'newtonian-fluid', 'length', 'frame-dragging', 'hadron-dynamics', 'accretion-disk', 'brachistochrone-problem', 'axion', 'functional-determinants', 'fock-space', 'liquid-crystal', 'non-commutative-geometry', 'nuclei', 'soft-matter', 'positronium', 'poincare-recurrence', 'steady-state', 'special-functions', 'thermal-field-theory', 'self-energy', 'quark-gluon-plasma', 'heavy-ion', 'bloch-sphere', 'braggs-law', 'deformation-quantization', 'diamond', 'closed-timelike-curve', 'bohmian-mechanics', 'binary-stars', 'leptogenesis', 'metallicity', 'potential-flow', 'stellar-population', 'maxwell-relations', 'non-linear-schroedinger', 'parallax', 'osmosis', 'amorphous-solids', 'canonical-conjugation', 'cosmic-censorship', 'dynamical-systems', 'displacement-current', 'bosonization', 'anderson-localization', 'astrometrics', 'atomic-clocks', 'non-commutative-theory', 'liquid-state', 'glass', 'topological-entropy', 'quasars', 'spin-glass', 'white-dwarfs', 'josephson-junction', 'ion-traps', 'large-n', 'metric-space', 'nucleation', 'born-oppenheimer-approx', 'amplituhedron', 'dirac-string', 'enthalpy', 'optical-lattices', 'nebulae', 'light-pollution', 'isotropy', 'gravitational-potential', 'unruh-radiation', 'two-level-system', 'seiberg-witten-theory', 'radiation-pressure', 'tsunami', 'solar-sails', 'wimps', 'isentropic', 'kerr-newman-metric', 'mass-spectrometry', 'cpt-violation', 'bloch-oscillation', 'bao', 'central-charge', 'debye-length', 'ferromagnetism', 'meteoroids', 'mnemonic', 'hadronization', 'grav-wave-detectors', 'geometric-topology', 'floquet-theory', 'supersymmetric-particles', 'transit', 'tevatron', 'quasicrystals', 'rheology', 'weak-lensing', 'fracture', 'gauss-bonnet', 'granulated-materials', 'nuclear-structure', 'magnets', 'lamb-shift', 'electromagnetic-field', 'cosmic-string', 'ballistics', 'birrefringence', 'landauers-principle', 'non-gaussianity', 'frw-universe', 'wightman-fields', 'wetting', 'reflectance', 'spin-liquid', 'sine-gordon', 'stellar-wind', 'rabi-model', 'free-electron-lasers', 'hopf-algebra', 'impedance-spectroscopy', 'irreversible', 'bifurcation', 'brown-dwarfs', 'correspondence-principle', 'couette-flow', 'econo-physics', 'duration', 'chirp', 'backscattering', 'affine-lie-algebra', 'antimatter-storage', 'pentaquarks', 'synthetic-gauge-fields', 'spin-ice', 'topological-charges', 'quasi-periodic', 'self-capacitance', 'feedback', 'heterotic-string', 'lamb-waves', 'logic-gates', 'machos']$/;"	v
+bTags	test_code/cpTags.py	/^bTags = jointLists( bigramTags(tags))$/;"	v
+bigramTags	test_code/cpTags.py	/^def bigramTags(all_tags):$/;"	f
+getRare	test_code/cpTags.py	/^def getRare(tags_num ,threshold):$/;"	f
+jointLists	test_code/cpTags.py	/^def jointLists(split_tags):$/;"	f
+mTags	test_code/cpTags.py	/^mTags = jointLists( monogramTags(tags))$/;"	v
+matching	test_code/cpTags.py	/^def matching(myTags, trueTags):$/;"	f
+matchingTF	test_code/cpTags.py	/^def matchingTF(myTags, trueTags):$/;"	f
+matplotlib	test_code/cpTags.py	/^    import matplotlib.pyplot as plt$/;"	i
+monogramTags	test_code/cpTags.py	/^def monogramTags(all_tags):$/;"	f
+myTags	test_code/cpTags.py	/^myTags = getRare(b, 25)$/;"	v
+myTags	test_code/cpTags.py	/^myTags = readTxt(sys.argv[1])$/;"	v
+myTags_split	test_code/cpTags.py	/^myTags_split = np.array( [ myTags[i].split("-") for i in range((len(myTags))) ] )$/;"	v
+mybTags	test_code/cpTags.py	/^mybTags = jointLists(bigramTags(myTags_split))$/;"	v
+mymTags	test_code/cpTags.py	/^mymTags = jointLists(monogramTags(myTags_split))$/;"	v
+mytTags	test_code/cpTags.py	/^mytTags = jointLists(trigramTags(myTags_split))$/;"	v
+np	test_code/cpTags.py	/^import numpy as np$/;"	i
+plotArr	test_code/cpTags.py	/^def plotArr(y):$/;"	f
+plt	test_code/cpTags.py	/^    import matplotlib.pyplot as plt$/;"	i
+readTxt	test_code/cpTags.py	/^def readTxt(filename):$/;"	f
+readmyTags	test_code/cpTags.py	/^def readmyTags(filename):$/;"	f
+sys	test_code/cpTags.py	/^import sys$/;"	i
+tTags	test_code/cpTags.py	/^tTags = jointLists( trigramTags(tags))$/;"	v
+tags	test_code/cpTags.py	/^tags = [ all_tags[i].split("-") for i in range((len(all_tags))) ]$/;"	v
+tags	test_code/cpTags.py	/^tags = np.array( tags )$/;"	v
+tags_match	test_code/cpTags.py	/^tags_match = np.array([ mybTags[i] + " " + str(arr_match[i]) for i in range(len(mybTags)) ]) $/;"	v
+trigramTags	test_code/cpTags.py	/^def trigramTags(all_tags):$/;"	f
+d	test_code/enchant_test.py	/^d = enchant.Dict("en_US")$/;"	v
+enchant	test_code/enchant_test.py	/^>>> import enchant$/;"	i
+enchant	test_code/enchant_test.py	/^import enchant$/;"	i
+data	test_code/loadFrompl.py	/^        data = pickle.load(f)$/;"	v
+np	test_code/loadFrompl.py	/^import numpy as np$/;"	i
+path	test_code/loadFrompl.py	/^    path = sys.argv[1]$/;"	v
+pd	test_code/loadFrompl.py	/^import pandas as pd$/;"	i
+pickle	test_code/loadFrompl.py	/^import pickle$/;"	i
+sys	test_code/loadFrompl.py	/^import sys$/;"	i
+data	test_code/readAndSaveFile.py	/^    data = { 'corpus': corpus,$/;"	v
+np	test_code/readAndSaveFile.py	/^import numpy as np$/;"	i
+outfileName	test_code/readAndSaveFile.py	/^    outfileName = sys.argv[2]$/;"	v
+path	test_code/readAndSaveFile.py	/^    path = sys.argv[1]$/;"	v
+pd	test_code/readAndSaveFile.py	/^import pandas as pd$/;"	i
+pickle	test_code/readAndSaveFile.py	/^import pickle$/;"	i
+readFromData	test_code/readAndSaveFile.py	/^def readFromData(filename):$/;"	f
+sys	test_code/readAndSaveFile.py	/^import sys$/;"	i
+CountVectorizer	title_only.py	/^from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer$/;"	i
+KMeans	title_only.py	/^from sklearn.cluster import KMeans$/;"	i
+Normalizer	title_only.py	/^from sklearn.preprocessing import Normalizer$/;"	i
+OrderedDict	title_only.py	/^from collections import OrderedDict$/;"	i
+Phrases	title_only.py	/^from gensim.models.phrases import Phrases$/;"	i
+TfidfVectorizer	title_only.py	/^from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer$/;"	i
+TruncatedSVD	title_only.py	/^from sklearn.decomposition import TruncatedSVD$/;"	i
+WordNetLemmatizer	title_only.py	/^from nltk.stem import WordNetLemmatizer$/;"	i
+clean_corpus	title_only.py	/^def clean_corpus(corpus):$/;"	f
+construct_phrase_dict	title_only.py	/^def construct_phrase_dict(corpus_title):$/;"	f
+contentVect	title_only.py	/^    contentVect = tf_idf(content)$/;"	v
+defaultdict	title_only.py	/^from collections import defaultdict$/;"	i
+extend_abbreviation	title_only.py	/^def extend_abbreviation(mapping, corpus_title):$/;"	f
+feature_arr	title_only.py	/^    feature_arr = get_tags(corpus, title, content, titleVect, contentVect)$/;"	v
+generate_corpus_pos	title_only.py	/^def generate_corpus_pos(corpus, name):$/;"	f
+getFeaturearr	title_only.py	/^def getFeaturearr(feature_arr, features_title, features_content, titleName, contentName, n_top):$/;"	f
+get_tags	title_only.py	/^def get_tags(corpus, title, content, titleVect, contentVect):$/;"	f
+get_wordnet_pos	title_only.py	/^def get_wordnet_pos(treebank_tag):$/;"	f
+getfeaturesWeighted	title_only.py	/^def getfeaturesWeighted(titleVect, contentVect, title, content):$/;"	f
+make_pipeline	title_only.py	/^from sklearn.pipeline import make_pipeline$/;"	i
+my_stop_words	title_only.py	/^my_stop_words = read_words('stop_words.txt')$/;"	v
+nltk	title_only.py	/^import nltk$/;"	i
+np	title_only.py	/^import numpy as np$/;"	i
+os	title_only.py	/^import os.path$/;"	i
+outfileName	title_only.py	/^outfileName = sys.argv[2]$/;"	v
+path	title_only.py	/^import os.path$/;"	i
+path	title_only.py	/^path = sys.argv[1]$/;"	v
+pd	title_only.py	/^import pandas as pd$/;"	i
+process_data	title_only.py	/^def process_data():$/;"	f
+re	title_only.py	/^import re$/;"	i
+read_words	title_only.py	/^def read_words(words_file):$/;"	f
+saveResults	title_only.py	/^def saveResults(outfileName, id_, result):$/;"	f
+stop_words	title_only.py	/^stop_words = text.ENGLISH_STOP_WORDS.union(my_stop_words)$/;"	v
+string	title_only.py	/^import string$/;"	i
+sys	title_only.py	/^import sys$/;"	i
+text	title_only.py	/^from sklearn.feature_extraction import text$/;"	i
+tf_idf	title_only.py	/^def tf_idf(corpus):$/;"	f
+titleVect	title_only.py	/^    titleVect = tf_idf(title)$/;"	v
+wordnet	title_only.py	/^from nltk.corpus import wordnet$/;"	i
+append2file	validation.py	/^def append2file(filename, run_file, run_argv, data_list, score):$/;"	f
+aveScoreFromDatalist	validation.py	/^def aveScoreFromDatalist(pyScore, ans_path, ans_ending, outputName_base):$/;"	f
+createCorpus	validation.py	/^def createCorpus(pyName, data_path, data_list, outputName):$/;"	f
+getScore	validation.py	/^def getScore(pyName, ans_truth, ans_test):$/;"	f
+get_num	validation.py	/^def get_num(text):$/;"	f
+iteration	validation.py	/^iteration = str(1)$/;"	v
+matplotlib	validation.py	/^import matplotlib.pyplot as plt$/;"	i
+np	validation.py	/^import numpy as np$/;"	i
+plot	validation.py	/^def plot(y):$/;"	f
+plt	validation.py	/^import matplotlib.pyplot as plt$/;"	i
+re	validation.py	/^import re$/;"	i
+runTestFile	validation.py	/^def runTestFile(run_file, corpus_base, run_argv, data_list, outputName_base):$/;"	f
+subprocess	validation.py	/^import subprocess$/;"	i
+sys	validation.py	/^import sys$/;"	i
+testing_data2	validation.py	/^def testing_data2(acc):$/;"	f

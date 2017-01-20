@@ -52,7 +52,7 @@ def plotError(x1, y1, x2=[], y2=[], filename="test.png"):
         plt.plot(x1, y1, x2, y2)
     plt.savefig(filename,dpi=300)
 
-def plotHist(y1, filename="test.png"):
+def plotHist(y1,y1Name, y2=[],y2Name=[], filename="test.png"):
     import matplotlib
     # matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -61,7 +61,10 @@ def plotHist(y1, filename="test.png"):
     plt.gcf().clear()
     bin_ = np.arange(0, 1.1, 0.1)
     # hist, bin_ = np.histogram(y1, bins=bin_, density=True)
-    plt.hist(y1, bins=bin_)
+    # plt.hist(y1, bins=bin_)
+    # plt.hist(y1, bin_, alpha=0.5, label=y1Name, histtype='bar')
+    if y2 != []:
+        plt.hist((y1,y2), bin_, alpha=0.5, label=y2Name, histtype='bar')
     plt.savefig(filename,dpi=300)
 
 def countAllTagsInTitle(title, tags):
@@ -125,9 +128,9 @@ def plotSomeGraph(statistics, name):
     plotError(np.arange(len(statistics)), statistics[:,0], np.arange(len(statistics)), statistics[:,1],
                 "tag_title_tag_content_" + str(name) + ".png" )
 
-    plotHist(statistics[:,3], "tagInTitle" + str(name) + ".png")
+    # plotHist(statistics[:,3], "tagInTitle" + str(name) + ".png")
     # tags in title + tags in content -
-    plotHist(np.divide(statistics[:,5]+statistics[:,6]-statistics[:,7],statistics[:,8]), "tagInAll" + str(name) + ".png")
+    plotHist(np.divide(statistics[:,5]+statistics[:,6]-statistics[:,7],statistics[:,8]),"Tags in all",statistics[:,3],"Tags in title", "tagInTitleAll" + str(name) + ".png")
 
 ############################################################
 
@@ -208,8 +211,8 @@ if __name__ == '__main__':
         sys.exit()
 
     countTags = False
-    plotTags  = False
-    workOnList = False
+    plotTags  = True
+    workOnList = True
     '''
     if(len(id_)!=len(tags)):
         print("ERROR!!! Data size and answer size mismatch")
@@ -225,9 +228,9 @@ if __name__ == '__main__':
 
             if plotTags:
                 print("Start to plot ...")
-                # statistics = getStatistics(id_, tags, title, content)
-                # plotSomeGraph(statistics, name)
-                # per_get, per_tag = countAllTagsInTitle(title, tags)
+                statistics = getStatistics(id_, tags, title, content)
+                plotSomeGraph(statistics, name)
+                per_get, per_tag = countAllTagsInTitle(title, tags)
                 print(name, ": ", per_get, ", ", per_tag)
 
             if countTags:
@@ -241,8 +244,8 @@ if __name__ == '__main__':
                 print("all tags, mono tags, bi tags, tri tags : ")
                 print(len(tags1d),",",len(mTags),",",len(bTags),",",len(tTags))
 
-            tag_len = np.array( [ len(i) for i in tags ] )
-            print(tag_len.min(), ",", tag_len.max(), ",", tag_len.mean())
+            # tag_len = np.array( [ len(i) for i in tags ] )
+            # print(tag_len.min(), ",", tag_len.max(), ",", tag_len.mean())
     else: 
         _, tags = readFromOutput(anspath)
         tags1d = flatten(tags)

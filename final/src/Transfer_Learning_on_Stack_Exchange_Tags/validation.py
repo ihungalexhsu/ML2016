@@ -28,6 +28,8 @@ def createCorpus(pyName, data_path, data_list, outputName):
 		p = subprocess.Popen(['python3', pyName, data_path + i + '.csv', outputName + i], \
 			stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = p.communicate()
+		print(out)
+		print(err)
 	return True
 
 # f1_score.py corpus_biology ...
@@ -83,6 +85,9 @@ if __name__ == '__main__':
 	pyScore = 'f1_score.py'
 	outputName_base = 'val_'
 	score = []
+
+	# create corpus
+	createCorpus('ron/preprocess_data.py', '../../data/', data_list, corpus_base)
 
 	if len(sys.argv) > 2:
 		run_file = sys.argv[1]
