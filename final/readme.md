@@ -26,8 +26,8 @@
 ### Data preprocessing
 - Run preprocess data
 	- ./run_preprocess.sh $1 $2
-	- $1: <file to do preprocess>
-	- $2: <save file name>
+	- $1: < file to do preprocess\>
+	- $2: < save file name\>
 	- e.g.
 	- ./run_preprocess.sh ../../data/test.csv corpus/corpus_test
 ```
