@@ -241,7 +241,7 @@ def Tokenizer(corpus):
     return [sentence.split(" ") for sentence in corpus]
 
 def getVect(num):
-    my_words = read_words( "stop_words.txt")
+    my_words = read_words( "long_stop_word.txt")
     # my_data = pd.read_csv( 'stop_word_list_5000.csv', delimiter=',', skipinitialspace=True).as_matrix()
     # my_data = my_data[:,1].tolist()
     # nb_stopwords = int(len(my_data)*0.5)

@@ -7,6 +7,8 @@
 - pickle
 - sklearn
 - gensim
+- matplotlib
+- enchant
 
 ## Files structure
 - data
