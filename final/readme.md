@@ -47,11 +47,11 @@ Run preprocessed data on all subjects
 
 - Run TF-IDF
 	- ./run_tfidf.sh $1 $2 $3 $4 $5
-	- $1: <preprocessed corpus file\>
-	- $2: <output file name\>
-	- $3: <vect type (1-7)\>
-	- $4: <number of answers\>
-	- $5: <title: content weighting\>
+	- $1: < preprocessed corpus file\>
+	- $2: < output file name\>
+	- $3: < vect type (1-7)\>
+	- $4: < number of answers\>
+	- $5: < title: content weighting\>
 	- e.g.
 	- ./run_tfidf.sh corpus/corpus_robotics testing_results vect=2 n_top=3 weight=8:1
 ```
@@ -60,8 +60,8 @@ Run preprocessed data on all subjects
 
 - Run Title-only
 	- ./run_POS_tag.sh $1 $2
-	- $1: <preprocessed corpus file\>
-	- $2: <output file name\>
+	- $1: < preprocessed corpus file\>
+	- $2: < output file name\>
 	- e.g.
 	- python3 tag_gen_ans_POS_tagging.py corpus/corpus_test testing
 	- ./run_POS_tag.sh corpus/corpus_test testing_results
@@ -72,10 +72,10 @@ Run preprocessed data on all subjects
 
 ### Post-processing data
 - Run post-process
-	- ./run_postprocess.sh <corpus name\> <my answer path\> <output file name\>
-	- $1: <corpus name\>
-	- $2: <my answer path\>
-	- $3: <output file name\>
+	- ./run_postprocess.sh < corpus name\> < my answer path\> < output file name\>
+	- $1: < corpus name\>
+	- $2: < my answer path\>
+	- $3: < output file name\>
 ```
 ./run_postprocess.sh corpus/corpus_test testing_results testing_results_post
 ```
@@ -107,7 +107,7 @@ test.sh
 
 tag_prediction.py (use tf/idf to find tags)
 - usage
-	python3 tag_prediction.py <input file> <output file>
+	python3 tag_prediction.py < input file \> < output file \>
 	python3 tag_prediction.py ../../data/test.csv test_test.csv
 
 f1_score.py 
